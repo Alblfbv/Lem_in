@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfleury <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/03/20 12:05:31 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/01 14:28:41 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ CFLAGS	+=	-Wall		\
 			-Werror		\
 			$(INCLUDE)
 
-SRC		=	
+SRC		=
 
 LIB		=	libft/libft.a
 
