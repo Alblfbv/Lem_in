@@ -6,12 +6,11 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/03/26 13:48:10 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/01 16:26:13 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		main(int argc, char **argv)
 {
-	(void)argc;
 
 }

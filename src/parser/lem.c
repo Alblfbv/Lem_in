@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
+/*   lem.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/01 16:25:05 by jfleury          ###   ########.fr       */
+/*   Created: 2019/04/01 16:13:34 by jfleury           #+#    #+#             */
+/*   Updated: 2019/04/01 16:24:31 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#include "lemin.h"
 
-# include <stdlib.h>
-# include <strinf.h>
-# include <unistd.h>
-# include "../libft/libft.a"
-
-typedef struct		s_lem
+int		ft_check_lem(char *line)
 {
-	int		nb_lem;
+	int		i;
 
-}					t_lem;
+	i = 0;
+	while (line[i] != 0)
+	{
+		if (ft_isdigit(line[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-
-int		ft_hash(char *str, int size)
-
-#endif
+void	ft_store_lem(t_lem *lem, char *line)
+{
+	lem->nb_lem = ft_atoi(line);
+}
