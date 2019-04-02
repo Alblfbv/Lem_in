@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 17:12:32 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 19:19:14 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@
 
 # define HASH_TAB 20011
 
-typedef struct		s_lem
+typedef struct			s_lem
 {
-	int			nb_lem;
-	char		*name_start;
-	char		*name_end;
-}					t_lem;
+	int					nb_lem;
+	char				*name_start;
+	char				*name_end;
+}						t_lem;
 
-typedef struct 		s_neighbor
+typedef struct 			s_neighbor
 {
-	int			index;
+	char				*name;
 	struct s_neighbor	*next;
-}					t_neighbor;
+}						t_neighbor;
 
-typedef struct		s_room
+typedef struct			s_room
 {
-	char		*name;
-	char		posision;
-	t_neighbor	neighbors;
+	char				*name;
+	char				posision;
+	t_neighbor			neighbor;
 	struct s_room		*next;
-}					t_room;
+}						t_room;
 
 int		ft_hash(char *str, int size);
 

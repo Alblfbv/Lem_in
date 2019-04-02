@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 17:45:52 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 19:12:47 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		ft_room(char *line, t_room **room)
 	if (*(room + key) == NULL)
 	{
 		room[key] = (t_room*)malloc(sizeof(t_room));
+		room[key]->neighbor->next = NULL;
 		room[key]->next = NULL;
 		room[key]->name = str[0];
 		ft_printf("A\n");
@@ -66,6 +67,7 @@ int		ft_room(char *line, t_room **room)
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = (t_room*)malloc(sizeof(t_room));
+		tmp->next->neighbor->next = NULL;
 		ft_printf("%p\n", tmp);
 		tmp = tmp->next;
 		ft_printf("%p\n", tmp);
