@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 17:23:47 by jfleury           #+#    #+#             */
-/*   Updated: 2019/01/16 13:36:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 12:08:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 char	*ft_strupcase(char *str)
 {

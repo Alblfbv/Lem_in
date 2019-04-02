@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrnchr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/09 10:33:56 by allefebv          #+#    #+#             */
-/*   Updated: 2019/01/23 15:07:56 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/02 12:08:23 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 char	*ft_strrnchr(const char *s, int c, int n)
 {

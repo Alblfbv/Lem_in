@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_double.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 16:36:44 by jfleury           #+#    #+#             */
-/*   Updated: 2019/01/28 16:59:14 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/02 12:07:30 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static char	*ft_zero(t_conv_spec conv_spec, char *str)
 {
