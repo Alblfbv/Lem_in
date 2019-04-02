@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:04:14 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 15:23:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int		main(void)
 {
 	t_lem	lem;
+	t_room	room;
 
-	parser(&lem);
+	parser(&lem, &room);
 }

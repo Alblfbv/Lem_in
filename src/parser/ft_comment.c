@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:37:49 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 12:55:44 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 15:16:54 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_check_comment(char *line)
+int		ft_comment(char *line)
 {
 	int		i;
 

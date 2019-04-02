@@ -6,47 +6,40 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 12:57:21 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 15:24:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	parser(t_lem *lem)
+void	parser(t_lem *lem, t_room *room)
 {
 	char	*line;
 	int		flag;
 	int		check;
-	int		i;
 
 	flag = 0;
-	i = 0;
-	while ((get_next_line(0, &line)) == 1)
+	while ((get_next_line(0, &line)) == 1 && check == 0)
 	{
 		check = 0;
-		if (ft_check_comment(line) == 1)
+		if (ft_comment(line) == 1)
 			check = 1;
-		if (ft_check_command(line) == 1)
-			check = 1;
-		if (ft_check_lem(line) == 1 && flag == 0)
+		if (ft_lem(line, lem) == 1 && flag == 0)
 		{
-			ft_store_lem(lem, line);
 			flag = 1;
 			check = 1;
 		}
-/*		if (ft_check_room(line) == 1 && flag == 1)
-		{
-			ft_store_room(lem, line);
-		}
-		if (ft_check_road(line) == 1)
+		if (ft_command(line, lem, room) == 1)
+			check = 1;
+/*		if (ft_room(line) == 1 && flag == 1)
+			check = 1;
+		if (ft_road(line) == 1)
 		{
 			ft_store_road(lem, line);
 			flag = 2;
 		}*/
 		ft_printf("%s\n", line);
 		free(line);
-		if (check == 0)
-			break;
 	}
 	if (check == 0)
 	{

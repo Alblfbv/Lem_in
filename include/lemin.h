@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 12:54:47 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 15:23:46 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define LEMIN_H
 
 # include <stdio.h>
+
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
@@ -21,16 +22,30 @@
 
 typedef struct		s_lem
 {
-	int		nb_lem;
-
+	int			nb_lem;
+	char		*name_start;
+	char		*name_end;
 }					t_lem;
 
+typedef struct 		s_neighbor
+{
+	int			index;
+	t_neighbor	*next;
+}					t_neighbor;
+
+typedef struct		s_room
+{
+	char		*name;
+	char		posision;
+	t_neighbor	neighbors;
+	s_room		*next;
+}					t_room;
 
 int		ft_hash(char *str, int size);
-void	parser(t_lem *lem);
-int		ft_check_lem(char *line);
-void	ft_store_lem(t_lem *lem, char *line);
-int		ft_check_comment(char *line);
-int		ft_check_command(char *line);
+
+void	parser(t_lem *lem, t_room *room);
+int		ft_lem(char *line, t_lem *lem);
+int		ft_comment(char *line);
+int		ft_command(char *line, t_lem *lem, t_room *room);
 
 #endif
