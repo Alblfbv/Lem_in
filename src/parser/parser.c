@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:55:12 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 12:57:21 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ void	parser(t_lem *lem)
 	while ((get_next_line(0, &line)) == 1)
 	{
 		check = 0;
+		if (ft_check_comment(line) == 1)
+			check = 1;
+		if (ft_check_command(line) == 1)
+			check = 1;
 		if (ft_check_lem(line) == 1 && flag == 0)
 		{
 			ft_store_lem(lem, line);
@@ -48,6 +52,8 @@ void	parser(t_lem *lem)
 	{
 		while ((get_next_line(0, &line)) == 1)
 			ft_printf("%s\n", line);
-		ft_printf("Error\n");
+		ft_printf("\nError\n");
+		return ;
 	}
+	ft_printf("\n");
 }
