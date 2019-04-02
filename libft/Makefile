@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 20:22:58 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/02 12:12:47 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/02 12:20:41 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,13 +134,12 @@ OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF)
-	$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_PRINTF)
 	$(AR) $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
 	$(RL) $(NAME)
 	echo "Make libft"
 
 clean:
-	$(RM) *.o
+	$(RM) $(OBJ_LIBFT) $(OBJ_PRINTF)
 	echo "Clean libft"
 
 fclean: clean
