@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lem.c                                              :+:      :+:    :+:   */
+/*   ft_lem.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:13:34 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 15:16:50 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 15:54:54 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_lem(char *line)
+int		ft_lem(char *line, t_lem *lem, int *flag)
 {
 	int		i;
 
@@ -23,6 +23,8 @@ int		ft_lem(char *line)
 			return (0);
 		i++;
 	}
+	lem->nb_lem = ft_atoi(line);
+	*flag = 1;
 	return (1);
 }
 

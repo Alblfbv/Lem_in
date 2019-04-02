@@ -6,9 +6,11 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:47:54 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/01 17:54:35 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/02 17:01:46 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+# include "lemin.h"
 
 int		ft_hash(char *str, int size)
 {
