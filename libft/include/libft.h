@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:35:42 by jfleury           #+#    #+#             */
-/*   Updated: 2019/03/12 11:48:18 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/02 11:41:11 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,56 @@
 
 # include <string.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
 
 # define BUFF_SIZE 32
+# define CONV_ID_NB 13
+# define FLAGS_NB 5
+# define PRECI_GROUPS 3
+# define RED   "\x1B[31m"
+# define GRN   "\x1B[32m"
+# define YEL   "\x1B[33m"
+# define BLU   "\x1B[34m"
+# define MAG   "\x1B[35m"
+# define CYN   "\x1B[36m"
+# define WHT   "\x1B[37m"
+# define RESET "\x1B[0m"
+
+typedef	struct		s_list
+{
+	void			*content;
+	size_t			content_size;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct		s_conv_spec
+{
+	char			conv_id;
+	int				*flags;
+	int				*modifier;
+	int				field_width;
+	int				precision;
+	char			*converted;
+}					t_conv_spec;
+
+typedef struct		s_fptr_id
+{
+	char			*conv_id_tab;
+	char			*(*fptr[CONV_ID_NB])(t_conv_spec c_s, va_list *list);
+}					t_fptr_id;
+
+typedef struct		s_fptr_flag
+{
+	int				*flags;
+	char			*(*fptr[FLAGS_NB])(t_conv_spec c_s, char *str);
+}					t_fptr_flag;
+
+typedef struct		s_fptr_preci
+{
+	char			**preci_group;
+	char			*(*fptr[PRECI_GROUPS])(t_conv_spec c_s, char *str);
+}					t_fptr_preci;
 
 int					ft_atoi(const char *str);
 long long			ft_atoi_long(const char *str);
@@ -79,14 +127,6 @@ char				**ft_memtab(size_t y, size_t x);
 int					**ft_memint_tab(size_t y, size_t x);
 void				ft_sstrprint(char **str);
 int					*ft_bubble_sort(int *tab, int size);
-
-typedef	struct		s_list
-{
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
-
 t_list				*ft_lstnew(void const *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
 void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
@@ -95,5 +135,55 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_sstrdel(char **str, int size);
 int					get_next_line(const int fd, char **line);
+unsigned long long	ft_power(unsigned long long nb, unsigned long long power);
+char				*ft_char_replace(char *str, char c, char r);
+char				*ft_strupcase(char *str);
+char				*ft_strnchr(const char *s, int c, int n);
+char				*ft_strrnchr(const char *s, int c, int n);
+char				*ft_strndup(const char *src, size_t n);
+char				*ft_itoa_base(unsigned long long n, int base);
+char				*ft_itoa_double(t_conv_spec conv_spec, long double nb);
+char				*ft_strrev(char *str);
+int					ft_printf(char *format, ...);
+char				*ft_data_conv_id(void);
+int					ft_store_conv_id(t_conv_spec *c_s, char *format, int i);
+void				ft_store_modifier(t_conv_spec *c_s, char *f, int i, int l);
+void				ft_store_flag(t_conv_spec *c_s, char *format, int i, int l);
+void				ft_store_wc_field_width(t_conv_spec *c_s, va_list *ap);
+void				ft_store_wc_precision(t_conv_spec *c_s, va_list *ap);
+void				ft_store_field_width
+					(t_conv_spec *c_s, char *format, int i, int len);
+void				ft_store_precision(t_conv_spec *c_s, char *f, int i, int l);
+void				ft_struct_init(t_conv_spec *c_s);
+void				ft_struct_del(t_conv_spec *c_s);
+char				*ft_data_conv_ids(void);
+char				*ft_process_c(t_conv_spec c_s, va_list *ap);
+char				*ft_process_s(t_conv_spec c_s, va_list *ap);
+char				*ft_process_p(t_conv_spec c_s, va_list *ap);
+char				*ft_process_di(t_conv_spec c_s, va_list *ap);
+char				*ft_process_o(t_conv_spec c_s, va_list *ap);
+char				*ft_process_u(t_conv_spec c_s, va_list *ap);
+char				*ft_process_x(t_conv_spec c_s, va_list *ap);
+char				*ft_process_xx(t_conv_spec c_s, va_list *ap);
+char				*ft_process_f(t_conv_spec c_s, va_list *ap);
+char				*ft_process_b(t_conv_spec c_s, va_list *ap);
+char				*ft_process_dd(t_conv_spec c_s, va_list *ap);
+char				*ft_process_percent(t_conv_spec c_s, va_list *ap);
+char				*ft_process_id(t_conv_spec c_s, va_list *ap);
+char				*ft_process_flags(t_conv_spec c_s, char *str);
+char				*ft_process_hash(t_conv_spec c_s, char *str);
+char				*ft_hash_xx_preci(char *str, int i);
+char				*ft_hash_xx_zero(char *str, int i);
+char				*ft_hash_x_preci(char *str, int i);
+char				*ft_hash_x_zero(char *str, int i);
+char				*ft_process_plus(t_conv_spec c_s, char *str);
+char				*ft_process_zero(t_conv_spec c_s, char *str);
+char				*ft_process_minus(t_conv_spec c_s, char *str);
+char				*ft_process_space(t_conv_spec c_s, char *str);
+char				*ft_process_min_width(t_conv_spec c_s, char *str);
+char				*ft_precision_diouxx(t_conv_spec c_s, char *str);
+char				*ft_precision_s(t_conv_spec c_s, char *str);
+char				*ft_precision_p(t_conv_spec c_s, char *str);
+char				*ft_process_preci(t_conv_spec c_s, char *str);
 
 #endif

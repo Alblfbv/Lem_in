@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:04:14 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/21 17:34:08 by jfleury           #+#    #+#             */
+/*   Updated: 2019/01/23 15:07:35 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
-
-int		main(void)
+unsigned long long	ft_power(unsigned long long nb, int power)
 {
-	t_lem	lem;
-
-	parser(&lem);
+	if (power == 0)
+		return (1);
+	if (power == 1)
+		return (nb);
+	if (power > 0)
+		return (nb * ft_power(nb, power - 1));
+	else
+		return (0);
 }

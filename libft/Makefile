@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfleury <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 20:22:58 by jfleury           #+#    #+#              #
-#    Updated: 2019/03/07 13:51:21 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/02 11:46:31 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,90 +15,123 @@ AR = ar rc
 CC = gcc
 RL = ranlib
 RM = rm -f
-CFLAGS = -Wall -Werror -Wextra -c
+INCLUDE = -I ./include
+CFLAGS = -Wall -Werror -Wextra -c $(INCLUDE)
 
-SRC =	ft_memset.c		\
-		ft_bzero.c		\
-		ft_memcpy.c		\
-		ft_memccpy.c	\
-		ft_memmove.c	\
-		ft_memchr.c		\
-		ft_memcmp.c		\
-		ft_strlen.c		\
-		ft_strcmp.c 	\
-		ft_strdup.c		\
-		ft_strcpy.c		\
-		ft_strncpy.c	\
-		ft_strcat.c		\
-		ft_strncat.c	\
-		ft_strlcat.c	\
-		ft_strchr.c		\
-		ft_strrchr.c	\
-		ft_atoi.c		\
-		ft_atoi_long.c	\
-		ft_isalpha.c	\
-		ft_isdigit.c	\
-		ft_isalnum.c	\
-		ft_strstr.c 	\
-		ft_strnstr.c 	\
-		ft_strncmp.c 	\
-		ft_strnequ.c 	\
-		ft_isascii.c	\
-		ft_isprint.c	\
-		ft_toupper.c	\
-		ft_tolower.c	\
-		ft_memalloc.c	\
-		ft_memdel.c		\
-		ft_strnew.c		\
-		ft_strdel.c		\
-		ft_strclr.c		\
-		ft_striter.c	\
-		ft_striteri.c	\
-		ft_strmap.c		\
-		ft_strmapi.c	\
-		ft_strequ.c		\
-		ft_strsub.c		\
-		ft_strtrim.c	\
-		ft_strsplit.c	\
-		ft_itoa.c		\
-		ft_strjoin.c	\
-		ft_putchar.c	\
-		ft_putstr.c		\
-		ft_putendl.c	\
-		ft_putnbr.c		\
-		ft_putchar_fd.c	\
-		ft_putstr_fd.c	\
-		ft_putendl_fd.c	\
-		ft_putnbr_fd.c	\
-		ft_lstnew.c		\
-		ft_lstdelone.c	\
-		ft_lstdel.c		\
-		ft_lstadd.c		\
-		ft_lstiter.c	\
-		ft_lstmap.c		\
-		ft_strextend.c	\
-		ft_strnextend.c	\
-		ft_sstrnew.c	\
-		ft_sstrcpy.c	\
-		ft_sstrdel.c	\
-		get_next_line.c	\
-		ft_memtab.c		\
-		ft_memint_tab.c	\
-		ft_sstrprint.c	\
-		ft_bubble_sort.c
+SRC_LIBFT =	libft/ft_memset.c		\
+			libft/ft_bzero.c		\
+			libft/ft_memcpy.c		\
+			libft/ft_memccpy.c		\
+			libft/ft_memmove.c		\
+			libft/ft_memchr.c		\
+			libft/ft_memcmp.c		\
+			libft/ft_strlen.c		\
+			libft/ft_strcmp.c 		\
+			libft/ft_strdup.c		\
+			libft/ft_strcpy.c		\
+			libft/ft_strncpy.c		\
+			libft/ft_strcat.c		\
+			libft/ft_strncat.c		\
+			libft/ft_strlcat.c		\
+			libft/ft_strchr.c		\
+			libft/ft_strrchr.c		\
+			libft/ft_atoi.c			\
+			libft/ft_atoi_long.c	\
+			libft/ft_isalpha.c		\
+			libft/ft_isdigit.c		\
+			libft/ft_isalnum.c		\
+			libft/ft_strstr.c 		\
+			libft/ft_strnstr.c 		\
+			libft/ft_strncmp.c 		\
+			libft/ft_strnequ.c 		\
+			libft/ft_isascii.c		\
+			libft/ft_isprint.c		\
+			libft/ft_toupper.c		\
+			libft/ft_tolower.c		\
+			libft/ft_memalloc.c		\
+			libft/ft_memdel.c		\
+			libft/ft_strnew.c		\
+			libft/ft_strdel.c		\
+			libft/ft_strclr.c		\
+			libft/ft_striter.c		\
+			libft/ft_striteri.c		\
+			libft/ft_strmap.c		\
+			libft/ft_strmapi.c		\
+			libft/ft_strequ.c		\
+			libft/ft_strsub.c		\
+			libft/ft_strtrim.c		\
+			libft/ft_strsplit.c		\
+			libft/ft_itoa.c			\
+			libft/ft_strjoin.c		\
+			libft/ft_putchar.c		\
+			libft/ft_putstr.c		\
+			libft/ft_putendl.c		\
+			libft/ft_putnbr.c		\
+			libft/ft_putchar_fd.c	\
+			libft/ft_putstr_fd.c	\
+			libft/ft_putendl_fd.c	\
+			libft/ft_putnbr_fd.c	\
+			libft/ft_lstnew.c		\
+			libft/ft_lstdelone.c	\
+			libft/ft_lstdel.c		\
+			libft/ft_lstadd.c		\
+			libft/ft_lstiter.c		\
+			libft/ft_lstmap.c		\
+			libft/ft_strextend.c	\
+			libft/ft_strnextend.c	\
+			libft/ft_sstrnew.c		\
+			libft/ft_sstrcpy.c		\
+			libft/ft_sstrdel.c		\
+			libft/get_next_line.c	\
+			libft/ft_memtab.c		\
+			libft/ft_memint_tab.c	\
+			libft/ft_sstrprint.c	\
+			libft/ft_bubble_sort.c
 
-OBJ = $(SRC:.c=.o)
+SRC_PRINTF =	ft_printf/ft_printf.c 									\
+				ft_printf/store/ft_store_struct.c						\
+				ft_printf/store/ft_store_struct_2.c						\
+				ft_printf/store/ft_struct_init_del.c					\
+				ft_printf/process/conversion_id/process_c.c				\
+				ft_printf/process/conversion_id/process_p.c				\
+				ft_printf/process/conversion_id/process_s.c				\
+				ft_printf/process/conversion_id/process_di.c			\
+				ft_printf/process/conversion_id/process_id.c			\
+				ft_printf/process/conversion_id/process_o.c				\
+				ft_printf/process/conversion_id/process_u.c				\
+				ft_printf/process/conversion_id/process_x.c				\
+				ft_printf/process/conversion_id/process_xx.c			\
+				ft_printf/process/conversion_id/process_f.c				\
+				ft_printf/process/conversion_id/process_b.c				\
+				ft_printf/process/conversion_id/process_dd.c			\
+				ft_printf/process/conversion_id/process_percent.c		\
+				ft_printf/process/flags/process_flags.c					\
+				ft_printf/process/flags/process_space.c					\
+				ft_printf/process/flags/process_plus.c					\
+				ft_printf/process/flags/process_zero.c					\
+				ft_printf/process/flags/process_minus.c					\
+				ft_printf/process/flags/process_hash.c					\
+				ft_printf/process/flags/process_hash2.c					\
+				ft_printf/process/min_width/process_min_width.c			\
+				ft_printf/process/precision/process_preci_diouxx.c		\
+				ft_printf/process/precision/process_preci_s.c			\
+				ft_printf/process/precision/process_preci_p.c			\
+				ft_printf/process/precision/process_preci_table.c		\
+				ft_printf/data/ft_data.c
+
+OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
+OBJ_PRINTF = $(SRC_PRINTF:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(SRC)
-	$(AR) $(NAME) $(OBJ)
+$(NAME): $(OBJ_LIBFT) $(OBJ_PRINTF)
+	$(CC) $(CFLAGS) $(SRC_LIBFT) $(SRC_PRINTF)
+	$(AR) $(NAME) $(OBJ_LIBFT) $(OBJ_PRINTF)
 	$(RL) $(NAME)
 	echo "Make libft"
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) *.o
 	echo "Clean libft"
 
 fclean: clean
@@ -107,4 +140,4 @@ fclean: clean
 
 re: fclean all
 
-.SILENT: $(OBJ) $(NAME) all clean fclean re
+.SILENT: $(OBJ_LIBFT) $(OBJ_PRINTF) $(NAME) all clean fclean re

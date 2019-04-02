@@ -1,34 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
+/*   process_f.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:48:30 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/14 14:30:04 by jfleury           #+#    #+#             */
+/*   Updated: 2019/04/02 11:43:17 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../libft/include/libft.h"
-
-typedef struct		s_lem
+char			*ft_process_f(t_conv_spec conv_spec, va_list *ap)
 {
-	int		nb_lem;
-
-}					t_lem;
-
-
-int		ft_hash(char *str, int size);
-void	parser(t_lem *lem);
-int		ft_check_lem(char *line);
-void	ft_store_lem(t_lem *lem, char *line);
-
-#endif
+	if (conv_spec.modifier[3] == 1)
+		return (ft_itoa_double(conv_spec, va_arg(*ap, double)));
+	if (conv_spec.modifier[4] == 1)
+		return (ft_itoa_double(conv_spec, va_arg(*ap, long double)));
+	return (ft_itoa_double(conv_spec, va_arg(*ap, double)));
+}

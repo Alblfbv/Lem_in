@@ -1,20 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_char_replace.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:04:14 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/16 18:50:02 by jfleury           #+#    #+#             */
+/*   Updated: 2019/01/16 18:54:31 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
-
-int		main(void)
+char	*ft_char_replace(char *str, char c, char r)
 {
-	t_lem	lem;
+	int		i;
 
-	parser(&lem);
+	i = 0;
+	while (str[i] != 0)
+	{
+		if (str[i] == c)
+			str[i] = r;
+		i++;
+	}
+	return (str);
 }

@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
+/*   ft_struct_init_del.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:48:30 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/11 15:08:53 by allefebv          #+#    #+#             */
+/*   Updated: 2019/04/02 11:44:49 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../libft/include/libft.h"
-
-typedef struct		s_lem
+void	ft_struct_init(t_conv_spec *conv_spec)
 {
-	int		nb_lem;
+	conv_spec->conv_id = 0;
+	conv_spec->modifier = NULL;
+	conv_spec->field_width = 0;
+	conv_spec->precision = -1;
+	conv_spec->flags = NULL;
+}
 
-}					t_lem;
-
-
-int		ft_hash(char *str, int size);
-void	parser(t_lem *lem);
-int		ft_check_lem(char *line);
-void	ft_store_lem(t_lem *lem, char *line);
-
-#endif
+void	ft_struct_del(t_conv_spec *conv_spec)
+{
+	free(conv_spec->modifier);
+	free(conv_spec->flags);
+}

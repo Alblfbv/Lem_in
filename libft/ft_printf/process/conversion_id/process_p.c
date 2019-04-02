@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
+/*   process_p.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:48:30 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/09 12:10:52 by jfleury           #+#    #+#             */
+/*   Updated: 2019/04/02 11:43:28 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../libft/include/libft.h"
-
-typedef struct		s_lem
+char	*ft_process_p(t_conv_spec conv_spec, va_list *ap)
 {
-	int		nb_lem;
+	char	*str;
+	char	*str2;
 
-}					t_lem;
-
-
-int		ft_hash(char *str, int size);
-void	parser(t_lem *lem);
-int		ft_check_lem(char *line);
-void	ft_store_lem(t_lem *lem, char *line);
-
-#endif
+	(void)conv_spec;
+	str = ft_itoa_base(va_arg(*ap, long long), 16);
+	str2 = ft_strdup("0x");
+	str2 = ft_strextend(str2, str);
+	free(str);
+	return (str2);
+}

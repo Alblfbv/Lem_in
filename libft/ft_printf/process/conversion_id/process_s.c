@@ -1,34 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.h                                            :+:      :+:    :+:   */
+/*   process_s.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:48:30 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/09 12:04:24 by jfleury           #+#    #+#             */
+/*   Updated: 2019/04/02 11:43:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEMIN_H
-# define LEMIN_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
-# include "../libft/include/libft.h"
-
-typedef struct		s_lem
+char	*ft_process_s(t_conv_spec conv_spec, va_list *ap)
 {
-	int		nb_lem;
+	char	*str;
 
-}					t_lem;
-
-
-int		ft_hash(char *str, int size);
-void	parser(t_lem *lem);
-int		ft_check_lem(char *line);
-void	ft_store_lem(t_lem *lem, char *line);
-
-#endif
+	(void)conv_spec;
+	if ((str = ft_strdup(va_arg(*ap, char*))) == NULL)
+		str = ft_strdup("(null)");
+	str = ft_precision_s(conv_spec, str);
+	return (str);
+}

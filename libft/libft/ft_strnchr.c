@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 11:04:14 by jfleury          ###   ########.fr       */
+/*   Created: 2019/01/07 17:53:03 by jfleury           #+#    #+#             */
+/*   Updated: 2019/01/16 13:35:55 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "ft_printf.h"
 
-int		main(void)
+char	*ft_strnchr(const char *s, int c, int n)
 {
-	t_lem	lem;
-
-	parser(&lem);
+	while (*s != (char)c && *s != '\0')
+	{
+		s++;
+		n--;
+		if (n == 0)
+			return (NULL);
+	}
+	if (*s == (char)c)
+		return ((char *)s);
+	return (NULL);
 }
