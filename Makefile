@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/02 17:07:39 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/03 16:30:29 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ LIB	= libft/libft.a
 SRC		=	src/main.c 				\
 			src/parser/parser.c		\
 			src/parser/ft_room.c	\
+			src/parser/ft_path.c	\
 			src/parser/ft_lem.c		\
 			src/parser/ft_comment.c	\
 			src/parser/ft_command.c	\
