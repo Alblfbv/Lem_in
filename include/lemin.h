@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 12:58:37 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 14:46:00 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct			s_lem
 
 typedef struct 			s_neighbor
 {
-	char				*name;
+	s_room				*room;
 	struct s_neighbor	*next;
 }						t_neighbor;
 
