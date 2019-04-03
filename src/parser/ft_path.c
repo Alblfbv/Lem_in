@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 19:19:32 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/03 19:38:29 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 	{
 		if (!(r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		r2->neighbor->room = r2;
+		r2->neighbor->room = r1;
 		r2->neighbor->next = NULL;
 	}
 	else

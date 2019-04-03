@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:47:54 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 17:01:46 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 19:42:08 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int		ft_hash(char *str, int size)
 		i++;
 		j = j + 2;
 	}
+	result = result * 1009;
 	result = result % size;
 	return (result);
 }
