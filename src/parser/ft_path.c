@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 16:38:38 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/03 16:55:58 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_path_error(char **couple)
 {
 	int	j;
 	int	i;
-	
+
 	j = 0;
 	i = 0;
 	if (i != 2)
@@ -57,7 +57,7 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 		if (!(n1->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		n1->next->next = NULL;
-		n1->next->room = NULL;
+		n1->next->room = r2;
 	}
 	if (n2->room == NULL)
 		n2->room = r1;
@@ -68,7 +68,7 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 		if (!(n2->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		n2->next->next = NULL;
-		n2->next->room = NULL;
+		n2->next->room = r1;
 	}
 	return (1);
 }
