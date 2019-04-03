@@ -6,23 +6,24 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 17:39:19 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/03 17:58:12 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void	ft_clean(char **couple)
+static int	ft_clean(char **couple)
 {
 	int	i;
 
 	i = 0;
-	while(couple[i] != 0)
+	while (couple[i] != 0)
 	{
 		free(couple[i]);
 		i++;
 	}
 	free(couple);
+	return (0);
 }
 
 static int	ft_path_error(char **couple)
@@ -52,7 +53,7 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 {
 	if (n1 == NULL)
 	{
-		if(!(n1 = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(n1 = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		n1->room = r2;
 		n1->next = NULL;
@@ -68,7 +69,7 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 	}
 	if (n2 == NULL)
 	{
-		if(!(n2 = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(n2 = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		n2->room = r1;
 		n2->next = NULL;
@@ -104,7 +105,7 @@ static int	ft_find_room(char **couple, t_room **room, int key_r1, int key_r2)
 	{
 		tmp_n1 = tmp_r1->neighbor;
 		tmp_n2 = tmp_r2->neighbor;
-		if(!(ft_neigh(tmp_r1, tmp_r2, tmp_n1, tmp_n2)))
+		if (!(ft_neigh(tmp_r1, tmp_r2, tmp_n1, tmp_n2)))
 			return (0);
 	}
 	return (1);
@@ -118,13 +119,11 @@ int			ft_path(char *line, t_room **room)
 
 	couple = ft_strsplit(line, '-');
 	if (!(ft_path_error(couple)))
-	{
-		ft_clean(couple);
-		return (0);
-	}
+		return (ft_clean(couple));
 	key_r1 = ft_hash(couple[0], HASH_TAB);
 	key_r2 = ft_hash(couple[1], HASH_TAB);
 	if (!(ft_find_room(couple, room, key_r1, key_r2)))
-		return (0);
+		return (ft_clean(couple));
+	ft_clean(couple);
 	return (1);
 }

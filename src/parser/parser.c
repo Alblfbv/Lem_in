@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 16:59:21 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 18:20:26 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,15 @@ void	parser(t_lem *lem, t_room **room)
 		free(line);
 		i++;
 	}
+	free(line);
 	if (check == 0)
 	{
 		while ((get_next_line(0, &line)) == 1)
+		{
 			ft_printf("Error = %s\n", line);
+			free(line);
+		}
+		free(line);
 		ft_printf("\nError\n");
 		return ;
 	}
