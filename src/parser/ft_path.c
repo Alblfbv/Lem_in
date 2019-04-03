@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 17:58:12 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 19:19:32 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,12 @@ static int	ft_path_error(char **couple)
 
 static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 {
-	if (n1 == NULL)
+	if (r1->neighbor == NULL)
 	{
-		if (!(n1 = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		n1->room = r2;
-		n1->next = NULL;
+		r1->neighbor->room = r2;
+		r1->neighbor->next = NULL;
 	}
 	else
 	{
@@ -67,12 +67,12 @@ static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
 		n1->next->room = r2;
 		n1->next->next = NULL;
 	}
-	if (n2 == NULL)
+	if (r2->neighbor == NULL)
 	{
-		if (!(n2 = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		n2->room = r1;
-		n2->next = NULL;
+		r2->neighbor->room = r2;
+		r2->neighbor->next = NULL;
 	}
 	else
 	{
