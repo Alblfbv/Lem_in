@@ -6,16 +6,15 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 19:12:47 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/03 12:10:37 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
-static int	ft_free_str(char **str)
+static int		ft_free_str(char **str)
 {
-	int		i;
+	int			i;
 
 	i = 0;
 	while (str[i] != 0)
@@ -26,53 +25,68 @@ static int	ft_free_str(char **str)
 	free(str[i]);
 	return (0);
 }
-*/
-int		ft_room(char *line, t_room **room)
+
+static int		ft_check_room(char **str)
 {
-	char	**str;
-//	int		i;
-	int		key;
-	t_room	*tmp;
+	int		i;
+	int		j;
 
-
-	str = ft_strsplit(line, ' ');
-	tmp = NULL;
-// Fonction de verif
-/*
 	i = 0;
-
 	while (str[i] != 0)
 		i++;
 	if (i != 3)
 		return (ft_free_str(str));
-	if (ft_isdigit(str[i - 1]) == 0 || ft_isdigit(str[i - 2] == 0))
-		return (ft_free_str(str));
-	ft_free_str(str);
+	while (i != 1)
+	{
+		j = 0;
+		while (str[i][j] != 0)
+		{
+			if (!(ft_isdigit(str[i][j])))
+				return (0);
+			j++;
+		}
+		i--;
+	}
+	return (1);
+}
 
-// Fonction de stockage
-*/
+static int		ft_store_room(char **str, t_room **room)
+{
+	int			key;
+	t_room		*tmp;
+
 	key = ft_hash(str[0], HASH_TAB);
 	if (*(room + key) == NULL)
 	{
-		room[key] = (t_room*)malloc(sizeof(t_room));
+		if (!(room[key] = (t_room*)malloc(sizeof(t_room))))
+			return (0);
 		room[key]->neighbor->next = NULL;
 		room[key]->next = NULL;
 		room[key]->name = str[0];
-		ft_printf("A\n");
 	}
 	else
 	{
-		ft_printf("B\n");
 		tmp = room[key];
 		while (tmp->next != NULL)
 			tmp = tmp->next;
-		tmp->next = (t_room*)malloc(sizeof(t_room));
+		if (!(tmp->next = (t_room*)malloc(sizeof(t_room))))
+			return (0);
 		tmp->next->neighbor->next = NULL;
-		ft_printf("%p\n", tmp);
 		tmp = tmp->next;
-		ft_printf("%p\n", tmp);
 		tmp->next = NULL;
 		tmp->name = str[0];
 	}
+	return (1);
+}
+
+int				ft_room(char *line, t_room **room)
+{
+	char		**str;
+
+	str = ft_strsplit(line, ' ');
+	if (!(ft_check_room(str)))
+		return (ft_free_str(str);
+	ft_store_room(str, room);
+	ft_free_str(str);
 	return (1);
 }
