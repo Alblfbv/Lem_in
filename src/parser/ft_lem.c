@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:13:34 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/02 15:54:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 13:03:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,4 @@ int		ft_lem(char *line, t_lem *lem, int *flag)
 	lem->nb_lem = ft_atoi(line);
 	*flag = 1;
 	return (1);
-}
-
-void	ft_store_lem(t_lem *lem, char *line)
-{
-	lem->nb_lem = ft_atoi(line);
 }
