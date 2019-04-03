@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 16:32:44 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/03 17:21:27 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ static int		ft_store_room(char **str, t_room **room)
 	{
 		if (!(room[key] = (t_room*)malloc(sizeof(t_room))))
 			return (0);
-		room[key]->neighbor->next = NULL;
+		room[key]->neighbor = NULL;
 		room[key]->next = NULL;
-		room[key]->name = str[0];
+		room[key]->name = ft_strdup(str[0]);
 	}
 	else
 	{
@@ -72,10 +72,10 @@ static int		ft_store_room(char **str, t_room **room)
 			tmp = tmp->next;
 		if (!(tmp->next = (t_room*)malloc(sizeof(t_room))))
 			return (0);
-		tmp->next->neighbor->next = NULL;
+		tmp->next->neighbor = NULL;
 		tmp = tmp->next;
 		tmp->next = NULL;
-		tmp->name = str[0];
+		tmp->name = ft_strdup(str[0]);
 	}
 	return (1);
 }

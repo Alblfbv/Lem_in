@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 16:55:58 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/03 17:25:29 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int	ft_path_error(char **couple)
 
 	j = 0;
 	i = 0;
+	while (couple[i] != 0)
+		i++;
 	if (i != 2)
 		return (0);
 	while (couple[i] != 0)
@@ -81,9 +83,7 @@ static int	ft_find_room(char **couple, t_room **room, int key_r1, int key_r2)
 	t_neighbor	*tmp_n2;
 
 	tmp_r1 = room[key_r1];
-	tmp_r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor));
 	tmp_r2 = room[key_r2];
-	tmp_r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor));
 	while (tmp_r1 != NULL && !ft_strequ(tmp_r1->name, couple[0]))
 		tmp_r1 = tmp_r1->next;
 	while (tmp_r2 != NULL && !ft_strequ(tmp_r2->name, couple[1]))
@@ -92,8 +92,14 @@ static int	ft_find_room(char **couple, t_room **room, int key_r1, int key_r2)
 		return (0);
 	else
 	{
+		if (!(tmp_r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
+			return (0);
+		if (!(tmp_r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
+			return (0);
 		tmp_n1 = tmp_r1->neighbor;
+		tmp_n1->next = NULL;
 		tmp_n2 = tmp_r2->neighbor;
+		tmp_n2->next = NULL;
 		if(!(ft_neigh(tmp_r1, tmp_r2, tmp_n1, tmp_n2)))
 			return (0);
 	}
@@ -107,14 +113,14 @@ int			ft_path(char *line, t_room **room)
 	int			key_r2;
 
 	couple = ft_strsplit(line, '-');
-	if(!(ft_path_error(couple)))
+	if (!(ft_path_error(couple)))
 	{
 		ft_clean(couple);
 		return (0);
 	}
 	key_r1 = ft_hash(couple[0], HASH_TAB);
 	key_r2 = ft_hash(couple[1], HASH_TAB);
-	if(!(ft_find_room(couple, room, key_r1, key_r2)))
+	if (!(ft_find_room(couple, room, key_r1, key_r2)))
 		return (0);
 	return (1);
 }
