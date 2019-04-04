@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 19:40:12 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/04 13:27:08 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	ft_print_all(t_room **room)
 			{
 				tmp_n = tmp_r->neighbor;
 				ft_printf("ROOM = %s\n", tmp_r->name);
+				ft_printf("TYPE = %c\n", tmp_r->room_type);
 				ft_printf("Neighbors of room = ");
 				while (tmp_n != NULL)
 				{
@@ -92,6 +93,6 @@ int		main(void)
 		i++;
 	}
 	parser(&lem, room);
-//	ft_print_all(room);
+	ft_print_all(room);
 	ft_clean(room);
 }

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 18:20:58 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 13:22:28 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void		ft_store_start(t_lem *lem, t_room **room)
 
 	(void)lem;
 	get_next_line(0, &line);
-	ft_room(line, room);
+	ft_room(line, room, lem, 'S');
 	ft_printf("%s\n", line);
 	free(line);
 }
@@ -29,7 +29,7 @@ static void		ft_store_end(t_lem *lem, t_room **room)
 
 	(void)lem;
 	get_next_line(0, &line);
-	ft_room(line, room);
+	ft_room(line, room, lem, 'E');
 	ft_printf("%s\n", line);
 	free(line);
 }

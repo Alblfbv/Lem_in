@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 17:21:27 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 13:25:39 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,26 @@ static int		ft_check_room(char **str)
 	return (1);
 }
 
-static int		ft_store_room(char **str, t_room **room)
+static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
+{
+	int			key;
+
+	key = ft_hash(str[0], HASH_TAB);
+	if (type == 'S')
+	{
+		lem->name_start = ft_strdup(str[0]);
+		room[key]->room_type = type;
+	}
+	if (type == 'E')
+	{
+		lem->name_end = ft_strdup(str[0]);
+		room[key]->room_type = type;
+	}
+	if (type == 'M')
+		room[key]->room_type = type;
+}
+
+static int		ft_store_room(char **str, t_room **room, t_lem *lem, char type)
 {
 	int			key;
 	t_room		*tmp;
@@ -77,17 +96,18 @@ static int		ft_store_room(char **str, t_room **room)
 		tmp->next = NULL;
 		tmp->name = ft_strdup(str[0]);
 	}
+	ft_store_type(str, room, lem, type);
 	return (1);
 }
 
-int				ft_room(char *line, t_room **room)
+int				ft_room(char *line, t_room **room, t_lem *lem, char type)
 {
 	char		**str;
 
 	str = ft_strsplit(line, ' ');
 	if (!(ft_check_room(str)))
 		return (ft_free_str(str));
-	ft_store_room(str, room);
+	ft_store_room(str, room, lem, type);
 	ft_free_str(str);
 	return (1);
 }

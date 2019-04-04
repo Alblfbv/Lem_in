@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 18:20:26 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 13:22:02 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parser(t_lem *lem, t_room **room)
 			ft_printf("GNL N_%d / ft_command\n\n", i);
 			check = 1;
 		}
-		if (ft_room(line, room) == 1 && flag == 1)
+		if (ft_room(line, room, lem, 'M') == 1 && flag == 1)
 		{
 			ft_printf("GNL N_%d ft_room\n\n", i);
 			check = 1;
