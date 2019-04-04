@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 13:23:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:00:02 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ typedef struct			s_room
 	struct s_room		*next;
 }						t_room;
 
+typedef struct			s_coord
+{
+	int					x;
+	int					y;
+	struct s_coord		*next;
+}						t_coord;
+
 int		ft_hash(char *str, int size);
 
 void	parser(t_lem *lem, t_room **room);
@@ -49,6 +56,7 @@ int		ft_lem(char *line, t_lem *lem, int *flag);
 int		ft_comment(char *line);
 int		ft_command(char *line, t_lem *lem, t_room **room);
 int		ft_room(char *line, t_room **room, t_lem *lem, char type);
+int		ft_check_coord(int x, int y, t_coord **coord_tab);
 int		ft_path(char *line, t_room **room);
 
 #endif
