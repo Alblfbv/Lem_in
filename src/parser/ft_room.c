@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 13:25:39 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 15:00:32 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int		ft_store_room(char **str, t_room **room, t_lem *lem, char type)
 	t_room		*tmp;
 
 	key = ft_hash(str[0], HASH_TAB);
-	if (*(room + key) == NULL)
+	if (room[key] == NULL)
 	{
 		if (!(room[key] = (t_room*)malloc(sizeof(t_room))))
 			return (0);
@@ -88,13 +88,17 @@ static int		ft_store_room(char **str, t_room **room, t_lem *lem, char type)
 	{
 		tmp = room[key];
 		while (tmp->next != NULL)
+		{
+			if (ft_strequ(tmp->name, str[0]))
+				return (0);
 			tmp = tmp->next;
-		if (!(tmp->next = (t_room*)malloc(sizeof(t_room))))
+		}
+		if (ft_strequ(tmp->name, str[0]) != 0
+			|| !(tmp->next = (t_room*)malloc(sizeof(t_room))))
 			return (0);
 		tmp->next->neighbor = NULL;
-		tmp = tmp->next;
-		tmp->next = NULL;
-		tmp->name = ft_strdup(str[0]);
+		tmp->next->next = NULL;
+		tmp->next->name = ft_strdup(str[0]);
 	}
 	ft_store_type(str, room, lem, type);
 	return (1);
@@ -107,7 +111,8 @@ int				ft_room(char *line, t_room **room, t_lem *lem, char type)
 	str = ft_strsplit(line, ' ');
 	if (!(ft_check_room(str)))
 		return (ft_free_str(str));
-	ft_store_room(str, room, lem, type);
+	if (!ft_store_room(str, room, lem, type))
+		return (ft_free_str(str));
 	ft_free_str(str);
 	return (1);
 }

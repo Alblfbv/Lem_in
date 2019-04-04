@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/03 19:38:29 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/04 14:27:36 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,39 +49,54 @@ static int	ft_path_error(char **couple)
 	return (1);
 }
 
-static int	ft_neigh(t_room *r1, t_room *r2, t_neighbor *n1, t_neighbor *n2)
+static int	ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1)
 {
-	if (r1->neighbor == NULL)
+	if (tmp_r1->neighbor == NULL)
 	{
-		if (!(r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(tmp_r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		r1->neighbor->room = r2;
-		r1->neighbor->next = NULL;
+		tmp_r1->neighbor->room = tmp_r2;
+		tmp_r1->neighbor->next = NULL;
 	}
 	else
 	{
-		while (n1->next != NULL)
-			n1 = n1->next;
-		if (!(n1->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		while (tmp_n1->next != NULL)
+		{
+			if (tmp_n1->room == tmp_r2)
+				return (0);
+			tmp_n1 = tmp_n1->next;
+		}
+		if (tmp_n1->room == tmp_r2
+			|| !(tmp_n1->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		n1->next->room = r2;
-		n1->next->next = NULL;
+		tmp_n1->next->room = tmp_r2;
+		tmp_n1->next->next = NULL;
 	}
-	if (r2->neighbor == NULL)
+	return (1);
+}
+
+static int	ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2)
+{
+	if (tmp_r2->neighbor == NULL)
 	{
-		if (!(r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		if (!(tmp_r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		r2->neighbor->room = r1;
-		r2->neighbor->next = NULL;
+		tmp_r2->neighbor->room = tmp_r1;
+		tmp_r2->neighbor->next = NULL;
 	}
 	else
 	{
-		while (n2->next != NULL)
-			n2 = n2->next;
-		if (!(n2->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
+		while (tmp_n2->next != NULL)
+		{
+			if (tmp_n2->room == tmp_r1)
+				return (0);
+			tmp_n2 = tmp_n2->next;
+		}
+		if (tmp_n2->room == tmp_r2
+			|| !(tmp_n2->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
-		n2->next->room = r1;
-		n2->next->next = NULL;
+		tmp_n2->next->room = tmp_r1;
+		tmp_n2->next->next = NULL;
 	}
 	return (1);
 }
@@ -105,7 +120,9 @@ static int	ft_find_room(char **couple, t_room **room, int key_r1, int key_r2)
 	{
 		tmp_n1 = tmp_r1->neighbor;
 		tmp_n2 = tmp_r2->neighbor;
-		if (!(ft_neigh(tmp_r1, tmp_r2, tmp_n1, tmp_n2)))
+		if (!(ft_neigh_1(tmp_r1, tmp_r2, tmp_n1)))
+			return (0);
+		if (!(ft_neigh_2(tmp_r1, tmp_r2, tmp_n2)))
 			return (0);
 	}
 	return (1);
