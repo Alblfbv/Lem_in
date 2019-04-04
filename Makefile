@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/04 15:36:36 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/04 15:39:14 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRC		=	src/main.c 				\
 			src/parser/ft_comment.c	\
 			src/parser/ft_command.c	\
 			src/parser/hash.c
-
 
 OBJ	=	$(SRC:.c=.o)
 

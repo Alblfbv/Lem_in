@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 14:41:45 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:22:52 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,20 +84,31 @@ static int	ft_clean(t_room **room, t_lem *lem)
 	return (0);
 }
 
+static int		ft_init_room(t_room ***room)
+{
+	int		i;
+
+	i = 0;
+	if (!(*room = (t_room**)malloc(sizeof(t_room*) * HASH_TAB)))
+		return (0);
+	while (i < HASH_TAB)
+	{
+		(*room)[i] = NULL;
+		i++;
+	}
+	return (1);
+}
+
 int		main(void)
 {
 	t_lem	lem;
 	t_room	**room;
-	int		i;
 
-	i = 0;
-	room = (t_room**)malloc(sizeof(t_room*) * HASH_TAB);
-	while (i < HASH_TAB)
-	{
-		room[i] = NULL;
-		i++;
-	}
-	parser(&lem, room);
-	ft_print_all(room, &lem);
+	room = NULL;
+	if (!(ft_init_room(&room)))
+		return (0);
+	if (!(parser(&lem, room)))
+		return (ft_clean(room, &lem));
+//	ft_print_all(room, &lem);
 	ft_clean(room, &lem);
 }

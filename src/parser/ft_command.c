@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 15:30:34 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:00:37 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int		ft_store_end(t_lem *lem, t_room **room)
 	return (1);
 }
 
-int				ft_command(char *line, t_lem *lem, t_room **room)
+int				ft_command(char *line, t_lem *lem, t_room **room, int flag)
 {
 	int		i;
 
@@ -51,13 +51,13 @@ int				ft_command(char *line, t_lem *lem, t_room **room)
 		return (0);
 	if (ft_strequ(line, "##start") == 1)
 	{
-		if (!(ft_store_start(lem, room)))
+		if ((ft_store_start(lem, room)) == 0 && flag != 1)
 			return (0);
 		return (1);
 	}
 	if (ft_strequ(line, "##end") == 1)
 	{
-		if (!(ft_store_end(lem, room)))
+		if ((ft_store_end(lem, room)) == 0 && flag != 1)
 			return (0);
 		return (1);
 	}
