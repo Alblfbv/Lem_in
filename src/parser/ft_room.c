@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 13:25:39 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 15:05:40 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_free_str(char **str)
+static int		ft_clean(char **str)
 {
 	int			i;
 
@@ -70,7 +70,7 @@ static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 		room[key]->room_type = type;
 }
 
-static int		ft_store_room(char **str, t_room **room, t_lem *lem, char type)
+static int		ft_store_room(char **str, t_room **room)
 {
 	int			key;
 	t_room		*tmp;
@@ -106,8 +106,11 @@ int				ft_room(char *line, t_room **room, t_lem *lem, char type)
 
 	str = ft_strsplit(line, ' ');
 	if (!(ft_check_room(str)))
-		return (ft_free_str(str));
-	ft_store_room(str, room, lem, type);
-	ft_free_str(str);
+		return (ft_clean(str));
+	ft_store_room(str, room);
+	ft_store_type(str, room, lem, type);
+	room->x = ft_atoi(str[1]);
+	room->y = ft_atoi(str[2]);
+	ft_clean(str);
 	return (1);
 }

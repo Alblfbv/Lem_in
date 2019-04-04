@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 14:12:31 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 14:41:45 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,23 @@ static void	ft_print_all(t_room **room, t_lem *lem)
 			while (tmp_r != NULL)
 			{
 				tmp_n = tmp_r->neighbor;
-				ft_printf("ROOM = %s\n", tmp_r->name);
-				ft_printf("TYPE = %c\n", tmp_r->room_type);
-				ft_printf("Neighbors of room = ");
+//				ft_printf("ROOM = %s\n", tmp_r->name);
+				ft_printf("KEY = %d\n", ft_hash(tmp_r->name, HASH_TAB));
+//				ft_printf("TYPE = %c\n", tmp_r->room_type);
+//				ft_printf("Neighbors of room = ");
 				while (tmp_n != NULL)
 				{
-					ft_printf("%s ", ((t_room*)(tmp_n->room))->name);
+//					ft_printf("%s ", ((t_room*)(tmp_n->room))->name);
 					tmp_n = tmp_n->next;
 				}
 				tmp_r = tmp_r->next;
-				ft_printf("\n\n");
+//				ft_printf("\n\n");
 			}
 		}
 		i++;
 	}
-	ft_printf("Start = %s\n", lem->name_start);
-	ft_printf("End = %s\n", lem->name_end);
+//	ft_printf("Start = %s\n", lem->name_start);
+//	ft_printf("End = %s\n", lem->name_end);
 }
 
 static int	ft_clean(t_room **room, t_lem *lem)
