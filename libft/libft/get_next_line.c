@@ -6,7 +6,7 @@
 /*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 13:50:20 by jfleury           #+#    #+#             */
-/*   Updated: 2019/03/12 13:50:25 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 14:39:45 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ int		get_next_line(const int fd, char **line)
 		return (-1);
 	if (check_end == 0)
 		return (1);
-	free(tmp);
+	ft_strdel(&tmp);
 	return (0);
 }
