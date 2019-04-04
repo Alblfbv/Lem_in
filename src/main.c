@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 13:27:08 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 14:12:31 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 							//A SUPPRIMER POUR LE RENDU
-static void	ft_print_all(t_room **room)
+static void	ft_print_all(t_room **room, t_lem *lem)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -42,9 +42,11 @@ static void	ft_print_all(t_room **room)
 		}
 		i++;
 	}
+	ft_printf("Start = %s\n", lem->name_start);
+	ft_printf("End = %s\n", lem->name_end);
 }
 
-static int	ft_clean(t_room **room)
+static int	ft_clean(t_room **room, t_lem *lem)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -76,6 +78,8 @@ static int	ft_clean(t_room **room)
 		i++;
 	}
 	free(room);
+	free(lem->name_start);
+	free(lem->name_end);
 	return (0);
 }
 
@@ -93,6 +97,6 @@ int		main(void)
 		i++;
 	}
 	parser(&lem, room);
-	ft_print_all(room);
-	ft_clean(room);
+	ft_print_all(room, &lem);
+	ft_clean(room, &lem);
 }
