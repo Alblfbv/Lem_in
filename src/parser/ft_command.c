@@ -6,32 +6,39 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 13:22:28 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 15:30:34 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static void		ft_store_start(t_lem *lem, t_room **room)
+static int		ft_store_start(t_lem *lem, t_room **room)
 {
 	char	*line;
 
 	(void)lem;
 	get_next_line(0, &line);
-	ft_room(line, room, lem, 'S');
+	if (!(ft_room(line, room, lem, 'S')))
+	{
+		free(line);
+		return (0);
+	}
 	ft_printf("%s\n", line);
 	free(line);
+	return (1);
 }
 
-static void		ft_store_end(t_lem *lem, t_room **room)
+static int		ft_store_end(t_lem *lem, t_room **room)
 {
 	char	*line;
 
 	(void)lem;
 	get_next_line(0, &line);
-	ft_room(line, room, lem, 'E');
+	if (!(ft_room(line, room, lem, 'E')))
+		return (0);
 	ft_printf("%s\n", line);
 	free(line);
+	return (1);
 }
 
 int				ft_command(char *line, t_lem *lem, t_room **room)
@@ -44,12 +51,14 @@ int				ft_command(char *line, t_lem *lem, t_room **room)
 		return (0);
 	if (ft_strequ(line, "##start") == 1)
 	{
-		ft_store_start(lem, room);
+		if (!(ft_store_start(lem, room)))
+			return (0);
 		return (1);
 	}
 	if (ft_strequ(line, "##end") == 1)
 	{
-		ft_store_end(lem, room);
+		if (!(ft_store_end(lem, room)))
+			return (0);
 		return (1);
 	}
 	if (line[0] == '#' && line[1] == '#')

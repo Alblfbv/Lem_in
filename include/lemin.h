@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 16:00:02 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/04 16:01:54 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct 			s_neighbor
 typedef struct			s_room
 {
 	char				*name;
+	int					x;
+	int					y;
 	char				room_type;
 	t_neighbor			*neighbor;
 	struct s_room		*next;
@@ -49,7 +51,7 @@ typedef struct			s_coord
 	struct s_coord		*next;
 }						t_coord;
 
-int		ft_hash(char *str, int size);
+unsigned int		ft_hash(char *str, int size);
 
 void	parser(t_lem *lem, t_room **room);
 int		ft_lem(char *line, t_lem *lem, int *flag);
