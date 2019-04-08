@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/08 12:56:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:00:40 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		ft_lem(char *line, t_lem *lem, int *flag);
 int		ft_comment(char *line);
 int		ft_command(char *line, t_lem *lem, t_room **room, int flag);
 int		ft_room(char *line, t_room **room, t_lem *lem, char type);
-int		ft_check_coord(int x, int y, t_coord **coord_tab);
+int		ft_check_coord(char *line, t_coord **coord_tab);
 int		ft_path(char *line, t_room **room);
 
 #endif

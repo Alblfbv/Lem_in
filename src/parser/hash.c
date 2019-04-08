@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:47:54 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 14:39:13 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/08 13:59:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,3 @@ unsigned int		ft_hash(char *str, int size)
 	hash = hash % size;
 	return (hash);
 }
-
-
-/*
- * OBJECTIF :
- *
- * -Gerer les collisions.
- *  -> Pour gerer les collisions, il me faut un tableau de structures
- *  1.Je recupere l'indice via fonction de hachage.
- *  2.Je verifie que rien n'est deja a cet indice.
- *  3.Si rien n'y est, je retourne l'indice initialement trouve.
- *  Si quelque chose est trouve, j'ajoute un maillon a la liste chainee
-*/
