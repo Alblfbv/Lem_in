@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 16:23:22 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/04 16:47:59 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,31 @@ static int		ft_error(int check, char *line)
 	return (1);
 }
 
+int			ft_init_coord_tab(t_coord ***coord_tab)
+{
+	int	i;
+	
+	i = 0;
+	if (!(*coord_tab = (t_coord**)malloc(sizeof(t_coord*))))
+		return (0);
+	while (i < HASH_TAB)
+	{
+		(*coord_tab)[i] = NULL;
+		i++;
+	}
+	return (1);
+}
+
 int			parser(t_lem *lem, t_room **room)
 {
 	char	*line;
 	int		flag;
 	int		check;
+	t_coord	**coord_tab;
 
 	flag = 0;
 	check = 1;
+	ft_init_coord_tab(&coord_tab);
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
 		check = 0;
@@ -45,7 +62,10 @@ int			parser(t_lem *lem, t_room **room)
 		if (flag == 0 && ft_lem(line, lem, &flag) == 1)
 			check = 1;
 		if (ft_room(line, room, lem, 'M') == 1 && flag == 1)
-			check = 1;
+		{
+			if (ft_check_coord(line, coord_tab))
+				check = 1;
+		}
 		if (ft_path(line, room) == 1)
 		{
 			flag = 2;
