@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_coord.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 15:44:21 by allefebv          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/04/04 16:47:57 by allefebv         ###   ########.fr       */
+=======
+/*   Updated: 2019/04/05 18:41:14 by jfleury          ###   ########.fr       */
+>>>>>>> c5dd4de90721318ef833f3d583378d117da51aa0
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +39,12 @@ int		ft_check_coord(char *line, t_coord **coord_tab)
 	}
 	else
 	{
-		if ((*(tmp + key))->x == x && (*(tmp + key))->y == y)
+		if (tmp[key].x == x && tmp[key].y == y)
 			return (0);
 		while(tmp->next != NULL)
 		{
 			tmp = tmp->next;
-			if ((tmp[key])->x == x && (tmp[key])->y == y)
+			if (tmp[key].x == x && tmp[key].y == y)
 				return (0);
 		}
 		if(!(tmp->next = (t_coord*)malloc(sizeof(t_coord))))
