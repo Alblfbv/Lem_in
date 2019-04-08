@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
+/*   By: allefebv <allefebv@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/08 13:00:40 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/08 18:08:09 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct			s_lem
 {
 	int					nb_lem;
+	int					nb_path;
 	char				*name_start;
 	char				*name_end;
 }						t_lem;
@@ -31,6 +32,7 @@ typedef struct			s_lem
 typedef struct 			s_neighbor
 {
 	void				*room;
+	int					flow;
 	struct s_neighbor	*next;
 }						t_neighbor;
 
