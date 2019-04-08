@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/08 12:59:34 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/08 13:54:29 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int			ft_init_coord_tab(t_coord ***coord_tab)
 	int	i;
 	
 	i = 0;
-	if (!(*coord_tab = (t_coord**)malloc(sizeof(t_coord*))))
+	if (!(*coord_tab = (t_coord**)malloc(sizeof(t_coord*) * HASH_TAB)))
 		return (0);
 	while (i < HASH_TAB)
 	{
