@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 15:20:36 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/02 11:44:01 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/05 18:43:37 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,6 @@ static char	*ft_o_zero(char *str, int i)
 
 static char	*ft_hash_zero(char *str, int i, t_conv_spec conv_spec)
 {
-	char *tmp;
-
-	tmp = NULL;
 	while (str[i] == '0')
 		i++;
 	if (str[i] == '\0' && conv_spec.conv_id != 'o')
@@ -68,9 +65,6 @@ static char	*ft_hash_zero(char *str, int i, t_conv_spec conv_spec)
 
 static char	*ft_hash_preci(char *str, int i, t_conv_spec conv_spec)
 {
-	char *tmp;
-
-	tmp = NULL;
 	while (str[i] == ' ')
 		i++;
 	if (conv_spec.conv_id != 'o' && (str[i] == '\0' ||
