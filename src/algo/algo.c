@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allefebv <allefebv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/09 18:05:57 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:07:00 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	ft_edmond_karp(t_room *shortest_path)
 {
 	t_neighbor	*n_forth;
 	t_neighbor	*n_back;
+	int			i;
 
+	i = 0;
 	while (shortest_path[i] != 0)
 	{
 		if (shortest_path[i + 1] != 0)

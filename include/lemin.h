@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lemin.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: allefebv <allefebv@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/08 18:08:09 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/09 16:28:37 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct			s_lem
 {
 	int					nb_lem;
 	int					nb_path;
+	int					nb_room;
 	char				*name_start;
 	char				*name_end;
 }						t_lem;
@@ -62,5 +63,6 @@ int		ft_command(char *line, t_lem *lem, t_room **room, int flag);
 int		ft_room(char *line, t_room **room, t_lem *lem, char type);
 int		ft_check_coord(char *line, t_coord **coord_tab);
 int		ft_path(char *line, t_room **room);
+int		ft_refactoring_room(t_room **room, t_lem *lem, t_room **final_room);
 
 #endif
