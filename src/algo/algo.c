@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/09 18:07:00 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:45:26 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,6 @@ static int		ft_clean(char **str)
 	}
 	free(str);
 	return (0);
-}
-
-void	ft_edmond_karp(t_room *shortest_path)
-{
-	t_neighbor	*n_forth;
-	t_neighbor	*n_back;
-	int			i;
-
-	i = 0;
-	while (shortest_path[i] != 0)
-	{
-		if (shortest_path[i + 1] != 0)
-		{
-			n_forth = shortest_path[i]->neighbor;
-			while (n_forth->room != shortest_path[i + 1])
-				n_forth = n_forth->next;
-			n_forth->flow = 1;
-		}
-		if (i != 0)
-		{
-			n_back = shortest_path[i]->neighbor;
-			while (n_back->room != shortest_path[i - 1])
-				n_back = n_back->next;
-			n_back->flow = -1;
-		}
-		i++;
-	}
 }
 
 int		ft_path_len(t_room *room)
@@ -124,6 +97,33 @@ t_room	****ft_store_path(t_room **room, t_room ****all_path, t_lem *lem)
 		i++;
 	}
 	return (all_path);
+}
+
+void	ft_edmond_karp(t_room **shortest_path)
+{
+	t_neighbor	*n_forth;
+	t_neighbor	*n_back;
+	int			i;
+
+	i = 0;
+	while (shortest_path[i] != 0)
+	{
+		if (shortest_path[i + 1] != 0)
+		{
+			n_forth = shortest_path[i]->neighbor;
+			while (n_forth->room != shortest_path[i + 1])
+				n_forth = n_forth->next;
+			n_forth->flow = 1;
+		}
+		if (i != 0)
+		{
+			n_back = shortest_path[i]->neighbor;
+			while (n_back->room != shortest_path[i - 1])
+				n_back = n_back->next;
+			n_back->flow = -1;
+		}
+		i++;
+	}
 }
 
 int		algo(t_room **room, t_lem *lem)

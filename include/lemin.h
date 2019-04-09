@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/09 18:31:08 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/09 19:13:49 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ typedef struct			s_room
 	int					x;
 	int					y;
 	char				room_type;
+	short				visited;
 	t_neighbor			*neighbor;
+	s_room				*source;
 	struct s_room		*next;
 }						t_room;
 
