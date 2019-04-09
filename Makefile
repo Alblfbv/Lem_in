@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/04 16:25:13 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/09 17:15:45 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = lem-in
 CC = gcc
 RM = rm -f
 INCLUDE = -I ./include
-CFLAGS += -Wall -Wextra $(INCLUDE) -g3 -fsanitize=address
+CFLAGS += -Wall -Wextra $(INCLUDE) # -g3 -fsanitize=address
 LIB	= libft/libft.a
 
 SRC		=	src/main.c 							\

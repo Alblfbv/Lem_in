@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:01:49 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/09 17:04:31 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/09 17:15:06 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ int		ft_refactoring_room(t_room **room, t_lem *lem, t_room **final_room)
 	ft_init_final_room(&final_room, lem->nb_room);
 	while (i < HASH_TAB)
 	{
-		while (room[i] == NULL)
+		while (room[i] == NULL && i < HASH_TAB - 1)
 		{
 			printf("Null = %d\n", i);
 			i++;
 		}
+		if (i == HASH_TAB - 1)
+			break;
 		final_room[j] = room[i];
 		j++;
 		while (room[i]->next != NULL)
