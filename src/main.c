@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 16:22:52 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/09 18:34:08 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 							//A SUPPRIMER POUR LE RENDU
-static void	ft_print_all(t_room **room, t_lem *lem)
+static void	ft_print_all(t_room **room)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -93,7 +93,7 @@ static int		ft_init_room(t_room ***room)
 		return (0);
 	while (i < HASH_TAB)
 	{
-		(*room)[i] = NULL;
+		room[0][i] = NULL;
 		i++;
 	}
 	return (1);
@@ -103,12 +103,18 @@ int		main(void)
 {
 	t_lem	lem;
 	t_room	**room;
+	t_room	**final_room;
+	int		i;
 
+	i = 0;
 	room = NULL;
+	final_room = NULL;
 	if (!(ft_init_room(&room)))
 		return (0);
 	if (!(parser(&lem, room)))
 		return (ft_clean(room, &lem));
-//	ft_print_all(room, &lem);
+	if (!(ft_refactoring_room(room, &lem, &final_room)))
+		return (ft_clean(room, &lem));
+//	ft_print_all(room);
 	ft_clean(room, &lem);
 }
