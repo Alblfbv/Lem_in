@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/09 18:34:08 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/10 15:28:24 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 							//A SUPPRIMER POUR LE RENDU
-static void	ft_print_all(t_room **room)
+static void	ft_print_all(t_room **room, t_lem lem)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -28,26 +28,26 @@ static void	ft_print_all(t_room **room)
 			while (tmp_r != NULL)
 			{
 				tmp_n = tmp_r->neighbor;
-//				ft_printf("ROOM = %s\n", tmp_r->name);
+				ft_printf("ROOM = %s\n", tmp_r->name);
 				ft_printf("KEY = %d\n", ft_hash(tmp_r->name, HASH_TAB));
-//				ft_printf("TYPE = %c\n", tmp_r->room_type);
-//				ft_printf("Neighbors of room = ");
+				ft_printf("TYPE = %c\n", tmp_r->room_type);
+				ft_printf("Neighbors of room = ");
 				while (tmp_n != NULL)
 				{
-//					ft_printf("%s ", ((t_room*)(tmp_n->room))->name);
+					ft_printf("%s ", ((t_room*)(tmp_n->room))->name);
 					tmp_n = tmp_n->next;
 				}
 				tmp_r = tmp_r->next;
-//				ft_printf("\n\n");
+				ft_printf("\n\n");
 			}
 		}
 		i++;
 	}
-//	ft_printf("Start = %s\n", lem->name_start);
-//	ft_printf("End = %s\n", lem->name_end);
+	ft_printf("Start = %s\n", lem.start_room->name);
+	ft_printf("End = %s\n", lem.end_room->name);
 }
 
-static int	ft_clean(t_room **room, t_lem *lem)
+static int	ft_clean(t_room **room)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -79,8 +79,20 @@ static int	ft_clean(t_room **room, t_lem *lem)
 		i++;
 	}
 	free(room);
-	free(lem->name_start);
-	free(lem->name_end);
+	return (0);
+}
+
+static int	ft_clean_refacto(t_room **room, t_lem lem)
+{
+	int	i;
+
+	i = 0;
+	while (i < lem.nb_room)
+	{
+		free(room[i]);
+		i++;
+	}
+	free(room);
 	return (0);
 }
 
@@ -112,9 +124,10 @@ int		main(void)
 	if (!(ft_init_room(&room)))
 		return (0);
 	if (!(parser(&lem, room)))
-		return (ft_clean(room, &lem));
-	if (!(ft_refactoring_room(room, &lem, &final_room)))
-		return (ft_clean(room, &lem));
-//	ft_print_all(room);
-	ft_clean(room, &lem);
+		return (ft_clean(room));
+	if (!(ft_refactoring_room(room, lem, &final_room)))
+		return (ft_clean(room));
+	//ft_print_all(room, lem);
+	ft_algo(final_room, lem);
+	ft_clean_refacto(room, lem);
 }

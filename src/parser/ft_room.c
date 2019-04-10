@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/05 18:48:27 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/10 11:32:13 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,49 @@ static int		ft_check_room(char **str)
 static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 {
 	int			key;
+	t_room		*tmp;
 
 	key = ft_hash(str[0], HASH_TAB);
+	tmp = room[key];
 	if (type == 'S')
 	{
-		lem->name_start = ft_strdup(str[0]);
-		room[key]->room_type = type;
+		if (ft_strequ(tmp->name, str[0]))
+		{
+			lem->start_room = tmp;
+			tmp->room_type = type;
+		}
+		else
+		{
+			while (!ft_strequ(tmp->name, str[0]))
+			{
+				if (ft_strequ(tmp->name, str[0]))
+				{
+					lem->start_room = tmp;
+					tmp->room_type = type;
+				}
+				tmp = tmp->next;
+			}
+		}
 	}
 	if (type == 'E')
 	{
-		lem->name_end = ft_strdup(str[0]);
-		room[key]->room_type = type;
+		if (ft_strequ(tmp->name, str[0]))
+		{
+			lem->end_room = tmp;
+			tmp->room_type = type;
+		}
+		else
+		{
+			while (!ft_strequ(tmp->name, str[0]))
+			{
+				if (ft_strequ(tmp->name, str[0]))
+				{
+					lem->end_room = tmp;
+					tmp->room_type = type;
+				}
+				tmp = tmp->next;
+			}
+		}
 	}
 	if (type == 'M')
 		room[key]->room_type = type;

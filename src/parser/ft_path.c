@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/04 14:27:36 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/10 16:36:19 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static int	ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1)
 		if (!(tmp_r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		tmp_r1->neighbor->room = tmp_r2;
+		tmp_r1->neighbor->flow = 0;
 		tmp_r1->neighbor->next = NULL;
 	}
 	else
@@ -70,6 +71,7 @@ static int	ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1)
 			|| !(tmp_n1->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		tmp_n1->next->room = tmp_r2;
+		tmp_n1->next->flow = 0;
 		tmp_n1->next->next = NULL;
 	}
 	return (1);
@@ -82,6 +84,7 @@ static int	ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2)
 		if (!(tmp_r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		tmp_r2->neighbor->room = tmp_r1;
+		tmp_r2->neighbor->flow = 0;
 		tmp_r2->neighbor->next = NULL;
 	}
 	else
@@ -96,6 +99,7 @@ static int	ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2)
 			|| !(tmp_n2->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
 			return (0);
 		tmp_n2->next->room = tmp_r1;
+		tmp_n2->next->flow = 0;
 		tmp_n2->next->next = NULL;
 	}
 	return (1);

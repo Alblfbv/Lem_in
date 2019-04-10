@@ -8,3 +8,10 @@ Emprunte le chemin du BFS et augmente les chemins qui etaient a 0 a 1, et remet 
 
 Sauvegarder a chaque iteration les suites de salles a 1 jusau'a END
 -> Pernet de stocker la taille des chemins a chaque iteration
+
+
+
+Pas de fourmis : segfault
+Coordonnes en doubles : ressort pas en erreur
+salle reliee a elle meme
+pas d'argument segfault
