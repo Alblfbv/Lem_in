@@ -6,11 +6,19 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/08 14:34:40 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/08 15:26:41 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int		algo(t_room **room, t_lem *lem)
 {
+	int		i;
+
+	i = 0;
+	while (i <= ft_min_flow(room))
+	{
+		ft_bfs(room, lem);
+		i++;
+	}
 	return (1);
 }
