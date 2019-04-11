@@ -15,3 +15,7 @@ Pas de fourmis : segfault
 Coordonnes en doubles : ressort pas en erreur
 salle reliee a elle meme
 pas d'argument segfault
+
+
+perror()
+strerror()
