@@ -6,9 +6,11 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/11 12:44:46 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/11 17:13:28 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/11 18:08:02 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# -*-coding:Utf-8 -*
 
 import os
 from tkinter import *
@@ -45,9 +47,9 @@ def	ft_parser(read):
 		read.nb_readline += 1
 	read.result_read = read.result_read.split('\n')
 
-#----------------------------------------------CREATE_GRID----------------------------------------------#
+#----------------------------------------------STORE_GRID----------------------------------------------#
 
-def ft_create_grid(read, grid):
+def ft_store_grid(read, grid):
 	x = 0
 	y = 0
 	i = 0
@@ -86,10 +88,12 @@ if __name__ == "__main__":
 	read = Read()
 	#Execution des fonctions
 	ft_parser(read)
-	ft_create_grid(read, grid)
+	ft_store_grid(read, grid)
 	print(grid.x)
 	print(grid.y)
 	ft_store_lem(read, lem)
 	ft_store_room(read)
 	window = Tk()
+	bouton_quitter = Button(window, text="Quitter", command=window.quit)
+	bouton_quitter.pack()
 	window.mainloop()
