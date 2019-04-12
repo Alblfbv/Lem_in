@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/11 12:44:46 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/12 16:46:08 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/12 18:32:57 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ class Read:
 	def __init__(self):
 		self.result_read = ''
 		self.nb_readline = 0
-		
+
 class Grid:
 	def __init__(self):
 		self.x = 0
@@ -38,6 +38,31 @@ class Room:
 class Lem:
 	def __init__(self):
 		self.nb_lem = 0
+
+class App:
+	def __init__(self, root, room):
+		i = 0
+		root.title("Lem-In")
+		root.geometry("1000x800+0+0")
+		root.resizable(False, False)
+		frame_menu = Frame(root, bd=1, relief='flat')
+		frame_menu.grid(column=1, row=1)
+		frame_canvas = Frame(root, bd=1, relief='flat')
+		frame_canvas.grid(column=2, row=1)
+		button_start = Button(frame_menu, text="Start", width=8, height=1)
+		button_start.grid(column=1, row=1)
+		button_stop = Button(frame_menu, text="Stop", width=8, height=1)
+		button_stop.grid(column=1, row=2)
+		button_next = Button(frame_menu, text="Next", width=8, height=1)
+		button_next.grid(column=1, row=3)
+		button_previous = Button(frame_menu, text="Previous", width=8, height=1)
+		button_previous.grid(column=1, row=4)
+		canvas = Canvas(frame_canvas, background="#005085", height=796, width=902)
+		canvas.grid(column=1, row=1)
+		canvas.create_rectangle((int(room[0].x) + 10) * 40, (int(room[0].y) + 10) * 40, (int(room[0].x) + 10) * 40 + 50, (int(room[0].y) + 10) * 40 + 50, width=4, outline='white')
+		canvas.create_rectangle((int(room[1].x) + 10) * 40, (int(room[1].y) + 10) * 40, (int(room[1].x) + 10) * 40 + 50, (int(room[1].y) + 10) * 40 + 50, width=4, outline='white')
+		canvas.create_rectangle((int(room[2].x) + 10) * 40, (int(room[2].y) + 10) * 40, (int(room[2].x) + 10) * 40 + 50, (int(room[2].y) + 10) * 40 + 50, width=4, outline='white')
+		canvas.create_rectangle((int(room[3].x) + 10) * 40, (int(room[3].y) + 10) * 40, (int(room[3].x) + 10) * 40 + 50, (int(room[3].y) + 10) * 40 + 50, width=4, outline='white')
 
 #----------------------------------------------PARSER----------------------------------------------#
 
@@ -79,7 +104,7 @@ def ft_store_lem(read, lem):
 	if (read.result_read[i].isnumeric() == False):
 		i += 1
 	lem.nb_lem = read.result_read[i]
-	
+
 #----------------------------------------------STORE_ROOM----------------------------------------------#
 
 def ft_store_room(read, nb_room):
@@ -125,27 +150,15 @@ if __name__ == "__main__":
 	grid = Grid()
 	lem = Lem()
 	read = Read()
-	room = []
 	#Execution des fonctions
 	ft_parser(read)
 	nb_room = ft_store_grid(read, grid)
 	ft_store_lem(read, lem)
 	#Creation des objet Room
 	list_room = ft_store_room(read, nb_room)
-	
-	window = Tk()
-	window.title("Lem-In")
-	window.geometry("1000x800+0+0")
-	window.resizable(False, False)
-	label_menu = Label(window, text='Menu', background="#223240", foreground="#D9D5D2", width=10, height=2)
-	button_start = Button(window, text="Start", foreground="black", width=8, height=2)
-	button_stop = Button(window, text="Stop", foreground="black", width=8, height=2)
-	button_next = Button(window, text="Next", foreground="black", width=8, height=2)
-	button_previous = Button(window, text="Previous", foreground="black", width=8, height=2)
-	label_menu.grid(column=0, row=0)
-	button_start.grid(column=0, row=1)
-	button_stop.grid(column=0, row=2)
-	button_next.grid(column=0, row=3)
-	button_previous.grid(column=0, row=4)
-	
-	window.mainloop()
+
+	#Creation de la fenetre
+	#
+	root = Tk()
+	display = App(root, list_room)
+	root.mainloop()
