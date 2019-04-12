@@ -6,23 +6,17 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 10:04:10 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/12 11:38:25 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_error(int check, char *line)
+static int		ft_error(int check)
 {
 	if (check == 0)
 	{
-		while ((get_next_line(0, &line)) == 1)
-		{
-			ft_printf("Error = %s\n", line);
-			free(line);
-		}
-		ft_strdel(&line);
-		ft_printf("\nError\n");
+		ft_printf("Error\n");
 		return (0);
 	}
 	return (1);
@@ -62,6 +56,7 @@ int			parser(t_lem *lem, t_room **room)
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
 		lem->tmp = ft_strextend(lem->tmp, line);
+		lem->tmp = ft_strextend(lem->tmp, "\n");
 		free(line);
 	}
 	lem->result_read = ft_strsplit(lem->tmp, '\n');
@@ -71,11 +66,11 @@ int			parser(t_lem *lem, t_room **room)
 		check = 0;
 		if ((flag == 1 || flag == 2) && (ft_comment(lem->result_read[lem->j]) == 1 || ft_command(lem->result_read[lem->j], lem, room, flag) == 1))
 			check = 1;
-		if (flag == 0 && ft_lem(line, lem, &flag) == 1)
+		if (flag == 0 && ft_lem(lem->result_read[lem->j], lem, &flag) == 1)
 			check = 1;
 		if ((flag == 1 || flag == 2) && ft_room(lem->result_read[lem->j], room, lem, 'M') == 1 && flag == 1)
 		{
-			if (ft_check_coord(line, coord_tab))
+			if (ft_check_coord(lem->result_read[lem->j], coord_tab))
 				check = 1;
 			i++;
 		}
@@ -87,6 +82,5 @@ int			parser(t_lem *lem, t_room **room)
 		lem->j++;
 	}
 	lem->nb_room = i + 2;
-	free(line);
-	return (ft_error(check, line));
+	return (ft_error(check));
 }

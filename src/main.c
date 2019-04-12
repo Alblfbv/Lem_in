@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/10 15:28:24 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/12 12:00:00 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	ft_print_all(t_room **room, t_lem lem)
 	{
 		if (room[i] != NULL)
 		{
+			ft_printf("Test\n");
 			tmp_r = room[i];
 			while (tmp_r != NULL)
 			{
@@ -111,6 +112,18 @@ static int		ft_init_room(t_room ***room)
 	return (1);
 }
 
+static void		ft_print_result(t_lem *lem)
+{
+	int		i;
+
+	i = 0;
+	while (lem->result_read[i] != 0)
+	{
+		ft_printf("%s\n", lem->result_read[i]);
+		i++;
+	}
+}
+
 int		main(void)
 {
 	t_lem	lem;
@@ -127,7 +140,8 @@ int		main(void)
 		return (ft_clean(room));
 	if (!(ft_refactoring_room(room, lem, &final_room)))
 		return (ft_clean(room));
-	//ft_print_all(room, lem);
-	ft_algo(final_room, lem);
+//	ft_print_all(room, lem);
+//	ft_algo(final_room, lem);
+	ft_print_result(&lem);
 	ft_clean_refacto(room, lem);
 }
