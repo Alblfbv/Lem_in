@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/11 17:07:45 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/12 10:03:42 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,6 +150,7 @@ void	ft_print_paths(t_room ****all_path, t_lem lem)
 
 	i = 1;
 	(void)all_path;
+	(void)lem;
 	while (*all_path != 0)
 	{
 		ft_printf("\nEdmonds-Karp n*%d :", i);

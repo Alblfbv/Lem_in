@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/10 19:18:06 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/12 10:02:14 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ typedef struct			s_lem
 	int					nb_lem;
 	int					nb_path;
 	int					nb_room;
+	char				**result_read;
+	char				*tmp;
+	int					j;
 	t_room				*start_room;
 	t_room				*end_room;
 }						t_lem;

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/10 15:10:44 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/12 09:58:43 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,17 @@
 
 static int		ft_store_start(t_lem *lem, t_room **room)
 {
-	char	*line;
-
-	(void)lem;
-	get_next_line(0, &line);
-	if (!(ft_room(line, room, lem, 'S')))
-	{
-		free(line);
+	lem->j = lem->j + 1;
+	if (!(ft_room(lem->result_read[lem->j], room, lem, 'S')))
 		return (0);
-	}
-	ft_printf("%s\n", line);
-	free(line);
 	return (1);
 }
 
 static int		ft_store_end(t_lem *lem, t_room **room)
 {
-	char	*line;
-
-	(void)lem;
-	get_next_line(0, &line);
-	if (!(ft_room(line, room, lem, 'E')))
+	lem->j = lem->j + 1;
+	if (!(ft_room(lem->result_read[lem->j], room, lem, 'E')))
 		return (0);
-	ft_printf("%s\n", line);
-	free(line);
 	return (1);
 }
 
