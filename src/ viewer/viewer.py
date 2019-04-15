@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/11 12:44:46 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/15 12:48:30 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/15 13:27:48 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,14 +52,18 @@ class App:
 		frame_canvas = Frame(root, bd=0, bg="#005085")
 		frame_canvas.grid(column=1, row=2)
 		#Menu
-		button_start = Button(frame_menu, text="Start", width=8, height=1)
+		button_start = Button(frame_menu, text="Play", width=8, height=1)
 		button_start.grid(column=1, row=1)
-		button_stop = Button(frame_menu, text="Stop", width=8, height=1)
+		button_stop = Button(frame_menu, text="Pause", width=8, height=1)
 		button_stop.grid(column=2, row=1)
-		button_next = Button(frame_menu, text="Next", width=8, height=1)
+		button_next = Button(frame_menu, text="<<", width=8, height=1)
 		button_next.grid(column=3, row=1)
-		button_previous = Button(frame_menu, text="Previous", width=8, height=1)
+		button_previous = Button(frame_menu, text=">>", width=8, height=1)
 		button_previous.grid(column=4, row=1)
+		button_previous = Button(frame_menu, text="Reset", width=8, height=1)
+		button_previous.grid(column=5, row=1)
+		button_previous = Button(frame_menu, text="Exit", width=8, height=1)
+		button_previous.grid(column=6, row=1)
 		#Canvas
 		canvas = Canvas(frame_canvas, bd=0, background="#005085", width=1274, height=766)
 		canvas.grid(column=1, row=1)
@@ -160,8 +164,8 @@ def ft_store_room(read, grid):
 				list_room[j].type = 'E'
 			else:
 				list_room[j].type = 'M'
-			list_room[j].x = int(tmp[1]) * 100
-			list_room[j].y = int(tmp[2]) * 100
+			list_room[j].x = (int(tmp[1]) + 1) * 75
+			list_room[j].y = (int(tmp[2]) + 1) * 75
 			i += 1
 			j += 1
 	i = 0
