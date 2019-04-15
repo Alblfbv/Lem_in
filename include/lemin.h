@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 10:02:14 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/15 15:24:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct 			s_neighbor
 {
 	void				*room;
 	int					flow;
+	int					storage_flow;
 	struct s_neighbor	*next;
 }						t_neighbor;
 

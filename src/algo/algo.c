@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/15 14:30:53 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/15 20:22:00 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		ft_path_len(t_room *room, t_lem lem)
 	while (tmp_r != lem.end_room)
 	{
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1)
+		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
 		len++;
 		tmp_r = tmp_n->room;
@@ -50,9 +50,10 @@ t_room	**ft_fill_path(t_room **all_path, t_room *first, int len, t_lem lem)
 	{
 		all_path[i] = tmp_r;
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1)
+		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
 		//ft_printf("room[%d] = %s /\\ ", i, all_path[i]->name);
+		tmp_n->storage_flow = 1;
 		tmp_r = tmp_n->room;
 		i++;
 	}
@@ -132,6 +133,7 @@ void	ft_edmond_karp(t_room **shortest_path)
 		}
 		if (i != 0)
 		{
+			shortest_path[i]->flow = 1;
 			n_back = shortest_path[i]->neighbor;
 			while (n_back->room != shortest_path[i - 1])
 				n_back = n_back->next;
@@ -149,8 +151,6 @@ void	ft_print_paths(t_room ****all_path, t_lem lem)
 	int	j;
 
 	i = 1;
-	(void)all_path;
-	(void)lem;
 	while (*all_path != 0)
 	{
 		ft_printf("\nEdmonds-Karp n*%d :", i);
@@ -210,6 +210,63 @@ void	ft_print_bfs(t_room **shortest_path)
 	ft_printf("\n");
 }
 
+void	ft_init_storage_flow(t_room **room, t_lem lem)
+{
+	t_neighbor	*tmp_n;
+	int			i;
+
+	i = 0;
+	while (i < lem.nb_room)
+	{
+		tmp_n = room[i]->neighbor;
+		while (tmp_n != NULL)
+		{
+			tmp_n->storage_flow = 0;
+			tmp_n = tmp_n->next;
+		}
+		i++;
+	}
+}
+
+int		**ft_chose_lem_path(t_room ****all_path, t_lem lem)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	**tab;
+
+	i = 0;
+	while (all_path[i] != 0)
+		i++;
+	tab = (int**)malloc(sizeof(int*) * (i + 1));
+	tab[i] = 0;
+	i = 0;
+	while (all_path[i] != 0)
+	{
+		j = 0;
+		while (all_path[i][j] != 0)
+			j++;
+		tab[i] = (int*)malloc(sizeof(int) * (j + 1));
+		tab[i][j] = 0;
+		i++;
+	}
+	i = 0;
+	while (all_path[i] != 0)
+	{
+		j = 0;
+		while (all_path[i][j] != 0)
+		{
+			k = 0;
+			while (all_path[i][j][k] != 0)
+				k++;
+			tab[i][j] = k;
+			j++;
+		}
+		i++;
+	}
+	return (tab);
+}
+
 int		ft_algo(t_room **room, t_lem lem)
 {
 	int		i;
@@ -230,8 +287,9 @@ int		ft_algo(t_room **room, t_lem lem)
 	{
 		if ((shortest_path = ft_bfs(room, lem)) != NULL)
 		{
-			//ft_print_bfs(shortest_path);
+		//	ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
+			ft_init_storage_flow(room, lem);
 			all_path = ft_store_path(all_path, lem);
 			free(shortest_path);
 			i++;
