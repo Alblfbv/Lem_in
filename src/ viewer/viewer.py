@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/11 12:44:46 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/15 13:27:48 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/15 15:42:33 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ class Grid:
 		self.x = 0
 		self.y = 0
 		self.nb_room = 0
+		self.nb_lem = 0
 
 class Room:
 	def __init__(self):
@@ -37,12 +38,18 @@ class Room:
 		self.y = 0
 		self.list_neighbor = list()
 
+class Move:
+	def __init__(self):
+		self.move = ''
+
 class Lem:
 	def __init__(self):
-		self.nb_lem = 0
+		self.name = ''
+		self.x = 0
+		self.y = 0
 
 class App:
-	def __init__(self, root, room, grid):
+	def __init__(self, root, room, grid, lem):
 		root.title("Lem-In")
 		root.geometry("1280x800-100+100")
 		root.resizable(False, False)
@@ -92,6 +99,15 @@ class App:
 			else:
 				canvas.create_oval(room[i].x, room[i].y, room[i].x + 70, room[i].y + 70, width=4, outline='white', fill="#005085")
 			i += 1
+		i = 0
+		j = 0
+		l = []
+		while room[j].type != 'S':
+			j += 1
+		while i < grid.nb_lem:
+			l.append(canvas.create_rectangle(room[j].x + 20, room[j].y + 20, room[j].x + 50, room[j].y + 50, width=2, fill="black"))
+			i += 1
+		canvas.move(l[0], room[1].x, room[1].y)
 
 #----------------------------------------------PARSER----------------------------------------------#
 
@@ -129,11 +145,19 @@ def ft_store_grid(read, grid):
 
 #----------------------------------------------STORE_LEM----------------------------------------------#
 
-def ft_store_lem(read, lem):
+def ft_store_lem(read, grid):
 	i = 0
-	if (read.result_read[i].isnumeric() == False):
+	j = 0
+	list_lem = list()
+	while read.result_read[i] != '':
 		i += 1
-	lem.nb_lem = read.result_read[i]
+	i += 1
+	while read.result_read[i]:
+		list_lem.append(read.result_read[i])
+		i += 1
+		j += 1
+	grid.nb_lem = j
+	return list_lem
 
 #----------------------------------------------STORE_ROOM----------------------------------------------#
 
@@ -197,12 +221,11 @@ if __name__ == "__main__":
 	#Execution des fonctions
 	ft_parser(read)
 	ft_store_grid(read, grid)
-	ft_store_lem(read, lem)
-	#Creation des objet Room
 	list_room = ft_store_room(read, grid)
+	list_lem = ft_store_lem(read, grid)
 
 	#Creation de la fenetre
 	#
 	root = Tk()
-	display = App(root, list_room, grid)
+	display = App(root, list_room, grid, list_lem)
 	root.mainloop()
