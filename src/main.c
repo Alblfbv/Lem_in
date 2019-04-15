@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 12:00:00 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/15 14:12:37 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int		main(void)
 	if (!(ft_refactoring_room(room, lem, &final_room)))
 		return (ft_clean(room));
 //	ft_print_all(room, lem);
-//	ft_algo(final_room, lem);
 	ft_print_result(&lem);
+	ft_algo(final_room, lem);
 	ft_clean_refacto(room, lem);
 }

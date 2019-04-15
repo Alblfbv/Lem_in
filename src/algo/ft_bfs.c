@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/11 17:07:12 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/15 14:19:57 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_room	**ft_bfs(t_room **room, t_lem lem)
 			tmp_n = tmp_n->next;
 		while (tmp_n != NULL)
 		{
-			if(((t_room*)(tmp_n->room))->visited == 0 && tmp_n->flow == 0)
+			if(((t_room*)(tmp_n->room))->visited == 0 && tmp_n->flow != 1)
 			{
 				tmp_r2->next = tmp_n->room;
 				tmp_r2 = tmp_r2->next;

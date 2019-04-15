@@ -1,0 +1,26 @@
+15
+##start
+start 0 0
+##end
+end 1 1
+mid1 2 2
+mid2 3 3
+top1 4 4
+top2 5 5
+BOT 8 8
+TOP 9 9
+bot1 6 6
+bot2 7 7
+start-mid1
+mid1-mid2
+mid2-end
+start-bot1
+bot1-bot2
+bot2-mid2
+mid1-top1
+top1-top2
+top2-end
+mid1-BOT
+BOT-end
+start-TOP
+TOP-mid2

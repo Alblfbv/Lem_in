@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 10:03:42 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/15 14:30:53 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_room	**ft_fill_path(t_room **all_path, t_room *first, int len, t_lem lem)
 	}
 	all_path[i] = tmp_r;
 	//ft_printf("room[%d] = %s /\\ ", i, all_path[i]->name);
-	ft_printf("\n\n");
+	//ft_printf("\n\n");
 	return (all_path);
 }
 
@@ -127,7 +127,7 @@ void	ft_edmond_karp(t_room **shortest_path)
 			while (n_forth->room != shortest_path[i + 1])
 				n_forth = n_forth->next;
 			//ft_printf("neigh flow before : %d /\\", n_forth->flow);
-			n_forth->flow = 1;
+			n_forth->flow = n_forth->flow + 1;
 			//ft_printf(" neigh = 1 : %s\n", ((t_room*)(n_forth->room))->name);
 		}
 		if (i != 0)
@@ -136,7 +136,7 @@ void	ft_edmond_karp(t_room **shortest_path)
 			while (n_back->room != shortest_path[i - 1])
 				n_back = n_back->next;
 			//ft_printf("neigh flow before : %d /\\", n_back->flow);
-			n_back->flow = -1;
+			n_back->flow = n_back->flow - 1;
 			//ft_printf(" neigh = -1 : %s\n", ((t_room*)(n_back->room))->name);
 		}
 		i++;
