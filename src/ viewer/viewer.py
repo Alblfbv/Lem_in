@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/11 12:44:46 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/12 18:32:57 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/15 12:48:30 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,12 @@ class Grid:
 	def __init__(self):
 		self.x = 0
 		self.y = 0
+		self.nb_room = 0
 
 class Room:
 	def __init__(self):
 		self.name = ''
+		self.type = ''
 		self.x = 0
 		self.y = 0
 		self.list_neighbor = list()
@@ -40,29 +42,52 @@ class Lem:
 		self.nb_lem = 0
 
 class App:
-	def __init__(self, root, room):
-		i = 0
+	def __init__(self, root, room, grid):
 		root.title("Lem-In")
-		root.geometry("1000x800+0+0")
+		root.geometry("1280x800-100+100")
 		root.resizable(False, False)
-		frame_menu = Frame(root, bd=1, relief='flat')
+		#Frame
+		frame_menu = Frame(root, bd =0, bg="#005085")
 		frame_menu.grid(column=1, row=1)
-		frame_canvas = Frame(root, bd=1, relief='flat')
-		frame_canvas.grid(column=2, row=1)
+		frame_canvas = Frame(root, bd=0, bg="#005085")
+		frame_canvas.grid(column=1, row=2)
+		#Menu
 		button_start = Button(frame_menu, text="Start", width=8, height=1)
 		button_start.grid(column=1, row=1)
 		button_stop = Button(frame_menu, text="Stop", width=8, height=1)
-		button_stop.grid(column=1, row=2)
+		button_stop.grid(column=2, row=1)
 		button_next = Button(frame_menu, text="Next", width=8, height=1)
-		button_next.grid(column=1, row=3)
+		button_next.grid(column=3, row=1)
 		button_previous = Button(frame_menu, text="Previous", width=8, height=1)
-		button_previous.grid(column=1, row=4)
-		canvas = Canvas(frame_canvas, background="#005085", height=796, width=902)
+		button_previous.grid(column=4, row=1)
+		#Canvas
+		canvas = Canvas(frame_canvas, bd=0, background="#005085", width=1274, height=766)
 		canvas.grid(column=1, row=1)
-		canvas.create_rectangle((int(room[0].x) + 10) * 40, (int(room[0].y) + 10) * 40, (int(room[0].x) + 10) * 40 + 50, (int(room[0].y) + 10) * 40 + 50, width=4, outline='white')
-		canvas.create_rectangle((int(room[1].x) + 10) * 40, (int(room[1].y) + 10) * 40, (int(room[1].x) + 10) * 40 + 50, (int(room[1].y) + 10) * 40 + 50, width=4, outline='white')
-		canvas.create_rectangle((int(room[2].x) + 10) * 40, (int(room[2].y) + 10) * 40, (int(room[2].x) + 10) * 40 + 50, (int(room[2].y) + 10) * 40 + 50, width=4, outline='white')
-		canvas.create_rectangle((int(room[3].x) + 10) * 40, (int(room[3].y) + 10) * 40, (int(room[3].x) + 10) * 40 + 50, (int(room[3].y) + 10) * 40 + 50, width=4, outline='white')
+		#Place path
+		i = 0
+		while i < grid.nb_room:
+			j = 0
+			while room[i].list_neighbor[j]:
+				k = 0
+				while room[i].list_neighbor[j] != room[k].name:
+					k += 1
+				x_k = room[k].x
+				y_k = room[k].y
+				canvas.create_line(room[i].x + 35, room[i].y + 35, x_k + 35, y_k + 35, fill="white", width="4")
+				j += 1
+				if (j == 2):
+					break
+			i += 1
+		#Place room
+		i = 0
+		while i < grid.nb_room:
+			if room[i].type == "S":
+				canvas.create_oval(room[i].x, room[i].y, room[i].x + 70, room[i].y + 70, width=4, outline='green', fill="#005085")
+			elif room[i].type == "E":
+				canvas.create_oval(room[i].x, room[i].y, room[i].x + 70, room[i].y + 70, width=4, outline='red', fill="#005085")
+			else:
+				canvas.create_oval(room[i].x, room[i].y, room[i].x + 70, room[i].y + 70, width=4, outline='white', fill="#005085")
+			i += 1
 
 #----------------------------------------------PARSER----------------------------------------------#
 
@@ -92,6 +117,7 @@ def ft_store_grid(read, grid):
 			j += 1
 	grid.x = x
 	grid.y = y
+	grid.nb_room = j
 	if j > 20:
 		print("Oula il y a trop de salle pour moi, merci de mettre une map avec 20 salles ou moins")
 		sys.exit(0)
@@ -107,21 +133,35 @@ def ft_store_lem(read, lem):
 
 #----------------------------------------------STORE_ROOM----------------------------------------------#
 
-def ft_store_room(read, nb_room):
+def ft_store_room(read, grid):
 	list_room = list()
 	i = 0
 	j = 0
-	while nb_room > 0:
+	k = grid.nb_room
+	while k > 0:
 		list_room.append(Room())
-		nb_room -= 1
+		k -= 1
 	while read.result_read[i]:
+		start = 0
+		if read.result_read[i] == "##start":
+			start = 1
+			i += 1
+		if read.result_read[i] == "##end":
+			start = 2
+			i += 1
 		tmp = read.result_read[i].split(" ")
 		if len(tmp) != 3:
 			i += 1
 		else:
 			list_room[j].name = tmp[0]
-			list_room[j].x = tmp[1]
-			list_room[j].y = tmp[2]
+			if start == 1:
+				list_room[j].type = 'S'
+			elif start == 2:
+				list_room[j].type = 'E'
+			else:
+				list_room[j].type = 'M'
+			list_room[j].x = int(tmp[1]) * 100
+			list_room[j].y = int(tmp[2]) * 100
 			i += 1
 			j += 1
 	i = 0
@@ -152,13 +192,13 @@ if __name__ == "__main__":
 	read = Read()
 	#Execution des fonctions
 	ft_parser(read)
-	nb_room = ft_store_grid(read, grid)
+	ft_store_grid(read, grid)
 	ft_store_lem(read, lem)
 	#Creation des objet Room
-	list_room = ft_store_room(read, nb_room)
+	list_room = ft_store_room(read, grid)
 
 	#Creation de la fenetre
 	#
 	root = Tk()
-	display = App(root, list_room)
+	display = App(root, list_room, grid)
 	root.mainloop()
