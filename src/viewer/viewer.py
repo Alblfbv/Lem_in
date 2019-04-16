@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/15 15:53:26 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/15 20:09:34 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/16 18:56:58 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,13 +40,18 @@ class Path:
 
 class Lem:
 	def __init__(self):
-		self.can = ''
 		self.x = 0
 		self.y = 0
 
 class Move:
 	def __init__(self):
 		self.tab_move = []
+
+class Display:
+	def __init__(self):
+		self.name = list()
+		self.x = []
+		self.y = []
 
 #----------------------------------Tk-----------------------------------#
 
@@ -57,7 +62,7 @@ class Window:
 		root.geometry("1280x800-100+100")
 		root.resizable(False, False)
 		#Frame
-		frame_menu = Frame(root, bd =0, bg="#005085")
+		frame_menu = Frame(root, bd =0)
 		frame_menu.grid(column=1, row=1)
 		frame_canvas = Frame(root, bd=0, bg="#005085")
 		frame_canvas.grid(column=1, row=2)
@@ -74,6 +79,9 @@ class Window:
 		button_previous.grid(column=5, row=1)
 		button_previous = Button(frame_menu, text="Exit", width=8, height=1)
 		button_previous.grid(column=6, row=1)
+		compteur = 0
+		affichage_compteur = Label(frame_menu, text=str(compteur), width=8, height=1)
+		affichage_compteur.grid(column=7, row=1)
 		#Canvas
 		canvas = Canvas(frame_canvas, bd=0, background="#005085", width=1274, height=766)
 		canvas.grid(column=1, row=1)
@@ -100,17 +108,54 @@ class Window:
 			i += 1
 		#Place Lem
 		i = 0
-		while i < len(lem):
-			tmp = Lem()
-			l = canvas.create_rectangle(lem[i].x + 25, lem[i].y + 25, lem[i].x + 50, lem[i].y + 50, outline="black", width="2")
-			lem[i].can = l
+		l = list()
+		while (i < len(lem)):
+			l.append(canvas.create_oval(lem[i].x + 25, lem[i].y + 25, lem[i].x + 50, lem[i].y + 50))
 			i += 1
-		x = y = 5
-		for loops in range(50):
-			time.sleep(0.005)
-			canvas.move(lem[0].can, x, y)
-			canvas.update()
+		#Move Lem
+		i = 0
+		tab_display = list()
+		while i < len(move):
+			tmp_display = Display()
+			j = 0
+			while j < len(move[i].tab_move):
+				k = 0
+				tmp = move[i].tab_move[j].split('-')
+				next_room = tmp[1].replace('\n', '')
+				name_lem = int(tmp[0].replace('L', '')) - 1
+				#Search Room
+				while room[k].name != next_room:
+					k += 1
+				#Cal de x et y
+				x = (room[k].x - lem[name_lem].x) / 50
+				y = (room[k].y - lem[name_lem].y) / 50
+				lem[name_lem].x = room[k].x
+				lem[name_lem].y = room[k].y
+				#Move
+				tmp_display.name.append(name_lem)
+				tmp_display.x.append(x)
+				tmp_display.y.append(y)
+				j += 1
+			tab_display.append(tmp_display)
+			i += 1
 
+		print(tab_display[0].x)
+		print(tab_display[0].y)
+		print(tab_display[0].name)
+		i = 0
+		time.sleep(5)
+		while i < len(tab_display):
+			j = 0
+			compteur = i + 1
+			affichage_compteur['text'] = str(compteur)
+			while j < len(tab_display[i].name):
+				for loops in range(50):
+					time.sleep(0.005)
+					canvas.move(l[tab_display[i].name[j]], tab_display[i].x[j], tab_display[i].y[j])
+					canvas.update()
+				j += 1
+			i += 1
+			time.sleep(1.5)
 
 #---------------------------------Funct---------------------------------#
 
@@ -148,17 +193,11 @@ def ft_store_path(read, path, room):
 	tmp_path.path_2 = str(line[1].replace('\n', ''))
 	path.append(tmp_path)
 
-def ft_store_lem(lem, nb_lem, room):
-	i = 0
-	j = 0
+def ft_store_lem(lem, room):
 	tmp_lem = Lem()
-	while room[j].type_room != 'S':
-		j += 1
-	tmp_lem.x = room[j].x
-	tmp_lem.y = room[j].y
-	while i < int(nb_lem):
-		lem.append(tmp_lem)
-		i += 1
+	tmp_lem.x = room.x
+	tmp_lem.y = room.y
+	lem.append(tmp_lem)
 
 def ft_store_move(read, move):
 	tmp = Move()
@@ -202,11 +241,17 @@ if __name__ == "__main__":
 		ft_store_path(read[i], path, room)
 		i += 1
 	i += 1
-	#Create Lem
-	ft_store_lem(lem, nb_lem, room)
 	#Store Move
 	while i < len(read):
 		ft_store_move(read[i], move)
+		i += 1
+	i = 0
+	#Create Lem
+	j = 0
+	while room[j].type_room != 'S':
+		j += 1
+	while i < int(nb_lem):
+		ft_store_lem(lem, room[j])
 		i += 1
 #----------Window
 	root = Tk()
