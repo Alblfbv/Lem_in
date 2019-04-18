@@ -15,22 +15,21 @@ if __name__ == "__main__":
 	list_path = list()
 	list_step = list()
 
+	#Window Create
+	root = Tk()
+	window = Window(root)
+	frame_menu = Frame_Menu(root)
+	frame_canvas = Frame_Canvas(root)
+	main_menu = Main_Menu(frame_menu.fm, root)
+	main_canvas = Main_Canvas(frame_canvas.fc)
+
 	#Parser
 	read_result = ft_parser()
 	nb_lem = ft_len_lem(read_result)
 	i = 0
 	i = ft_room_path(read_result, list_room, list_path, i)
 	ft_move(read_result, list_move, i)
-	print(nb_lem)
 	ft_lem(list_lem, list_room, nb_lem)
-
-	#Window Create
-	root = Tk()
-	window = Window(root)
-	frame_menu = Frame_Menu(root)
-	frame_canvas = Frame_Canvas(root)
-	main_menu = Main_Menu(frame_menu.fm)
-	main_canvas = Main_Canvas(frame_canvas.fc)
 
 	#Place Room / Path / Lem
 	ft_place_path(list_room, list_path, main_canvas.canvas)

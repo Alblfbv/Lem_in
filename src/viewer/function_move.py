@@ -1,10 +1,8 @@
 #! /usr/bin/env python3
 # coding: utf-8
 
-import time
 from tkinter import *
 from class_viewer import *
-
 
 def ft_move_lem(move, room, lem, l, canvas):
 		i = 0
@@ -33,14 +31,13 @@ def ft_move_lem(move, room, lem, l, canvas):
 			tab_display.append(tmp_display)
 			i += 1
 		i = 0
-		time.sleep(5)
 		while i < len(tab_display):
-			j = 0
-			while j < len(tab_display[i].name):
-				for loops in range(50):
-					time.sleep(0.005)
+			canvas.after(1000)
+			for loops in range(50):
+				j = 0
+				while j < len(tab_display[i].name):
 					canvas.move(l[tab_display[i].name[j]], tab_display[i].x[j], tab_display[i].y[j])
-					canvas.update()
-				j += 1
+					j += 1
+				canvas.update()
+				canvas.after(10)
 			i += 1
-			time.sleep(1.5)

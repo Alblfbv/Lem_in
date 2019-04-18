@@ -48,7 +48,7 @@ class Frame_Canvas:
 		self.fc.grid(column=1, row=2)
 
 class Main_Menu:
-	def __init__(self, frame_menu):
+	def __init__(self, frame_menu, root):
 		button_start = Button(frame_menu, text="Play", width=8, height=1)
 		button_start.grid(column=1, row=1)
 		button_stop = Button(frame_menu, text="Pause", width=8, height=1)
@@ -57,10 +57,10 @@ class Main_Menu:
 		button_next.grid(column=3, row=1)
 		button_previous = Button(frame_menu, text=">>", width=8, height=1)
 		button_previous.grid(column=4, row=1)
-		button_previous = Button(frame_menu, text="Reset", width=8, height=1)
-		button_previous.grid(column=5, row=1)
-		button_previous = Button(frame_menu, text="Exit", width=8, height=1)
-		button_previous.grid(column=6, row=1)
+		button_reset = Button(frame_menu, text="Reset", width=8, height=1)
+		button_reset.grid(column=5, row=1)
+		button_exit = Button(frame_menu, text="Exit", width=8, height=1, command = root.destroy)
+		button_exit.grid(column=6, row=1)
 		compteur = 0
 		self.affichage_compteur = Label(frame_menu, text=str(compteur), width=8, height=1)
 		self.affichage_compteur.grid(column=7, row=1)
