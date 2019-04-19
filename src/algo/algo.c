@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/15 20:22:00 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/19 14:24:35 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +228,7 @@ void	ft_init_storage_flow(t_room **room, t_lem lem)
 	}
 }
 
-int		**ft_chose_lem_path(t_room ****all_path, t_lem lem)
+int		**ft_chose_lem_path(t_room ****all_path)
 {
 	int	i;
 	int	j;

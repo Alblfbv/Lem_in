@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 16:45:44 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:16:42 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			parser(t_lem *lem, t_room **room)
 	}
 	lem->result_read = ft_strsplit(lem->tmp, '\n');
 	free(lem->tmp);
-	while (lem->result_read[lem->j] != 0)
+	while (lem->result_read[lem->j] != 0 && check == 1)
 	{
 		check = 0;
 		if ((flag == 1 || flag == 2) && (ft_comment(lem->result_read[lem->j]) == 1 || ft_command(lem->result_read[lem->j], lem, room, flag) == 1))
