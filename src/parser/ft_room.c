@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/12 11:57:47 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/16 15:14:19 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ static int		ft_store_room(char **str, t_room **room)
 				return (0);
 			tmp = tmp->next;
 		}
-		if (ft_strequ(tmp->name, str[0]) != 0
+		if (ft_strequ(tmp->name, str[0])
 			|| !(tmp->next = (t_room*)malloc(sizeof(t_room))))
 			return (0);
 		tmp->next->neighbor = NULL;
