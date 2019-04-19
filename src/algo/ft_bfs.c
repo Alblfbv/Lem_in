@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/15 20:22:13 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/19 16:39:10 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,3 +97,19 @@ t_room	**ft_bfs(t_room **room, t_lem lem)
 	}
 	return (shortest_path);
 }
+
+void	ft_print_bfs(t_room **shortest_path)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("shortest path = ");
+	while (shortest_path && shortest_path[i] != 0)
+	{
+		ft_printf(" %s -", shortest_path[i]->name);
+		i++;
+	}
+	ft_printf("\n");
+}
+
+

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/15 15:24:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/19 17:20:45 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,12 @@ int		ft_path(char *line, t_room **room);
 int		ft_refactoring_room(t_room **room, t_lem lem, t_room ***final_room);
 int		ft_algo(t_room **room, t_lem lem);
 t_room	**ft_bfs(t_room **room, t_lem lem);
+void	ft_compute_nb_lem(int *tab, t_lem lem);
+void	ft_chose_best_path(t_room ****all_path, t_lem lem);
+int		**ft_create_path_tab(t_room ****all_path);
+t_room	****ft_store_path(t_room ****all_path, t_lem lem);
+
+//A SUPPRIMER POUR LE RENDU
+void	ft_print_paths(t_room ****all_path, t_lem lem);
 
 #endif

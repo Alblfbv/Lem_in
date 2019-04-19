@@ -1,21 +1,20 @@
-Role du BFS : Parcourir le graphe a la recherche du plus court chemin.
-Obligation pour le BFS de remonter un flux positif lorsque rencontré
-Doit marquer les salles visitées
-Retourne les noms de salles a emprunter
-
-Role d'edmunds Karp : Effectuer la correction de flux
-Emprunte le chemin du BFS et augmente les chemins qui etaient a 0 a 1, et remet ceux qui etaient a 1 en sens inverse a 0
-
-Sauvegarder a chaque iteration les suites de salles a 1 jusau'a END
--> Pernet de stocker la taille des chemins a chaque iteration
-
-
-
-Pas de fourmis : segfault
-Coordonnes en doubles : ressort pas en erreur
-salle reliee a elle meme
-pas d'argument segfault
-
-
 perror()
 strerror()
+equation : nb_fourmis_i = (F + Sum Pn - (n * P_i)) / n
+
+
+
+TODO
+
+BFS / EK :
+-Refactoriser l'algo
+-Ameliorer algo pour gerer les salles pourries
+
+Dispatch Fourmis :
+-Gerer le cas des grandes differences de chemins, equation donne resultat negatif, ignorer le chemin et relancer l'equation.
+
+Parser :
+-Pas de fourmis : segfault
+-Coordonnes en doubles : ressort pas en erreur
+-salle reliee a elle meme
+-pas d'argument segfault
