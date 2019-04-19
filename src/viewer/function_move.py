@@ -2,12 +2,20 @@
 # coding: utf-8
 
 from tkinter import *
-from class_viewer import *
+from main_viewer import *
 
-def ft_move_lem(move, room, lem, l, canvas):
+class Display:
+	def __init__(self):
+		self.name = list()
+		self.x = []
+		self.y = []
+
+def ft_move_lem(move, room, lem, l, canvas, menu):
+		menu.button_start.config(state=DISABLED)
 		i = 0
 		tab_display = list()
 		while i < len(move):
+			print("1")
 			tmp_display = Display()
 			j = 0
 			while j < len(move[i].tab_move):
@@ -41,3 +49,4 @@ def ft_move_lem(move, room, lem, l, canvas):
 				canvas.update()
 				canvas.after(10)
 			i += 1
+		print("####################################")

@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import fileinput
-from class_viewer import *
+from main_viewer import *
 
 def	ft_parser():
 	read = list()
@@ -91,7 +91,7 @@ def ft_store_lem(lem, room):
 	tmp_lem.y = room.y
 	lem.append(tmp_lem)
 
-def	ft_lem(lem, room, nb_lem):
+def	ft_lem_static(lem, room, nb_lem):
 	j = 0
 	i = 0
 	while room[j].type_room != 'S':
