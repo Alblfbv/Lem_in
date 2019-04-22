@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/10 11:34:38 by allefebv         ###   ########.fr        #
+#    Updated: 2019/04/19 17:18:17 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC		=	src/main.c 							\
 			src/parser/ft_refactoring_room.c	\
 			src/parser/hash.c					\
 			src/algo/algo.c						\
+			src/algo/ft_chose_option.c			\
+			src/algo/ft_path_management.c		\
 			src/algo/ft_bfs.c
 
 OBJ	=	$(SRC:.c=.o)
