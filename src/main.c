@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 15:37:16 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:16:22 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ int		main(void)
 		return (ft_clean(room));
 //	ft_print_all(room, data);
 	ft_print_result(&data);
+	ft_printf("\n");
 	ft_algo(final_room, data);
 	ft_clean_refacto(room, data);
 }

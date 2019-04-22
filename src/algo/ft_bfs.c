@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 15:33:51 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:13:23 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_room	**ft_bfs(t_room **room, t_data data)
 	tmp_r->source = NULL;
 	tmp_r2 = tmp_r;
 	tmp_r2->visited = 1;
-	ft_printf("\n\n");
 	flag = 0;
 	while (tmp_r2 != data.end_room)
 	{

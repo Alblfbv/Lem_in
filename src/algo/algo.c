@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 18:58:43 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 19:13:56 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int		ft_algo(t_room **room, t_data data)
 		else
 			break ;
 	}
-	ft_print_paths(all_path, data);
+	//ft_print_paths(all_path, data);
 	best_path = ft_chose_best_path(all_path, data);
 	ft_lem_manage(best_path, data);
 	return (1);
