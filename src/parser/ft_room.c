@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/16 15:14:19 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:40:15 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int		ft_check_room(char **str)
 	return (1);
 }
 
-static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
+static void		ft_store_type(char **str, t_room **room, t_data *data, char type)
 {
 	int			key;
 	t_room		*tmp;
@@ -62,7 +62,7 @@ static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 	{
 		if (ft_strequ(tmp->name, str[0]))
 		{
-			lem->start_room = tmp;
+			data->start_room = tmp;
 			tmp->room_type = type;
 		}
 		else
@@ -71,7 +71,7 @@ static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 			{
 				if (ft_strequ(tmp->name, str[0]))
 				{
-					lem->start_room = tmp;
+					data->start_room = tmp;
 					tmp->room_type = type;
 				}
 				tmp = tmp->next;
@@ -82,7 +82,7 @@ static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 	{
 		if (ft_strequ(tmp->name, str[0]))
 		{
-			lem->end_room = tmp;
+			data->end_room = tmp;
 			tmp->room_type = type;
 		}
 		else
@@ -91,7 +91,7 @@ static void		ft_store_type(char **str, t_room **room, t_lem *lem, char type)
 			{
 				if (ft_strequ(tmp->name, str[0]))
 				{
-					lem->end_room = tmp;
+					data->end_room = tmp;
 					tmp->room_type = type;
 				}
 				tmp = tmp->next;
@@ -135,7 +135,7 @@ static int		ft_store_room(char **str, t_room **room)
 	return (1);
 }
 
-int				ft_room(char *line, t_room **room, t_lem *lem, char type)
+int				ft_room(char *line, t_room **room, t_data *data, char type)
 {
 	char		**str;
 	int			key;
@@ -146,7 +146,7 @@ int				ft_room(char *line, t_room **room, t_lem *lem, char type)
 		return (ft_clean(str));
 	if (!(ft_store_room(str, room)))
 		return (ft_clean(str));
-	ft_store_type(str, room, lem, type);
+	ft_store_type(str, room, data, type);
 	room[key]->x = ft_atoi(str[1]);
 	room[key]->y = ft_atoi(str[2]);
 	ft_clean(str);

@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/22 13:59:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:59:17 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,47 +38,93 @@ static void	ft_place_remaining_lems(int unplaced_lems, t_path **path)
 	}
 }
 
-void		ft_compute_nb_lem(t_path **path, t_lem lem)
+void		ft_neg_lems(t_path **path, int *flag, int *nb_path, int *sum_len)
+{
+	int	i;
+
+	i = 0;
+	*sum_len = *sum_len - path[i]->length;
+	free(path[i]);
+	path[i] = path[i + 1];
+	while (path[i] != 0)
+	{
+		path[i] = path[i + 1];
+		i++;
+	}
+	*flag = 0;
+	*nb_path = *nb_path - 1;
+}
+
+void		ft_compute_nb_lem(t_path **path, t_data data)
 {
 	int	nb_path;
 	int	sum_len;
+	int	flag;
 	int	unplaced_lems;
 	int	i;
 
 	nb_path = 0;
 	sum_len = 0;
-	unplaced_lems = lem.nb_lem;
 	while (path[nb_path] != 0)
 	{
 		sum_len = sum_len + path[nb_path]->length;
 		nb_path++;
 	}
-	i = 0;
-	while (i < nb_path)
+	flag = 0;
+	while (flag == 0)
 	{
-		path[i]->lems = (lem.nb_lem + sum_len - (nb_path * path[i]->length)) / nb_path;
-		unplaced_lems = unplaced_lems - path[i]->lems;
-		path[i]->steps = path[i]->lems + path[i]->length - 1;
-		i++;
+		i = 0;
+		flag = 1;
+		unplaced_lems = data.nb_lem;
+		while (i < nb_path && flag == 1)
+		{
+			path[i]->lems = (data.nb_lem + sum_len - (nb_path * path[i]->length)) / nb_path;
+			if (path[i]->lems <= 0)
+				ft_neg_lems(path + i, &flag, &nb_path, &sum_len);
+			else
+			{
+				unplaced_lems = unplaced_lems - path[i]->lems;
+				path[i]->steps = path[i]->lems + path[i]->length - 1;
+				i++;
+			}
+		}
 	}
 	ft_place_remaining_lems(unplaced_lems, path);
 	i = 0;
 	while (path[i] != 0)
 	{
-		ft_printf("steps = %d nb_lem = %d\n", path[i]->steps, path[i]->lems);
+		//ft_printf("steps = %d nb_lem = %d\n", path[i]->steps, path[i]->lems);
 		i++;
 	}
 }
 
-void	ft_chose_best_path(t_path ***all_path, t_lem lem)
+t_path	**ft_chose_best_path(t_path ***all_path, t_data data)
 {
 	int	i;
+	int	smallest_steps;
+	int	pos_small;
 
 	i = 0;
 	while (all_path[i] != 0)
 	{
-		ft_compute_nb_lem(all_path[i], lem);
+		ft_compute_nb_lem(all_path[i], data);
 		i++;
 	}
-
+	i = 0;
+	//TEMPORAIRE
+	smallest_steps = all_path[i][0]->steps;
+	pos_small = 0;
+	while (all_path[i] != 0)
+	{
+		//TEMPORAIRE
+		if (smallest_steps > all_path[i][0]->steps)
+		{
+			//TEMPORAIRE
+			smallest_steps = all_path[i][0]->steps;
+			pos_small = i;
+		}
+		i++;
+	}
+	//ft_printf("smallest path = %d\n", pos_small);
+	return (all_path[pos_small]);
 }

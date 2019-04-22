@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/19 16:39:10 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:33:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-t_room	**ft_bfs(t_room **room, t_lem lem)
+t_room	**ft_bfs(t_room **room, t_data data)
 {
 	t_room		**shortest_path;
 	t_room		*tmp_r;
@@ -22,18 +22,18 @@ t_room	**ft_bfs(t_room **room, t_lem lem)
 	int			flag;
 
 	i = 0;
-	while (i < lem.nb_room)
+	while (i < data.nb_room)
 	{
 		room[i]->visited = 0;
 		i++;
 	}
-	tmp_r = lem.start_room;
+	tmp_r = data.start_room;
 	tmp_r->source = NULL;
 	tmp_r2 = tmp_r;
 	tmp_r2->visited = 1;
 	ft_printf("\n\n");
 	flag = 0;
-	while (tmp_r2 != lem.end_room)
+	while (tmp_r2 != data.end_room)
 	{
 		tmp_n = tmp_r->neighbor;
 		if (tmp_r->flow == 1 && flag == 0)

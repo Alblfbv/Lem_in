@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 13:24:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:58:43 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ void	ft_edmond_karp(t_room **shortest_path)
 	}
 }
 
-int		ft_count_bottleneck(t_lem lem)
+int		ft_count_bottleneck(t_data data)
 {
 	t_neighbor	*tmp_n;
 	int			b_neck_start;
 	int			b_neck_end;
 
 	b_neck_start = 0;
-	tmp_n = ((lem.start_room)->neighbor);
+	tmp_n = ((data.start_room)->neighbor);
 	while (tmp_n != NULL)
 	{
 		b_neck_start++;
 		tmp_n = tmp_n->next;
 	}
 	b_neck_end = 0;
-	tmp_n = ((lem.end_room)->neighbor);
+	tmp_n = ((data.end_room)->neighbor);
 	while (tmp_n != NULL)
 	{
 		b_neck_end++;
@@ -64,13 +64,13 @@ int		ft_count_bottleneck(t_lem lem)
 	return ((b_neck_end >= b_neck_start) ? b_neck_start : b_neck_end);
 }
 
-void	ft_init_storage_flow(t_room **room, t_lem lem)
+void	ft_init_storage_flow(t_room **room, t_data data)
 {
 	t_neighbor	*tmp_n;
 	int			i;
 
 	i = 0;
-	while (i < lem.nb_room)
+	while (i < data.nb_room)
 	{
 		tmp_n = room[i]->neighbor;
 		while (tmp_n != NULL)
@@ -82,36 +82,38 @@ void	ft_init_storage_flow(t_room **room, t_lem lem)
 	}
 }
 
-int		ft_algo(t_room **room, t_lem lem)
+int		ft_algo(t_room **room, t_data data)
 {
 	int		i;
 	t_room	**shortest_path;
 	t_path	***all_path;
+	t_path	**best_path;
 
 	i = 0;
-	lem.nb_path = ft_count_bottleneck(lem);
-	all_path = (t_path***)malloc(sizeof(t_path**) * (lem.nb_path + 1));
-	while (i <= lem.nb_path)
+	data.nb_path = ft_count_bottleneck(data);
+	all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1));
+	while (i <= data.nb_path)
 	{
 		all_path[i] = 0;
 		i++;
 	}	
 	i = 0;
-	while (i < lem.nb_path)
+	while (i < data.nb_path)
 	{
-		if ((shortest_path = ft_bfs(room, lem)) != NULL)
+		if ((shortest_path = ft_bfs(room, data)) != NULL)
 		{
 		//	ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
-			ft_init_storage_flow(room, lem);
-			all_path = ft_store_path(all_path, lem);
+			ft_init_storage_flow(room, data);
+			all_path = ft_store_path(all_path, data);
 			free(shortest_path);
 			i++;
 		}
 		else
 			break ;
 	}
-	ft_print_paths(all_path, lem);
-	ft_chose_best_path(all_path, lem);
+	ft_print_paths(all_path, data);
+	best_path = ft_chose_best_path(all_path, data);
+	ft_lem_manage(best_path, data);
 	return (1);
 }

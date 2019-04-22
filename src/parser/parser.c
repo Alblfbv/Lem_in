@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/16 15:16:42 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:45:49 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			ft_init_coord_tab(t_coord ***coord_tab)
 	return (1);
 }
 
-int			parser(t_lem *lem, t_room **room)
+int			parser(t_data *data, t_room **room)
 {
 	char	*line;
 	int		flag;
@@ -50,37 +50,37 @@ int			parser(t_lem *lem, t_room **room)
 	flag_lem = 0;
 	check = 1;
 	i = 0;
-	lem->j = 0;
+	data->j = 0;
 	ft_init_coord_tab(&coord_tab);
-	lem->tmp = ft_strnew(1);
+	data->tmp = ft_strnew(1);
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
-		lem->tmp = ft_strextend(lem->tmp, line);
-		lem->tmp = ft_strextend(lem->tmp, "\n");
+		data->tmp = ft_strextend(data->tmp, line);
+		data->tmp = ft_strextend(data->tmp, "\n");
 		free(line);
 	}
-	lem->result_read = ft_strsplit(lem->tmp, '\n');
-	free(lem->tmp);
-	while (lem->result_read[lem->j] != 0 && check == 1)
+	data->result_read = ft_strsplit(data->tmp, '\n');
+	free(data->tmp);
+	while (data->result_read[data->j] != 0 && check == 1)
 	{
 		check = 0;
-		if ((flag == 1 || flag == 2) && (ft_comment(lem->result_read[lem->j]) == 1 || ft_command(lem->result_read[lem->j], lem, room, flag) == 1))
+		if ((flag == 1 || flag == 2) && (ft_comment(data->result_read[data->j]) == 1 || ft_command(data->result_read[data->j], data, room, flag) == 1))
 			check = 1;
-		if (flag == 0 && ft_lem(lem->result_read[lem->j], lem, &flag) == 1)
+		if (flag == 0 && ft_lem(data->result_read[data->j], data, &flag) == 1)
 			check = 1;
-		if ((flag == 1 || flag == 2) && ft_room(lem->result_read[lem->j], room, lem, 'M') == 1 && flag == 1)
+		if ((flag == 1 || flag == 2) && ft_room(data->result_read[data->j], room, data, 'M') == 1 && flag == 1)
 		{
-			if (ft_check_coord(lem->result_read[lem->j], coord_tab))
+			if (ft_check_coord(data->result_read[data->j], coord_tab))
 				check = 1;
 			i++;
 		}
-		if ((flag == 1 || flag == 2) && ft_path(lem->result_read[lem->j], room) == 1)
+		if ((flag == 1 || flag == 2) && ft_path(data->result_read[data->j], room) == 1)
 		{
 			flag = 2;
 			check = 1;
 		}
-		lem->j++;
+		data->j++;
 	}
-	lem->nb_room = i + 2;
+	data->nb_room = i + 2;
 	return (ft_error(check));
 }

@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/15 14:12:37 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:37:16 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 							//A SUPPRIMER POUR LE RENDU
-static void	ft_print_all(t_room **room, t_lem lem)
+static void	ft_print_all(t_room **room, t_data data)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -44,8 +44,8 @@ static void	ft_print_all(t_room **room, t_lem lem)
 		}
 		i++;
 	}
-	ft_printf("Start = %s\n", lem.start_room->name);
-	ft_printf("End = %s\n", lem.end_room->name);
+	ft_printf("Start = %s\n", data.start_room->name);
+	ft_printf("End = %s\n", data.end_room->name);
 }
 
 static int	ft_clean(t_room **room)
@@ -83,12 +83,12 @@ static int	ft_clean(t_room **room)
 	return (0);
 }
 
-static int	ft_clean_refacto(t_room **room, t_lem lem)
+static int	ft_clean_refacto(t_room **room, t_data data)
 {
 	int	i;
 
 	i = 0;
-	while (i < lem.nb_room)
+	while (i < data.nb_room)
 	{
 		free(room[i]);
 		i++;
@@ -112,21 +112,21 @@ static int		ft_init_room(t_room ***room)
 	return (1);
 }
 
-static void		ft_print_result(t_lem *lem)
+static void		ft_print_result(t_data *data)
 {
 	int		i;
 
 	i = 0;
-	while (lem->result_read[i] != 0)
+	while (data->result_read[i] != 0)
 	{
-		ft_printf("%s\n", lem->result_read[i]);
+		ft_printf("%s\n", data->result_read[i]);
 		i++;
 	}
 }
 
 int		main(void)
 {
-	t_lem	lem;
+	t_data	data;
 	t_room	**room;
 	t_room	**final_room;
 	int		i;
@@ -136,12 +136,12 @@ int		main(void)
 	final_room = NULL;
 	if (!(ft_init_room(&room)))
 		return (0);
-	if (!(parser(&lem, room)))
+	if (!(parser(&data, room)))
 		return (ft_clean(room));
-	if (!(ft_refactoring_room(room, lem, &final_room)))
+	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean(room));
-//	ft_print_all(room, lem);
-	ft_print_result(&lem);
-	ft_algo(final_room, lem);
-	ft_clean_refacto(room, lem);
+//	ft_print_all(room, data);
+	ft_print_result(&data);
+	ft_algo(final_room, data);
+	ft_clean_refacto(room, data);
 }

@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:13:34 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/03 13:40:58 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/22 15:38:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_lem(char *line, t_lem *lem, int *flag)
+int		ft_lem(char *line, t_data *data, int *flag)
 {
 	int		i;
 
@@ -23,7 +23,7 @@ int		ft_lem(char *line, t_lem *lem, int *flag)
 			return (0);
 		i++;
 	}
-	lem->nb_lem = ft_atoi(line);
+	data->nb_lem = ft_atoi(line);
 	*flag = 1;
 	return (1);
 }

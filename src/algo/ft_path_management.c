@@ -6,13 +6,13 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/22 13:55:33 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 18:31:05 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_path_len(t_room *room, t_lem lem)
+static int		ft_path_len(t_room *room, t_data data)
 {
 	t_room		*tmp_r;
 	t_neighbor	*tmp_n;
@@ -20,7 +20,7 @@ static int		ft_path_len(t_room *room, t_lem lem)
 
 	tmp_r = room;
 	len = 1;
-	while (tmp_r != lem.end_room)
+	while (tmp_r != data.end_room)
 	{
 		tmp_n = tmp_r->neighbor;
 		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
@@ -32,7 +32,7 @@ static int		ft_path_len(t_room *room, t_lem lem)
 	return (len);
 }
 
-static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_lem lem)
+static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 {
 	int			i;
 	t_room		*tmp_r;
@@ -41,16 +41,17 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_lem lem)
 	path = (t_path*)malloc(sizeof(t_path));
 	path->path = (t_room**)malloc(sizeof(t_room*) * (len + 1));
 	path->path[len] = 0;
-	path->path[0] = lem.start_room;
+	path->path[0] = data.start_room;
 	tmp_r = first;
 	i = 1;
-	while (tmp_r != lem.end_room)
+	while (tmp_r != data.end_room)
 	{
 		path->path[i] = tmp_r;
 		tmp_n = tmp_r->neighbor;
 		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
 		tmp_n->storage_flow = 1;
+		tmp_r->next = tmp_n->room;
 		tmp_r = tmp_n->room;
 		i++;
 	}
@@ -60,7 +61,7 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_lem lem)
 	return (path);
 }
 
-t_path	***ft_store_path(t_path ***all_path, t_lem lem)
+t_path	***ft_store_path(t_path ***all_path, t_data data)
 {
 	t_room		*tmp_r;
 	t_neighbor	*tmp_n;
@@ -69,7 +70,7 @@ t_path	***ft_store_path(t_path ***all_path, t_lem lem)
 	int			i;
 	int			j;
 
-	tmp_r = lem.start_room;
+	tmp_r = data.start_room;
 	tmp_n = tmp_r->neighbor;
 	nb_path = 0;
 	j = 0;
@@ -89,15 +90,15 @@ t_path	***ft_store_path(t_path ***all_path, t_lem lem)
 	{
 		while (tmp_n->flow != 1)
 			tmp_n = tmp_n->next;
-		len = ft_path_len(tmp_n->room, lem);
-		all_path[j][i] = ft_fill_path(all_path[j][i], tmp_n->room, len, lem);
+		len = ft_path_len(tmp_n->room, data);
+		all_path[j][i] = ft_fill_path(all_path[j][i], tmp_n->room, len, data);
 		tmp_n = tmp_n->next;
 		i++;
 	}
 	return (all_path);
 }
 
-void	ft_print_paths(t_path ***all_path, t_lem lem)
+void	ft_print_paths(t_path ***all_path, t_data data)
 {
 	int	i;
 	int	j;
@@ -110,7 +111,6 @@ void	ft_print_paths(t_path ***all_path, t_lem lem)
 		j = 0;
 		while (all_path[i][j] != 0)
 		{
-			ft_printf("test");
 			k = 0;
 			ft_printf("\nPath n*%d :", j + 1);
 			while (all_path[i][j]->path[k] != 0)

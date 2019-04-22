@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:01:49 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/10 19:17:29 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:39:16 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ static int		ft_init_final_room(t_room ***room, int size)
 	return (1);
 }
 
-int		ft_refactoring_room(t_room **room, t_lem lem, t_room ***final_room)
+int		ft_refactoring_room(t_room **room, t_data data, t_room ***final_room)
 {
 	int		i;
 	int		j;
 
 	i = 0;
 	j = 0;
-	ft_init_final_room(final_room, lem.nb_room);
+	ft_init_final_room(final_room, data.nb_room);
 	while (i < HASH_TAB)
 	{
 		while (room[i] == NULL && i < HASH_TAB - 1)
