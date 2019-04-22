@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/19 17:20:45 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 13:21:31 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,14 @@ typedef struct			s_lem
 	t_room				*end_room;
 }						t_lem;
 
+typedef	struct			s_path
+{
+	t_room				**path;
+	int					length;
+	int					lems;
+	int					steps;
+}						t_path;
+
 
 unsigned int		ft_hash(char *str, int size);
 
@@ -76,12 +84,12 @@ int		ft_path(char *line, t_room **room);
 int		ft_refactoring_room(t_room **room, t_lem lem, t_room ***final_room);
 int		ft_algo(t_room **room, t_lem lem);
 t_room	**ft_bfs(t_room **room, t_lem lem);
-void	ft_compute_nb_lem(int *tab, t_lem lem);
-void	ft_chose_best_path(t_room ****all_path, t_lem lem);
+void	ft_compute_nb_lem(t_path **tab, t_lem lem);
+void	ft_chose_best_path(t_path ***all_path, t_lem lem);
 int		**ft_create_path_tab(t_room ****all_path);
-t_room	****ft_store_path(t_room ****all_path, t_lem lem);
+t_path	***ft_store_path(t_path ***all_path, t_lem lem);
 
 //A SUPPRIMER POUR LE RENDU
-void	ft_print_paths(t_room ****all_path, t_lem lem);
+void	ft_print_paths(t_path ***all_path, t_lem lem);
 
 #endif

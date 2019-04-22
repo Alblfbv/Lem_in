@@ -6,31 +6,12 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/19 17:17:24 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/22 13:24:01 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_path_len(t_room *room, t_lem lem)
-{
-	t_room		*tmp_r;
-	t_neighbor	*tmp_n;
-	int			len;
-
-	tmp_r = room;
-	len = 1;
-	while (tmp_r != lem.end_room)
-	{
-		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
-			tmp_n = tmp_n->next;
-		len++;
-		tmp_r = tmp_n->room;
-	}
-	len++;
-	return (len);
-}
 
 void	ft_edmond_karp(t_room **shortest_path)
 {
@@ -105,11 +86,11 @@ int		ft_algo(t_room **room, t_lem lem)
 {
 	int		i;
 	t_room	**shortest_path;
-	t_room	****all_path;
+	t_path	***all_path;
 
 	i = 0;
 	lem.nb_path = ft_count_bottleneck(lem);
-	all_path = (t_room****)malloc(sizeof(t_room***) * (lem.nb_path + 1));
+	all_path = (t_path***)malloc(sizeof(t_path**) * (lem.nb_path + 1));
 	while (i <= lem.nb_path)
 	{
 		all_path[i] = 0;
