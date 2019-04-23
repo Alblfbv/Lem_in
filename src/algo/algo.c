@@ -6,12 +6,11 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 19:13:56 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 10:26:21 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
 
 void	ft_edmond_karp(t_room **shortest_path)
 {
@@ -96,7 +95,7 @@ int		ft_algo(t_room **room, t_data data)
 	{
 		all_path[i] = 0;
 		i++;
-	}	
+	}
 	i = 0;
 	while (i < data.nb_path)
 	{
