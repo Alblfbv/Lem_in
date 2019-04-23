@@ -4,111 +4,95 @@
 import fileinput
 from main_viewer import *
 
-def	ft_parser():
+def ft_line(line):
+	i = 0
+	while i < len(line):
+			while line[i] == '':
+				line.pop(i)
+			i += 1
+	return line
+
+def ft_room(line, type, grid):
+	room = Room()
+	room.name = line[0]
+	room.type_room = type
+	room.x = line[1]
+	room.y = line[2]
+	if int(room.x) > grid.xmax:
+		grid.xmax = int(room.x)
+	if int(room.y) > grid.ymax:
+		grid.ymax = int(room.y)
+	return room
+
+def ft_path(line):
+	path = Path()
+	path.path_1 = line[0]
+	path.path_2 = line[1]
+	return path
+
+def	ft_parser(list_room, list_move, list_path, grid):
 	read = list()
 	for line in fileinput.input():
-		read.append(line)
-	return (read)
-
-def	ft_len_lem(read):
+		if line == "Error":
+			print("Error")
+			sys.exit(0)
+		if line[0] != '#' or (line[0] == '#' and line[1] == '#'):
+			read.append(line)
 	i = 0
-	nb_lem = 0
 	while i < len(read):
-		tmp = read[i].replace('\n', '')
-		if tmp.isnumeric() == True:
-			nb_lem = tmp
+		read[i] = read[i][0:-1]
+		i += 1
+	grid.nb_lem = read[0]
+	i = 1
+	# Store ROOM
+	while True:
+		print(read[i])
+		read[i] = read[i].replace('-', ' ')
+		line = read[i].split(' ')
+		line = ft_line(line)
+		len_line = len(line)
+		if len_line != 1 and len_line != 3:
 			break
+		if len_line == 1:
+			if line[0] == "##start":
+				i += 1
+				read[i] = read[i].replace('-', ' ')
+				line = read[i].split(' ')
+				line = ft_line(line)
+				tmp = ft_room(line, 'S', grid)
+				list_room.append(tmp)
+			if line[0] == "##end":
+				i += 1
+				read[i] = read[i].replace('-', ' ')
+				line = read[i].split(' ')
+				line = ft_line(line)
+				tmp = ft_room(line, 'E', grid)
+				list_room.append(tmp)
+		else:
+			tmp = ft_room(line, 'M', grid)
+			list_room.append(tmp)
+		grid.nb_room = grid.nb_room + 1
 		i += 1
-	return nb_lem
-
-# STORE ROOM / PATH
-
-def ft_store_room(read, room, type_room, grid):
-	tmp_room = Room()
-	line = read.split(' ')
-	i = 0
-	while i < len(line):
-		while line[i] == '':
-			line.pop(i)
-		i += 1
-	if len(line) != 3:
-		return
-	line[2] = line[2].replace('\n', '')
-	if line[1].isnumeric() == False or line[2].isnumeric() == False:
-		return
-	tmp_room.name = str(line[0].replace('\n', ''))
-	tmp_room.x = int(line[1])
-	tmp_room.y = int(line[2])
-	if tmp_room.x > grid.xmax:
-		grid.xmax = tmp_room.x
-	if tmp_room.y > grid.ymax:
-		grid.ymax = tmp_room.y
-	if type_room == 'S':
-		tmp_room.type_room = 'S'
-	if type_room == 'E':
-		tmp_room.type_room = 'E'
-	if type_room == 'M':
-		tmp_room.type_room = 'M'
-	room.append(tmp_room)
-	grid.nb_room += 1
-
-def ft_store_path(read, path, room):
-	tmp_path = Path()
-	line = read.split('-')
-	i = 0
-	while i < len(line):
-		while line[i] == '':
-			line.pop(i)
-		i += 1
-	if len(line) != 2:
-		return
-	tmp_path.path_1 = str(line[0].replace('\n', ''))
-	tmp_path.path_2 = str(line[1].replace('\n', ''))
-	path.append(tmp_path)
-
-def ft_comment(read, i):
-	while read[i][0] == "#" and read[i][1] != "#":
-		i += 1
-	return i
-
-def	ft_room_path(read, room, path, grid, i):
-	while i < len(read):
-		if (read[i] == "\n"):
+	# Store PATH
+	while True:
+		read[i] = read[i].replace('-', ' ')
+		if read[i] == '':
 			break
-		if read[i] == "##start\n":
-			i += 1
-			i = ft_comment(read, i)
-			ft_store_room(read[i], room, 'S', grid)
-			i += 1
-		if read[i] == "##end\n":
-			i += 1
-			i = ft_comment(read, i)
-			ft_store_room(read[i], room, 'E', grid)
-			i += 1
-		i = ft_comment(read, i)
-		if i == len(read):
+		line = read[i].split(' ')
+		line = ft_line(line)
+		len_line = len(line)
+		if len_line != 2:
 			break
-		ft_store_room(read[i], room, 'M', grid)
-		ft_store_path(read[i], path, room)
+		tmp = ft_path(line)
+		list_path.append(tmp)
 		i += 1
+	# Store MOVE
 	i += 1
-	return i
-
-#STORE MOVE
-
-def ft_store_move(read, move):
-	tmp = Move()
-	tmp.tab_move = read
-	tmp.tab_move = tmp.tab_move.split(' ')
-	move.append(tmp)
-
-def	ft_move(read, move, i):
 	while i < len(read):
-		ft_store_move(read[i], move)
+		move = Move()
+		move.tab_move = read[i].split(' ')
+		list_move.append(move)
 		i += 1
-	i = 0
-
-#STORE LEM
 
 def ft_store_lem(lem, room):
 	tmp_lem = Lem()
@@ -124,8 +108,6 @@ def	ft_lem_static(lem, room, nb_lem):
 	while i < int(nb_lem):
 		ft_store_lem(lem, room[j])
 		i += 1
-
-# Normalize
 
 def ft_normalize(room, grid):
 	i = 0

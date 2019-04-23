@@ -7,16 +7,15 @@ from function_parser import *
 from function_place import *
 from function_move import *
 
-#--------------------GLOBAL--------------------#
+#--------------------CLASS--------------------#
 
 list_step = list()
 list_lem = list()
 
-#--------------------CLASS--------------------#
-
 class Grid:
 	def __init__(self):
 		self.nb_room = 0
+		self.nb_lem = 0
 		self.win_width = 0
 		self.win_height = 0
 		self.xmax = 0
@@ -79,7 +78,7 @@ class Main_Menu:
 												width = 8, 						\
 												height = 1, 					\
 												highlightbackground = "black", 	\
-												command = lambda x = 2 : ft_reset_graphic(list_room, list_path, main_canvas.canvas, list_lem_static, main_menu.button_start, grid))
+												command = lambda x = 2 : ft_reset_graphic(list_room, list_path, main_canvas.canvas, static_list_lem, main_menu.button_start, grid))
 		self.button_reset.grid(column = 5, row = 1)
 		self.button_exit = Button(frame_menu, 	text = "Exit", 					\
 												width = 8,						\
@@ -108,11 +107,11 @@ class Main_Canvas:
 
 #---------------------DEF_RESET-----------------#
 
-def ft_init_graphic(list_room, list_path, canvas, menu, grid):
+def ft_init_graphic(list_room, list_path, static_list_lem, canvas, menu, grid):
 	global list_step
 	global list_lem
 	ft_place_grid(canvas, grid)
-	list_lem = copy.deepcopy(list_lem_static)
+	list_lem = copy.deepcopy(static_list_lem)
 	ft_place_path(list_room, list_path, canvas)
 	ft_place_room(list_room, canvas)
 	list_step = ft_place_lem(list_lem, canvas)
@@ -124,7 +123,7 @@ def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 	global list_lem
 	canvas.delete("all")
 	ft_place_grid(canvas, grid)
-	list_lem = copy.deepcopy(list_lem_static)
+	list_lem = copy.deepcopy(static_list_lem)
 	ft_place_path(list_room, list_path, canvas)
 	ft_place_room(list_room, canvas)
 	list_step = ft_place_lem(list_lem, canvas)
@@ -133,22 +132,17 @@ def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 #--------------------MAIN--------------------#
 
 if __name__ == "__main__":
-	nb_lem = 0
 	list_room = list()
-	list_lem_static = list()
+	static_list_lem = list()
 	list_move = list()
 	list_path = list()
 	grid = Grid()
 
 	#Parser
-	read_result = ft_parser()
-	nb_lem = ft_len_lem(read_result)
-	i = 0
-	i = ft_room_path(read_result, list_room, list_path, grid, i)
-	ft_move(read_result, list_move, i)
+	ft_parser(list_room, list_move, list_path, grid)
 	ft_normalize(list_room, grid)
-	ft_lem_static(list_lem_static, list_room, nb_lem)
-	print(grid.nb_room)
+	ft_lem_static(static_list_lem, list_room, grid.nb_lem)
+
 	#Window Create
 	root = Tk()
 	window = Window(root, grid)
@@ -157,7 +151,7 @@ if __name__ == "__main__":
 	frame_menu = Frame_Menu(root)
 	main_menu = Main_Menu(frame_menu.fm, root)
 
-	ft_init_graphic(list_room, list_path, main_canvas.canvas, main_menu.button_start, grid)
+	ft_init_graphic(list_room, list_path, static_list_lem, main_canvas.canvas, main_menu.button_start, grid)
 
 	#Place Room / Path / Lem
 
