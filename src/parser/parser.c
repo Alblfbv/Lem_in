@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 22:31:00 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 23:04:46 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			parser(t_data *data, t_room **room)
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
 		ft_lstadd_end(data->instructions,
-				ft_lstnew(line, sizeof(char) * (ft_strlen(line))));
+				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		check = 0;
 		if (!flag && ft_lem(line, data, &flag))
 			check = 1;
