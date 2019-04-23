@@ -26,6 +26,7 @@ def	ft_len_lem(read):
 def ft_store_room(read, room, type_room, grid):
 	tmp_room = Room()
 	line = read.split(' ')
+	i = 0
 	while i < len(line):
 		while line[i] == '':
 			line.pop(i)
@@ -54,6 +55,7 @@ def ft_store_room(read, room, type_room, grid):
 def ft_store_path(read, path, room):
 	tmp_path = Path()
 	line = read.split('-')
+	i = 0
 	while i < len(line):
 		while line[i] == '':
 			line.pop(i)
