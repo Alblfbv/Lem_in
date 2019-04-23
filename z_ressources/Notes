@@ -14,7 +14,7 @@ Dispatch Fourmis :
 -Fonction de print et d'avancement des fourmis
 
 Parser :
--Pas de fourmis : segfault
+-Pas de fourmis : segfault --> RESOLUT
 -Coordonnes en doubles : ressort pas en erreur
 -salle reliee a elle meme
--pas d'argument segfault
+-pas d'argument segfault --> RESOLUT
