@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 19:16:22 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 10:27:22 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 							//A SUPPRIMER POUR LE RENDU
-static void	ft_print_all(t_room **room, t_data data)
+static void		ft_print_all(t_room **room, t_data data)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -48,7 +48,7 @@ static void	ft_print_all(t_room **room, t_data data)
 	ft_printf("End = %s\n", data.end_room->name);
 }
 
-static int	ft_clean(t_room **room)
+static int		ft_clean(t_room **room)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -83,7 +83,7 @@ static int	ft_clean(t_room **room)
 	return (0);
 }
 
-static int	ft_clean_refacto(t_room **room, t_data data)
+static int		ft_clean_refacto(t_room **room, t_data data)
 {
 	int	i;
 
@@ -124,7 +124,7 @@ static void		ft_print_result(t_data *data)
 	}
 }
 
-int		main(void)
+int				main(void)
 {
 	t_data	data;
 	t_room	**room;
