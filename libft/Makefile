@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/14 20:22:58 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/02 12:20:41 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/23 13:19:38 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,9 @@ SRC_LIBFT =		libft/ft_memset.c		\
 				libft/ft_lstdelone.c	\
 				libft/ft_lstdel.c		\
 				libft/ft_lstadd.c		\
+				libft/ft_lstadd_end.c	\
 				libft/ft_lstiter.c		\
+				libft/ft_lstprint_str.c	\
 				libft/ft_lstmap.c		\
 				libft/ft_strextend.c	\
 				libft/ft_strnextend.c	\

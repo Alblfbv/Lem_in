@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 15:40:15 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:02:53 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static int		ft_check_room(char **str)
 	int		j;
 
 	i = 0;
+	if (str[i][0] == 'L')
+		return (0);
 	while (str[i] != 0)
 		i++;
 	if (i != 3)
@@ -51,19 +53,19 @@ static int		ft_check_room(char **str)
 	return (1);
 }
 
-static void		ft_store_type(char **str, t_room **room, t_data *data, char type)
+static void		ft_store_type(char **str, t_room **room, t_data *data, int flag)
 {
 	int			key;
 	t_room		*tmp;
 
 	key = ft_hash(str[0], HASH_TAB);
 	tmp = room[key];
-	if (type == 'S')
+	if (flag == 3)
 	{
 		if (ft_strequ(tmp->name, str[0]))
 		{
 			data->start_room = tmp;
-			tmp->room_type = type;
+			tmp->room_type = 'S';
 		}
 		else
 		{
@@ -72,18 +74,18 @@ static void		ft_store_type(char **str, t_room **room, t_data *data, char type)
 				if (ft_strequ(tmp->name, str[0]))
 				{
 					data->start_room = tmp;
-					tmp->room_type = type;
+					tmp->room_type = 'S';
 				}
 				tmp = tmp->next;
 			}
 		}
 	}
-	if (type == 'E')
+	if (flag == 4)
 	{
 		if (ft_strequ(tmp->name, str[0]))
 		{
 			data->end_room = tmp;
-			tmp->room_type = type;
+			tmp->room_type = 'E';
 		}
 		else
 		{
@@ -92,14 +94,14 @@ static void		ft_store_type(char **str, t_room **room, t_data *data, char type)
 				if (ft_strequ(tmp->name, str[0]))
 				{
 					data->end_room = tmp;
-					tmp->room_type = type;
+					tmp->room_type = 'E';
 				}
 				tmp = tmp->next;
 			}
 		}
 	}
-	if (type == 'M')
-		room[key]->room_type = type;
+	if (flag == 1)
+		room[key]->room_type = 'M';
 }
 
 static int		ft_store_room(char **str, t_room **room)
@@ -135,7 +137,7 @@ static int		ft_store_room(char **str, t_room **room)
 	return (1);
 }
 
-int				ft_room(char *line, t_room **room, t_data *data, char type)
+int				ft_room(char *line, t_room **room, t_data *data, int flag)
 {
 	char		**str;
 	int			key;
@@ -146,7 +148,7 @@ int				ft_room(char *line, t_room **room, t_data *data, char type)
 		return (ft_clean(str));
 	if (!(ft_store_room(str, room)))
 		return (ft_clean(str));
-	ft_store_type(str, room, data, type);
+	ft_store_type(str, room, data, flag);
 	room[key]->x = ft_atoi(str[1]);
 	room[key]->y = ft_atoi(str[2]);
 	ft_clean(str);
