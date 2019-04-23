@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 16:59:45 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 15:59:39 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,9 @@ typedef struct			s_data
 	int					nb_lem;
 	int					nb_path;
 	int					nb_room;
-	char				**result_read;
-	char				*tmp;
-	int					j;
 	t_room				*start_room;
 	t_room				*end_room;
+	t_list				**instructions;
 }						t_data;
 
 typedef	struct			s_path
@@ -84,8 +82,8 @@ unsigned int		ft_hash(char *str, int size);
 int			parser(t_data *data, t_room **room);
 int			ft_lem(char *line, t_data *data, int *flag);
 int			ft_comment(char *line);
-int			ft_command(char *line, t_data *data, t_room **room, int flag);
-int			ft_room(char *line, t_room **room, t_data *data, char type);
+int			ft_command(char *line, int *flag);
+int			ft_room(char *line, t_room **room, t_data *data, int flag);
 int			ft_check_coord(char *line, t_coord **coord_tab);
 int			ft_path(char *line, t_room **room);
 int			ft_refactoring_room(t_room **room, t_data data, t_room ***final_room);
@@ -98,6 +96,6 @@ t_path		***ft_store_path(t_path ***all_path, t_data data);
 void		ft_lem_manage(t_path **path, t_data data);
 
 //A SUPPRIMER POUR LE RENDU
-void		ft_print_paths(t_path ***all_path, t_data data);
+void		ft_print_paths(t_path ***all_path);
 
 #endif

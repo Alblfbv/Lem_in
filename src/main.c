@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 10:27:22 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:02:24 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,16 +112,12 @@ static int		ft_init_room(t_room ***room)
 	return (1);
 }
 
-static void		ft_print_result(t_data *data)
+static void		ft_init_data(t_data *data)
 {
-	int		i;
-
-	i = 0;
-	while (data->result_read[i] != 0)
-	{
-		ft_printf("%s\n", data->result_read[i]);
-		i++;
-	}
+	data->nb_room = 0;
+	data->nb_lem = 0;
+	data->instructions = (t_list**)malloc(sizeof(t_list*));
+	*data->instructions = NULL;
 }
 
 int				main(void)
@@ -134,14 +130,14 @@ int				main(void)
 	i = 0;
 	room = NULL;
 	final_room = NULL;
+	ft_init_data(&data);
 	if (!(ft_init_room(&room)))
 		return (0);
 	if (!(parser(&data, room)))
 		return (ft_clean(room));
 	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean(room));
-//	ft_print_all(room, data);
-	ft_print_result(&data);
+	ft_lstprint_str(*data.instructions);
 	ft_printf("\n");
 	ft_algo(final_room, data);
 	ft_clean_refacto(room, data);

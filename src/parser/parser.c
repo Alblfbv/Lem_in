@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 12:09:15 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/23 16:02:52 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,46 +41,37 @@ int			parser(t_data *data, t_room **room)
 {
 	char	*line;
 	int		flag;
-	int		flag_lem;
 	int		check;
-	int		i;
 	t_coord	**coord_tab;
 
 	flag = 0;
-	flag_lem = 0;
 	check = 1;
-	i = 0;
-	data->j = 0;
 	ft_init_coord_tab(&coord_tab);
-	data->tmp = ft_strnew(1);
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
-		data->tmp = ft_strextend(data->tmp, line);
-		data->tmp = ft_strextend(data->tmp, "\n");
-		free(line);
-	}
-	data->result_read = ft_strsplit(data->tmp, '\n');
-	free(data->tmp);
-	while (data->result_read[data->j] != 0 && check == 1)
-	{
+		ft_lstadd_end(data->instructions,
+				ft_lstnew(line, sizeof(char*) * ft_strlen(line)));
 		check = 0;
-		if ((flag == 1 || flag == 2) && (ft_comment(data->result_read[data->j]) == 1 || ft_command(data->result_read[data->j], data, room, flag) == 1))
+		if (!flag && ft_lem(line, data, &flag))
 			check = 1;
-		if (flag == 0 && ft_lem(data->result_read[data->j], data, &flag) == 1)
-			check = 1;
-		if ((flag == 1 || flag == 2) && ft_room(data->result_read[data->j], room, data, 'M') == 1 && flag == 1)
+		else if (flag && flag != 2 && ft_room(line, room, data, flag))
 		{
-			if (ft_check_coord(data->result_read[data->j], coord_tab))
+			if (ft_check_coord(line, coord_tab))
+			{
 				check = 1;
-			i++;
+				flag = 1;
+				data->nb_room++;
+			}
 		}
-		if ((flag == 1 || flag == 2) && ft_path(data->result_read[data->j], room) == 1)
+		else if ((flag == 1 || flag == 2)
+				&& (ft_comment(line) || ft_command(line, &flag)))
+			check = 1;
+		else if ((flag == 1 || flag == 2) && ft_path(line, room))
 		{
 			flag = 2;
 			check = 1;
 		}
-		data->j++;
+		free(line);
 	}
-	data->nb_room = i + 2;
 	return (ft_error(check, data));
 }
