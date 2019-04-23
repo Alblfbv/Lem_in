@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 16:02:24 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:47:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ static void		ft_init_data(t_data *data)
 {
 	data->nb_room = 0;
 	data->nb_lem = 0;
+	data->start_room = NULL;
+	data->end_room = NULL;
 	data->instructions = (t_list**)malloc(sizeof(t_list*));
 	*data->instructions = NULL;
 }
@@ -137,8 +139,7 @@ int				main(void)
 		return (ft_clean(room));
 	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean(room));
-	ft_lstprint_str(*data.instructions);
-	ft_printf("\n");
-	ft_algo(final_room, data);
+	if(!ft_algo(final_room, data))
+		ft_printf("Error\n");
 	ft_clean_refacto(room, data);
 }

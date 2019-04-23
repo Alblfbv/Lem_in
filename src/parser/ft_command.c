@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 16:02:55 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:47:36 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				ft_command(char *line, int *flag)
 	i = ft_strlen(line);
 	if (i < 2)
 		return (0);
-	if (ft_strequ(line, "##start") && *flag)
+	if (ft_strequ(line, "##start") && *flag != 0)
 	{
 		*flag = 3;
 		return (1);
@@ -42,7 +42,7 @@ int				ft_command(char *line, int *flag)
 			return (0);
 		return (1); */
 	}
-	if (ft_strequ(line, "##end") && *flag)
+	if (ft_strequ(line, "##end") && *flag != 0)
 	{
 		*flag = 4;
 		return (1);

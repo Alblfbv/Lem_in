@@ -12,3 +12,5 @@ Parser :
 -Illegalname room-name 1 1 ??
 
 MAKEFILE ne recompile pas la lib
+Invalid Read size 1 memcpy lstnew
+Invalid write 10k map

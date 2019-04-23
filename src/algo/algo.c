@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 14:32:08 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 16:50:19 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,13 @@ void	ft_init_storage_flow(t_room **room, t_data data)
 	}
 }
 
+int		ft_check_validity(t_room **room, t_data data)
+{
+	if (data.start_room == NULL || data.end_room == NULL)
+		return (0);
+	return (1);
+}
+
 int		ft_algo(t_room **room, t_data data)
 {
 	int		i;
@@ -89,6 +96,8 @@ int		ft_algo(t_room **room, t_data data)
 	t_path	**best_path;
 
 	i = 0;
+	if (!ft_check_validity(room, data))
+		return (0);
 	data.nb_path = ft_count_bottleneck(data);
 	all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1));
 	while (i <= data.nb_path)
@@ -101,7 +110,7 @@ int		ft_algo(t_room **room, t_data data)
 	{
 		if ((shortest_path = ft_bfs(room, data)) != NULL)
 		{
-		//	ft_print_bfs(shortest_path);
+			ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
 			all_path = ft_store_path(all_path, data);
@@ -111,8 +120,15 @@ int		ft_algo(t_room **room, t_data data)
 		else
 			break ;
 	}
-	//ft_print_paths(all_path, data);
+	ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
-	ft_lem_manage(best_path, data);
+	if (best_path != NULL)
+	{
+		ft_lstprint_str(*data.instructions);
+		ft_printf("\n");
+		ft_lem_manage(best_path, data);
+	}
+	else
+		return (0);
 	return (1);
 }
