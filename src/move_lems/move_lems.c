@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 11:49:07 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/23 12:20:18 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	ft_lem_move(t_lems *lems, int nb_path, t_data data)
 				ft_printf("L%d-%s", lems[i].name, lems[i].room->name);
 				if (lems[i].room == data.end_room)
 					allowed_movements--;
-				if (allowed_movements != 0)
-					ft_printf(" ");
 			}
 			cpy--;
+			if (cpy != 0)
+				ft_printf(" ");
 			i++;
 		}
 		ft_printf("\n");
