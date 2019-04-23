@@ -2,8 +2,6 @@
 # coding: utf-8
 
 from tkinter import *
-#1274, height=766
-
 
 def ft_place_grid(canvas, grid):
 	j = 0
@@ -27,11 +25,11 @@ def ft_place_room(room, canvas):
 		i = 0
 		while i < len(room):
 			if room[i].type_room == 'S':
-				canvas.create_oval(room[i].x, room[i].y, room[i].x + 50, room[i].y + 50, outline="#FE53BB", width="6", fill="black")
+				canvas.create_oval(int(room[i].x), int(room[i].y), int(room[i].x) + 50, int(room[i].y) + 50, outline="#FE53BB", width="6", fill="black")
 			if room[i].type_room == 'E':
-				canvas.create_oval(room[i].x, room[i].y, room[i].x + 50, room[i].y + 50, outline="#FE53BB", width="6", fill="black")
+				canvas.create_oval(int(room[i].x), int(room[i].y), int(room[i].x) + 50, int(room[i].y) + 50, outline="#FE53BB", width="6", fill="black")
 			if room[i].type_room == 'M':
-				canvas.create_oval(room[i].x, room[i].y, room[i].x + 50, room[i].y + 50, outline="#08F7FE", width="6", fill="black")
+				canvas.create_oval(int(room[i].x), int(room[i].y), int(room[i].x) + 50, int(room[i].y) + 50, outline="#08F7FE", width="6", fill="black")
 			i += 1
 
 def ft_place_path(room, path, canvas):
@@ -43,13 +41,13 @@ def ft_place_path(room, path, canvas):
 				j += 1
 			while room[k].name != path[i].path_2:
 				k += 1
-			canvas.create_line(room[j].x + 25, room[j].y + 25, room[k].x + 25, room[k].y + 25, fill="#08F7FE", width="6")
+			canvas.create_line(int(room[j].x) + 25, int(room[j].y) + 25, int(room[k].x) + 25, int(room[k].y) + 25, fill="#08F7FE", width="6")
 			i += 1
 
 def ft_place_lem(lem,canvas):
 		i = 0
 		l = list()
 		while (i < len(lem)):
-			l.append(canvas.create_oval(lem[i].x + 15, lem[i].y + 15, lem[i].x + 35, lem[i].y + 35, fill="#F5D300"))
+			l.append(canvas.create_oval(int(lem[i].x) + 15, int(lem[i].y) + 15, int(lem[i].x) + 35, int(lem[i].y) + 35, fill="#F5D300"))
 			i += 1
 		return l

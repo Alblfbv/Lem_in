@@ -27,10 +27,10 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 				while room[k].name != next_room:
 					k += 1
 				#Cal de x et y
-				x = (room[k].x - lem[name_lem].x) / 50
-				y = (room[k].y - lem[name_lem].y) / 50
-				lem[name_lem].x = room[k].x
-				lem[name_lem].y = room[k].y
+				x = (int(room[k].x) - int(lem[name_lem].x)) / 50
+				y = (int(room[k].y) - int(lem[name_lem].y)) / 50
+				lem[name_lem].x = int(room[k].x)
+				lem[name_lem].y = int(room[k].y)
 				#Move
 				tmp_display.name.append(name_lem)
 				tmp_display.x.append(x)
@@ -44,7 +44,7 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 			for loops in range(50):
 				j = 0
 				while j < len(tab_display[i].name):
-					canvas.move(l[tab_display[i].name[j]], tab_display[i].x[j], tab_display[i].y[j])
+					canvas.move(l[tab_display[i].name[j]], int(tab_display[i].x[j]), int(tab_display[i].y[j]))
 					j += 1
 				canvas.update()
 				canvas.after(10)
