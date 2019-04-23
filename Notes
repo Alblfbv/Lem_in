@@ -10,11 +10,10 @@ BFS / EK :
 -Ameliorer algo pour gerer les salles pourries
 
 Dispatch Fourmis :
--Gerer le cas des grandes differences de chemins, equation donne resultat negatif, ignorer le chemin et relancer l'equation.
--Fonction de print et d'avancement des fourmis
 
 Parser :
 -Pas de fourmis : segfault
 -Coordonnes en doubles : ressort pas en erreur
 -salle reliee a elle meme
 -pas d'argument segfault
+-strextend a passer en liste chainee
