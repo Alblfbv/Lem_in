@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/22 19:14:31 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 21:41:38 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,5 @@ t_path	**ft_chose_best_path(t_path ***all_path, t_data data)
 		}
 		i++;
 	}
-	//ft_printf("smallest path = %d\n", pos_small);
 	return (all_path[pos_small]);
 }

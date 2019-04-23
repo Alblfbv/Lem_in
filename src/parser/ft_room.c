@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 16:02:53 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 22:01:42 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,45 +63,31 @@ static void		ft_store_type(char **str, t_room **room, t_data *data, int flag)
 	if (flag == 3)
 	{
 		if (ft_strequ(tmp->name, str[0]))
-		{
 			data->start_room = tmp;
-			tmp->room_type = 'S';
-		}
 		else
 		{
 			while (!ft_strequ(tmp->name, str[0]))
 			{
 				if (ft_strequ(tmp->name, str[0]))
-				{
 					data->start_room = tmp;
-					tmp->room_type = 'S';
-				}
 				tmp = tmp->next;
 			}
 		}
 	}
-	if (flag == 4)
+	else if (flag == 4)
 	{
 		if (ft_strequ(tmp->name, str[0]))
-		{
 			data->end_room = tmp;
-			tmp->room_type = 'E';
-		}
 		else
 		{
 			while (!ft_strequ(tmp->name, str[0]))
 			{
 				if (ft_strequ(tmp->name, str[0]))
-				{
 					data->end_room = tmp;
-					tmp->room_type = 'E';
-				}
 				tmp = tmp->next;
 			}
 		}
 	}
-	if (flag == 1)
-		room[key]->room_type = 'M';
 }
 
 static int		ft_store_room(char **str, t_room **room)
@@ -117,6 +103,7 @@ static int		ft_store_room(char **str, t_room **room)
 		room[key]->neighbor = NULL;
 		room[key]->next = NULL;
 		room[key]->name = ft_strdup(str[0]);
+		room[key]->flow = 0;
 	}
 	else
 	{
@@ -133,6 +120,7 @@ static int		ft_store_room(char **str, t_room **room)
 		tmp->next->neighbor = NULL;
 		tmp->next->next = NULL;
 		tmp->next->name = ft_strdup(str[0]);
+		tmp->next->flow = 0;
 	}
 	return (1);
 }

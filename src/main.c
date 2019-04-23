@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 16:47:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 22:08:11 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void		ft_print_all(t_room **room, t_data data)
 				tmp_n = tmp_r->neighbor;
 				ft_printf("ROOM = %s\n", tmp_r->name);
 				ft_printf("KEY = %d\n", ft_hash(tmp_r->name, HASH_TAB));
-				ft_printf("TYPE = %c\n", tmp_r->room_type);
 				ft_printf("Neighbors of room = ");
 				while (tmp_n != NULL)
 				{

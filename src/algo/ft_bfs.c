@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/22 19:13:23 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 22:14:30 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,12 @@ t_room	**ft_bfs(t_room **room, t_data data)
 					tmp_r2->visited = 1;
 					tmp_r2->source = tmp_r;
 					tmp_r2->next = NULL;
+					if (tmp_r2 == data.end_room)
+						break ;
 					//ft_printf("REMONTEE : tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", tmp_r->name, tmp_r2->name, tmp_r2->source->name);
 				}
 				tmp_n = tmp_n->next;
 			}
-			tmp_r = tmp_r->next;
-			if (tmp_r == NULL)
-				return (NULL);
 		}
 		else
 		{
@@ -66,16 +65,18 @@ t_room	**ft_bfs(t_room **room, t_data data)
 					tmp_r2 = tmp_r2->next;
 					tmp_r2->visited = 1;
 					tmp_r2->source = tmp_r;
-					//ft_printf("tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", tmp_r->name, tmp_r2->name, tmp_r2->source->name);
 					tmp_r2->next = NULL;
+					if (tmp_r2 == data.end_room)
+						break ;
+					//ft_printf("tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", tmp_r->name, tmp_r2->name, tmp_r2->source->name);
 				}
 				tmp_n = tmp_n->next;
 			}
-			tmp_r = tmp_r->next;
-			if (tmp_r == NULL)
-				return (NULL);
 			//ft_printf("tmp_r = %s /\\ tmp_r2 = %s\n", tmp_r->name, tmp_r2->name);
 		}
+		tmp_r = tmp_r->next;
+		if (tmp_r == NULL)
+			return (NULL);
 	}
 	tmp_r = tmp_r2;
 	i = 1;

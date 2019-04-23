@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 15:59:21 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 21:13:22 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
 		tmp_n->storage_flow = 1;
-		tmp_r->next = tmp_n->room;
 		tmp_r = tmp_n->room;
 		i++;
 	}

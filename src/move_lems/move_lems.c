@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 12:20:18 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 21:13:48 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,35 @@ void	ft_lem_move(t_lems *lems, int nb_path, t_data data)
 	}
 }
 
+void	ft_place_next(t_path **path)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (path[i] != 0)
+	{
+		j = 0;
+		while (path[i]->path[j] != 0)
+		{
+			path[i]->path[j]->next = path[i]->path[j + 1];
+			j++;
+		}
+		i++;
+	}
+}
+
 void	ft_lem_manage(t_path **path, t_data data)
 {
 	t_lems	*lems;
 	int		nb_path;
 
 	nb_path = 0;
+	//ft_printf("%s", ((*path)->path[2]->name));
 	lems = (t_lems*)malloc(sizeof(t_lems) * data.nb_lem);
 	while (path[nb_path] != 0)
 		nb_path++;
 	ft_init_lem_tab(lems, data, path);
+	ft_place_next(path);
 	ft_lem_move(lems, nb_path, data);
 }

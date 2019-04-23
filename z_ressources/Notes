@@ -10,6 +10,7 @@ BFS / EK :
 Parser :
 -salle reliee a elle meme
 -Illegalname room-name 1 1 ??
+-Unknown room ?? Error pas error ?
 
 MAKEFILE ne recompile pas la lib
 Invalid Read size 1 memcpy lstnew
