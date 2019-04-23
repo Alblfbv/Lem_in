@@ -12,8 +12,12 @@ BFS / EK :
 Dispatch Fourmis :
 
 Parser :
--Pas de fourmis : segfault
+-Pas de fourmis : segfault --> RESOLUT
 -Coordonnes en doubles : ressort pas en erreur
 -salle reliee a elle meme
+<<<<<<< HEAD
+-pas d'argument segfault --> RESOLUT
+=======
 -pas d'argument segfault
 -strextend a passer en liste chainee
+>>>>>>> d146059fb8e8db42eacbc74c33c1f110367daeb8
