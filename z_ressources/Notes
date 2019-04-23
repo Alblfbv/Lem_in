@@ -13,5 +13,3 @@ Parser :
 -Unknown room ?? Error pas error ?
 
 MAKEFILE ne recompile pas la lib
-Invalid Read size 1 memcpy lstnew
-Invalid write 10k map

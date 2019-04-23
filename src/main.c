@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 23:00:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/23 23:15:20 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void		ft_print_all(t_room **room, t_data data)
 	i = 0;
 	while (i < HASH_TAB)
 	{
-		ft_printf("i = %d\n", i);
 		if (room[i] != NULL)
 		{
 			tmp_r = room[i];
@@ -136,7 +135,7 @@ int				main(void)
 		return (0);
 	if (!(parser(&data, room)))
 		return (ft_clean(room));
-	//ft_print_all(room, data);
+	ft_print_all(room, data);
 	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean(room));
 	if(!ft_algo(final_room, data))
