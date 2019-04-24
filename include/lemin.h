@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 22:02:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 13:32:30 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct			s_coord
 
 typedef struct			s_data
 {
-	int					nb_lem;
+	long long			nb_lem;
 	int					nb_path;
 	int					nb_room;
 	t_room				*start_room;

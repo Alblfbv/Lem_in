@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 23:02:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:20:24 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int		ft_check_room(char **str)
 		j = 0;
 		while (str[i][j] != 0)
 		{
+			if (j == 0 && (str[i][j] == '+' || str[i][j] == '-'))
+				j++;
 			if (!(ft_isdigit(str[i][j])))
 				return (0);
 			j++;

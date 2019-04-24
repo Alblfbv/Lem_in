@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 22:36:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 11:15:18 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ t_room	**ft_bfs(t_room **room, t_data data)
 	i = 0;
 	while (i < data.nb_room)
 	{
-		ft_printf("room_name = %s\n", room[i]->name);
 		room[i]->visited = 0;
 		i++;
 	}

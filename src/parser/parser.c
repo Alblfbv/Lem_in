@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 23:04:46 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:05:39 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_error(int check, t_data *data)
+static int		ft_error(t_data *data)
 {
 	if (data->nb_lem == 0)
 	{
@@ -49,6 +49,7 @@ int			parser(t_data *data, t_room **room)
 	ft_init_coord_tab(&coord_tab);
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
+		//ft_printf("flag = %d /\\ check = %d\n", flag, check);
 		ft_lstadd_end(data->instructions,
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		check = 0;
@@ -56,15 +57,11 @@ int			parser(t_data *data, t_room **room)
 			check = 1;
 		else if (flag && flag != 2 && ft_room(line, room, data, flag))
 		{
-			if (ft_check_coord(line, coord_tab))
-			{
-				check = 1;
-				flag = 1;
-				data->nb_room++;
-			}
+			check = 1;
+			flag = 1;
+			data->nb_room++;
 		}
-		else if ((flag == 1 || flag == 2)
-				&& (ft_comment(line) || ft_command(line, &flag)))
+		else if ((flag) && (ft_comment(line) || ft_command(line, &flag)))
 			check = 1;
 		else if ((flag == 1 || flag == 2) && ft_path(line, room))
 		{
@@ -72,6 +69,7 @@ int			parser(t_data *data, t_room **room)
 			check = 1;
 		}
 		free(line);
+		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
-	return (ft_error(check, data));
+	return (ft_error(data));
 }

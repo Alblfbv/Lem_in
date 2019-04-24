@@ -13,3 +13,48 @@ Parser :
 -Unknown room ?? Error pas error ?
 
 MAKEFILE ne recompile pas la lib
+
+
+
+Visualiseur :
+-integrer la verification des doublons de coordonnee dans le parser
+(Copier le code C en python)
+-Attention aux coordonnees en int max ou int min (coordonnees toutes acceptes dans le programme de C tant que caracteres numeriques)
+
+
+Tests Putes :
+
+OK
+0000000000000000000000000001 pour fourmis ou coordonnees
+
+KO : Segfault
+9999999999999999999999999999 fourmis
+
+OK
+999999999999999999999999999 coordonnees
+
+Error ou prendre la salle, etre coherent
+##start
+##start
+##start
+room 1 1
+
+Pour le moment : On affiche ok et on prend la deuxieme salle
+Etre coherent avec le reste
+##start
+room 1 1
+##start
+room 2 2
+
+OK
+Doit etre ok
+##start
+##unknown
+##unknown
+room 1 1
+
+OK
+Invalide : apres pipes, on ne prend que des commandes ou des commentaires mais pas d'acquisision de salles
+room1-room2
+##start
+start 1 1

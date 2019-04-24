@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/23 23:15:20 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 12:14:39 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ static void		ft_print_all(t_room **room, t_data data)
 		}
 		i++;
 	}
-	ft_printf("Start = %s\n", data.start_room->name);
-	ft_printf("End = %s\n", data.end_room->name);
+	if (data.start_room != NULL)
+		ft_printf("Start = %s\n", data.start_room->name);
+	if (data.end_room != NULL)
+		ft_printf("End = %s\n", data.end_room->name);
 }
 
 static int		ft_clean(t_room **room)
@@ -135,7 +137,7 @@ int				main(void)
 		return (0);
 	if (!(parser(&data, room)))
 		return (ft_clean(room));
-	ft_print_all(room, data);
+	//ft_print_all(room, data);
 	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean(room));
 	if(!ft_algo(final_room, data))
