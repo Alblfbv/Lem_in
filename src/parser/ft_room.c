@@ -6,21 +6,34 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 12:20:24 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:34:48 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_clean(char **str)
+static int		ft_clean(char **str, int flag)
 {
-	int			i;
+	int	i;
 
 	i = 0;
-	while (str[i] != 0)
+	if (flag == 0)
 	{
-		free(str[i]);
-		i++;
+		while (str[i] != 0)
+		{
+			if (i > 2)
+				free(str[i]);
+			i++;
+		}
+	}
+	else
+	{
+		while (str[i] != 0)
+		{
+			if (i > 2)
+				free(str[i]);
+			i++;
+		}
 	}
 	free(str);
 	return (0);
@@ -104,7 +117,9 @@ static int		ft_store_room(char **str, t_room **room)
 			return (0);
 		room[key]->neighbor = NULL;
 		room[key]->next = NULL;
-		room[key]->name = ft_strdup(str[0]);
+		room[key]->name = str[0];
+		room[key]->x = str[1];
+		room[key]->y = str[2];
 		room[key]->flow = 0;
 	}
 	else
@@ -121,7 +136,9 @@ static int		ft_store_room(char **str, t_room **room)
 			return (0);
 		tmp->next->neighbor = NULL;
 		tmp->next->next = NULL;
-		tmp->next->name = ft_strdup(str[0]);
+		tmp->next->name = str[0];
+		tmp->next->x = str[1];
+		tmp->next->y = str[2];
 		tmp->next->flow = 0;
 	}
 	return (1);
@@ -135,12 +152,10 @@ int				ft_room(char *line, t_room **room, t_data *data, int flag)
 	str = ft_strsplit(line, ' ');
 	key = ft_hash(str[0], HASH_TAB);
 	if (!(ft_check_room(str)))
-		return (ft_clean(str));
+		return (ft_clean(str, 1));
 	if (!(ft_store_room(str, room)))
-		return (ft_clean(str));
+		return (ft_clean(str, 1));
 	ft_store_type(str, room, data, flag);
-	room[key]->x = ft_atoi(str[1]);
-	room[key]->y = ft_atoi(str[2]);
-	ft_clean(str);
+	ft_clean(str, 0);
 	return (1);
 }

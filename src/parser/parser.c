@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 12:05:39 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:26:09 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		ft_error(t_data *data)
 	return (1);
 }
 
-int			ft_init_coord_tab(t_coord ***coord_tab)
+/*int			ft_init_coord_tab(t_coord ***coord_tab)
 {
 	int	i;
 
@@ -35,19 +35,18 @@ int			ft_init_coord_tab(t_coord ***coord_tab)
 		i++;
 	}
 	return (1);
-}
+}*/
 
 int			parser(t_data *data, t_room **room)
 {
 	char	*line;
 	int		flag;
 	int		check;
-	t_coord	**coord_tab;
+	int		ret;
 
 	flag = 0;
 	check = 1;
-	ft_init_coord_tab(&coord_tab);
-	while ((get_next_line(0, &line)) == 1 && check == 1)
+	while ((ret = (get_next_line(0, &line))) == 1 && check == 1)
 	{
 		//ft_printf("flag = %d /\\ check = %d\n", flag, check);
 		ft_lstadd_end(data->instructions,
@@ -68,8 +67,10 @@ int			parser(t_data *data, t_room **room)
 			flag = 2;
 			check = 1;
 		}
-		free(line);
+		ft_strdel(&line);
 		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
+	if (line)
+		free(line);
 	return (ft_error(data));
 }

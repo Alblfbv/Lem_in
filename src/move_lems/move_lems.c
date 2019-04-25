@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 21:13:48 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 15:34:03 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,19 @@ void	ft_lem_move(t_lems *lems, int nb_path, t_data data)
 	int	allowed_movements;
 	int	i;
 	int	cpy;
+	int	start;
 
 	allowed_movements = nb_path;
-	i = 0;
+	start = 0;
 	while (allowed_movements)
 	{
 		cpy = allowed_movements;
-		i = 0;
+		i = start;
+		while (lems[i].room == data.end_room)
+		{
+				i++;
+				start++;
+		}
 		while (cpy && i < data.nb_lem)
 		{
 			while (lems[i].room == data.end_room)
@@ -112,4 +118,6 @@ void	ft_lem_manage(t_path **path, t_data data)
 	ft_init_lem_tab(lems, data, path);
 	ft_place_next(path);
 	ft_lem_move(lems, nb_path, data);
+	free(lems);
+	
 }

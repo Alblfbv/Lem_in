@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 13:32:30 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 18:02:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef struct 			s_neighbor
 typedef struct			s_room
 {
 	char				*name;
-	int					x;
-	int					y;
+	char				*x;
+	char				*y;
 	int					flow;
 	short				visited;
 	t_neighbor			*neighbor;
@@ -92,6 +92,8 @@ t_path**	ft_chose_best_path(t_path ***all_path, t_data data);
 int			**ft_create_path_tab(t_room ****all_path);
 t_path		***ft_store_path(t_path ***all_path, t_data data);
 void		ft_lem_manage(t_path **path, t_data data);
+void		ft_free_ptr(void *content, size_t size);
+void		ft_free_path(t_path ***all_path);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);
