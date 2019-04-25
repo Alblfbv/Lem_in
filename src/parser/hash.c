@@ -6,13 +6,12 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:47:54 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 14:33:32 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 14:41:36 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-/*
 unsigned int		ft_hash(char *str, int size)
 {
 	int		i;
@@ -32,7 +31,8 @@ unsigned int		ft_hash(char *str, int size)
 	result = result % size;
 	return (result);
 }
-*/
+
+/*
 unsigned int	ft_hash(char *str, int size)
 {
 	int				i;
@@ -53,4 +53,4 @@ unsigned int	ft_hash(char *str, int size)
 	hash = hash % size;
 	return (hash);
 }
-
+*/

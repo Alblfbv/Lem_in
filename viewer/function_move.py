@@ -43,7 +43,9 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 			for loops in range(50):
 				j = 0
 				while j < len(tab_display[i].name):
-					canvas.move(l[tab_display[i].name[j]], int(tab_display[i].x[j]), int(tab_display[i].y[j]))
+					canvas.move(	l[tab_display[i].name[j]],	\
+									int(tab_display[i].x[j]),	\
+									int(tab_display[i].y[j]))
 					j += 1
 				canvas.update()
 				canvas.after(10)
