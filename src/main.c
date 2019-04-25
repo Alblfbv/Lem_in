@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:53:25 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:35:27 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void		ft_print_all(t_room **room, t_data data)
 		ft_printf("End = %s\n", data.end_room->name);
 }
 
-static int		ft_clean(t_room **room)
+static int		ft_clean(t_room **room, t_data *data)
 {
 	int			i;
 	t_neighbor	*tmp_n;
@@ -57,6 +57,7 @@ static int		ft_clean(t_room **room)
 	t_room		*tmp_r_nxt;
 
 	i = 0;
+	free(data->instructions);
 	while (i < HASH_TAB)
 	{
 		if (room[i] != NULL)
@@ -148,10 +149,10 @@ int				main(void)
 	if (!(ft_init_room(&room)))
 		return (0);
 	if (!(parser(&data, room)))
-		return (ft_clean(room));
+		return (ft_clean(room, &data));
 	//ft_print_all(room, data);
 	if (!(ft_refactoring_room(room, data, &final_room)))
-		return (ft_clean(room));
+		return (ft_clean(room, &data));
 	if(!ft_algo(final_room, data))
 		ft_printf("Error\n");
 	ft_lstdel(data.instructions, &ft_free_ptr);

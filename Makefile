@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:28:08 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/25 17:14:00 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,15 @@ SRC		=	src/main.c 							\
 			src/ft_free_ptr.c 					\
 			src/parser/parser.c					\
 			src/parser/ft_room.c				\
+			src/parser/ft_room2.c				\
 			src/parser/ft_path.c				\
+			src/parser/ft_path2.c 				\
 			src/parser/ft_check_coord.c			\
 			src/parser/ft_lem.c					\
 			src/parser/ft_comment.c				\
 			src/parser/ft_command.c				\
 			src/parser/ft_refactoring_room.c	\
-			src/parser/hash.c					\
+			src/parser/ft_hash.c				\
 			src/algo/algo.c						\
 			src/algo/ft_chose_option.c			\
 			src/algo/ft_path_management.c		\

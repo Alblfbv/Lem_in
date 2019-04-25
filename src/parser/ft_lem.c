@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 16:13:34 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 14:56:03 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:08:19 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_check_int(char *s)
 	return (1);
 }
 
-int		ft_lem(char *line, t_data *data, int *flag)
+int			ft_lem(char *line, t_data *data, int *flag)
 {
 	if (line[0] == '-')
 		return (0);

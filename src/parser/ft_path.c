@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 18:36:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/24 18:27:33 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:06:11 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,62 +45,6 @@ static int	ft_path_error(char **couple)
 		if (couple[i][j] != '\0')
 			return (0);
 		i++;
-	}
-	return (1);
-}
-
-static int	ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1)
-{
-	if (tmp_r1->neighbor == NULL)
-	{
-		if (!(tmp_r1->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
-			return (0);
-		tmp_r1->neighbor->room = tmp_r2;
-		tmp_r1->neighbor->flow = 0;
-		tmp_r1->neighbor->next = NULL;
-	}
-	else
-	{
-		while (tmp_n1->next != NULL)
-		{
-			if (tmp_n1->room == tmp_r2)
-				return (0);
-			tmp_n1 = tmp_n1->next;
-		}
-		if (tmp_n1->room == tmp_r2
-			|| !(tmp_n1->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
-			return (0);
-		tmp_n1->next->room = tmp_r2;
-		tmp_n1->next->flow = 0;
-		tmp_n1->next->next = NULL;
-	}
-	return (1);
-}
-
-static int	ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2)
-{
-	if (tmp_r2->neighbor == NULL)
-	{
-		if (!(tmp_r2->neighbor = (t_neighbor*)malloc(sizeof(t_neighbor))))
-			return (0);
-		tmp_r2->neighbor->room = tmp_r1;
-		tmp_r2->neighbor->flow = 0;
-		tmp_r2->neighbor->next = NULL;
-	}
-	else
-	{
-		while (tmp_n2->next != NULL)
-		{
-			if (tmp_n2->room == tmp_r1)
-				return (0);
-			tmp_n2 = tmp_n2->next;
-		}
-		if (tmp_n2->room == tmp_r2
-			|| !(tmp_n2->next = (t_neighbor*)malloc(sizeof(t_neighbor))))
-			return (0);
-		tmp_n2->next->room = tmp_r1;
-		tmp_n2->next->flow = 0;
-		tmp_n2->next->next = NULL;
 	}
 	return (1);
 }
