@@ -6,14 +6,15 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 18:26:09 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:50:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_error(t_data *data)
+static int	ft_error(char *line, t_data *data)
 {
+	ft_strdel(&line);
 	if (data->nb_lem == 0)
 	{
 		ft_printf("Error\n");
@@ -70,7 +71,5 @@ int			parser(t_data *data, t_room **room)
 		ft_strdel(&line);
 		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
-	if (line)
-		free(line);
-	return (ft_error(data));
+	return (ft_error(line, data));
 }

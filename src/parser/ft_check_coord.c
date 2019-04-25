@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 15:44:21 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/08 14:00:00 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 14:29:08 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_check_coord(char *line, t_coord **coord_tab)
 	tmp = coord_tab[key];
 	if (coord_tab[key] == NULL)
 	{
-		if(!(coord_tab[key] = (t_coord*)malloc(sizeof(t_coord))))
+		if (!(coord_tab[key] = (t_coord*)malloc(sizeof(t_coord))))
 			return (0);
 		(*(coord_tab + key))->x = x;
 		(*(coord_tab + key))->y = y;
@@ -37,13 +37,13 @@ int		ft_check_coord(char *line, t_coord **coord_tab)
 	{
 		if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
 			return (0);
-		while(tmp->next != NULL)
+		while (tmp->next != NULL)
 		{
 			tmp = tmp->next;
 			if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
 				return (0);
 		}
-		if(!(tmp->next = (t_coord*)malloc(sizeof(t_coord))))
+		if (!(tmp->next = (t_coord*)malloc(sizeof(t_coord))))
 			return (0);
 		tmp->next->x = x;
 		tmp->next->y = y;
