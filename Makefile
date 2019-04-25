@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:26:18 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/25 16:28:08 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CFLAGS += -Wall -Wextra $(INCLUDE) #-g3 -fsanitize=address
 LIB	= libft/libft.a
 
 SRC		=	src/main.c 							\
+			src/ft_free_ptr.c 					\
 			src/parser/parser.c					\
 			src/parser/ft_room.c				\
 			src/parser/ft_path.c				\

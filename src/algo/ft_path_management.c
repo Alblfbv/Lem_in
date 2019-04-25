@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 21:13:22 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/24 17:32:49 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,26 @@ void	ft_print_paths(t_path ***all_path)
 		i++;
 		ft_printf("\n\n");
 	}
+}
+
+void	ft_free_paths(t_path ***all_path)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (all_path[i] != 0)
+	{
+		j = 0;
+		while (all_path[i][j] != 0)
+		{
+			free(all_path[i][j]->path);
+			free(all_path[i][j]);
+			j++;
+		}
+		free(all_path[i]);
+		i++;
+	}
+	free(all_path);
+
 }

@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_char_replace.c                                  :+:      :+:    :+:   */
+/*   ft_free_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 18:50:02 by jfleury           #+#    #+#             */
-/*   Updated: 2019/01/16 18:54:31 by jfleury          ###   ########.fr       */
+/*   Created: 2019/04/24 15:39:01 by allefebv          #+#    #+#             */
+/*   Updated: 2019/04/24 15:43:34 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_char_replace(char *str, char c, char r)
-{
-	int		i;
+#include "lemin.h"
 
-	i = 0;
-	while (str[i] != 0)
-	{
-		if (str[i] == c)
-			str[i] = r;
-		i++;
-	}
-	return (str);
+void	ft_free_ptr(void *content, size_t size)
+{
+	(void)size;
+	free(content);
 }

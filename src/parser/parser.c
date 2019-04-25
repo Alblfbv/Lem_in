@@ -6,16 +6,15 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 14:41:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:54:24 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int	ft_error(t_data *data, char *line, t_coord **coord_tab)
+static int	ft_error(char *line, t_data *data)
 {
-	free(line);
-	free(coord_tab);
+	ft_strdel(&line);
 	if (data->nb_lem == 0)
 	{
 		ft_printf("Error\n");
@@ -24,7 +23,7 @@ static int	ft_error(t_data *data, char *line, t_coord **coord_tab)
 	return (1);
 }
 
-int			ft_init_coord_tab(t_coord ***coord_tab)
+/*int			ft_init_coord_tab(t_coord ***coord_tab)
 {
 	int	i;
 
@@ -37,19 +36,18 @@ int			ft_init_coord_tab(t_coord ***coord_tab)
 		i++;
 	}
 	return (1);
-}
+}*/
 
 int			parser(t_data *data, t_room **room)
 {
 	char	*line;
 	int		flag;
 	int		check;
-	t_coord	**coord_tab;
+	int		ret;
 
 	flag = 0;
 	check = 1;
-	ft_init_coord_tab(&coord_tab);
-	while ((get_next_line(0, &line)) == 1 && check == 1)
+	while ((ret = (get_next_line(0, &line))) == 1 && check == 1)
 	{
 		ft_lstadd_end(data->instructions,
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
@@ -69,7 +67,8 @@ int			parser(t_data *data, t_room **room)
 			flag = 2;
 			check = 1;
 		}
-		free(line);
+		ft_strdel(&line);
+		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
-	return (ft_error(data, line, coord_tab));
+	return (ft_error(line, data));
 }

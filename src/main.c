@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 14:42:58 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:53:25 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,23 @@ static int		ft_clean(t_room **room)
 
 static int		ft_clean_refacto(t_room **room, t_data data)
 {
-	int	i;
+	int			i;
+	t_neighbor	*tmp_n;
+	t_neighbor	*tmp_n_nxt;
 
 	i = 0;
 	while (i < data.nb_room)
 	{
+		tmp_n = room[i]->neighbor;
+		while (tmp_n != NULL)
+		{
+			tmp_n_nxt = tmp_n->next;
+			free(tmp_n);
+			tmp_n = tmp_n_nxt;
+		}
+		free(room[i]->name);
+		free(room[i]->x);
+		free(room[i]->y);
 		free(room[i]);
 		i++;
 	}
@@ -142,6 +154,8 @@ int				main(void)
 		return (ft_clean(room));
 	if(!ft_algo(final_room, data))
 		ft_printf("Error\n");
-	ft_clean_refacto(room, data);
+	ft_lstdel(data.instructions, &ft_free_ptr);
 	free(data.instructions);
+	ft_clean_refacto(final_room, data);
+	free(room);
 }
