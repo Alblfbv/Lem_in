@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 12:05:39 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 13:17:03 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,7 @@ int			parser(t_data *data, t_room **room)
 		free(line);
 		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
+	free(line);
+	free(coord_tab);
 	return (ft_error(data));
 }

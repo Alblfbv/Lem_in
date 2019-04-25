@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 21:13:48 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 13:18:05 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,4 +112,5 @@ void	ft_lem_manage(t_path **path, t_data data)
 	ft_init_lem_tab(lems, data, path);
 	ft_place_next(path);
 	ft_lem_move(lems, nb_path, data);
+	free(lems);
 }
