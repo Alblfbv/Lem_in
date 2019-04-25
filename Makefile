@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:28:33 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/25 16:50:17 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ SRC		=	src/main.c 							\
 			src/parser/ft_comment.c				\
 			src/parser/ft_command.c				\
 			src/parser/ft_refactoring_room.c	\
-			src/parser/hash.c					\
+			src/parser/ft_hash.c				\
 			src/algo/algo.c						\
 			src/algo/ft_chose_option.c			\
 			src/algo/ft_path_management.c		\
