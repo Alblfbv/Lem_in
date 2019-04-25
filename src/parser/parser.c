@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 16:50:08 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 17:08:51 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int			parser(t_data *data, t_room **room)
 			ft_lstadd_end(data->instructions,
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		ft_strdel(&line);
-		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
 	return (ft_error(line, data));
 }

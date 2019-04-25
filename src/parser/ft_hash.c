@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   ft_hash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 11:47:54 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 14:41:36 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 17:05:24 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,3 @@ unsigned int		ft_hash(char *str, int size)
 	result = result % size;
 	return (result);
 }
-
-/*
-unsigned int	ft_hash(char *str, int size)
-{
-	int				i;
-	unsigned int	hash;
-
-	i = 0;
-	hash = 0;
-	while (str[i] != 0)
-	{
-		hash += str[i];
-		hash += (hash << 10);
-		hash ^= (hash >> 6);
-		i++;
-	}
-	hash += (hash << 3);
-	hash ^= (hash >> 11);
-	hash += (hash << 15);
-	hash = hash % size;
-	return (hash);
-}
-*/

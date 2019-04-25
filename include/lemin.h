@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 18:02:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:13:50 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ t_path		***ft_store_path(t_path ***all_path, t_data data);
 void		ft_lem_manage(t_path **path, t_data data);
 void		ft_free_ptr(void *content, size_t size);
 void		ft_free_path(t_path ***all_path);
+int			ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
+int			ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
+void		ft_store_type(char **str, t_room **room, t_data *data, int flag);
+int			ft_store_room(char **str, t_room **room);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);

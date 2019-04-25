@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:50:17 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/25 17:14:00 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC		=	src/main.c 							\
 			src/ft_free_ptr.c 					\
 			src/parser/parser.c					\
 			src/parser/ft_room.c				\
+			src/parser/ft_room2.c				\
 			src/parser/ft_path.c				\
+			src/parser/ft_path2.c 				\
 			src/parser/ft_check_coord.c			\
 			src/parser/ft_lem.c					\
 			src/parser/ft_comment.c				\
