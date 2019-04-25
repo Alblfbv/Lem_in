@@ -6,13 +6,34 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/04 15:44:21 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/25 14:29:08 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 17:45:37 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_check_coord(char *line, t_coord **coord_tab)
+static int	ft_check_coord2(t_coord **coord_tab, t_coord *tmp, int x, int y)
+{
+	int		key;
+
+	key = ft_hash(ft_itoa(x), HASH_TAB);
+	if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
+		return (0);
+	while (tmp->next != NULL)
+	{
+		tmp = tmp->next;
+		if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
+			return (0);
+	}
+	if (!(tmp->next = (t_coord*)malloc(sizeof(t_coord))))
+		return (0);
+	tmp->next->x = x;
+	tmp->next->y = y;
+	tmp->next->next = NULL;
+	return (1);
+}
+
+int			ft_check_coord(char *line, t_coord **coord_tab)
 {
 	int		key;
 	t_coord	*tmp;
@@ -34,20 +55,6 @@ int		ft_check_coord(char *line, t_coord **coord_tab)
 		(coord_tab[key])->next = NULL;
 	}
 	else
-	{
-		if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
-			return (0);
-		while (tmp->next != NULL)
-		{
-			tmp = tmp->next;
-			if ((*(coord_tab + key))->x == x && (*(coord_tab + key))->y == y)
-				return (0);
-		}
-		if (!(tmp->next = (t_coord*)malloc(sizeof(t_coord))))
-			return (0);
-		tmp->next->x = x;
-		tmp->next->y = y;
-		tmp->next->next = NULL;
-	}
+		ft_check_coord2(coord_tab, tmp, x, y);
 	return (1);
 }
