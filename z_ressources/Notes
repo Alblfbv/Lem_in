@@ -8,13 +8,17 @@ BFS / EK :
 -Ameliorer algo pour gerer les salles pourries
 
 Parser :
--salle reliee a elle meme
--Illegalname room-name 1 1 ??
--Unknown room ?? Error pas error ?
+-Illegalname room-name 1 1
+-Error sur unknown room alors que map traitable
 
-MAKEFILE ne recompile pas la lib
+Makefile :
+-MAKEFILE ne recompile pas la lib
 
-Choisir nombre max fourmis autorise
+Global :
+-Leaks cas erreur
+-Norme
+-protection retour malloc
+-choisir nombre max fourmis autorise
 
 
 Visualiseur :
@@ -23,16 +27,10 @@ Visualiseur :
 -Attention aux coordonnees en int max ou int min (coordonnees toutes acceptes dans le programme de C tant que caracteres numeriques)
 
 
+
+
+
 Tests Putes :
-
-OK
-0000000000000000000000000001 pour fourmis ou coordonnees
-
-OK - Error
-9999999999999999999999999999 fourmis
-
-OK
-999999999999999999999999999 coordonnees
 
 Error ou prendre la salle, etre coherent
 Pour l'instant : OK
@@ -60,3 +58,35 @@ Invalide : apres pipes, on ne prend que des commandes ou des commentaires mais p
 room1-room2
 ##start
 start 1 1
+
+
+
+
+
+
+Questions a poser :
+
+
+les lignes commençant par un ## sont des commandes modifiant les propriétés de
+la ligne significative qui vient juste après.
+-> 
+##start
+##start
+room 1 1
+Error ou pas ?
+
+##start
+room1 1 1
+##start
+room2 2 2
+Error ou pas ?
+
+##start
+##unknown
+room 1 1
+Error ou pas ?
+
+Coordonnees en doublon : Error ou pas ?
+
+Salle reliee a elle meme : OK ?
+Deux ou + chemins entre deux salles : OK ?

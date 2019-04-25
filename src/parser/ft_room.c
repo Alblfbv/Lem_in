@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:18:06 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 15:59:25 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,11 @@ static int		ft_clean(char **str, int flag)
 	int	i;
 
 	i = 0;
-	if (flag == 0)
+	if (flag == 1)
 	{
 		while (str[i] != 0)
 		{
-			if (i > 2)
-				free(str[i]);
-			i++;
-		}
-	}
-	else
-	{
-		while (str[i] != 0)
-		{
-			if (i > 2)
-				free(str[i]);
+			free(str[i]);
 			i++;
 		}
 	}

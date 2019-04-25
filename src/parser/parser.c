@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:54:24 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 16:01:01 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int			parser(t_data *data, t_room **room)
 	check = 1;
 	while ((ret = (get_next_line(0, &line))) == 1 && check == 1)
 	{
-		ft_lstadd_end(data->instructions,
-				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		check = 0;
 		if (!flag && ft_lem(line, data, &flag))
 			check = 1;
@@ -67,6 +65,9 @@ int			parser(t_data *data, t_room **room)
 			flag = 2;
 			check = 1;
 		}
+		if (check == 1)
+			ft_lstadd_end(data->instructions,
+				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		ft_strdel(&line);
 		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
