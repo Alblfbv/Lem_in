@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 17:08:51 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 17:56:17 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,33 +38,33 @@ static int	ft_error(char *line, t_data *data)
 	return (1);
 }*/
 
-int			parser(t_data *data, t_room **room)
+static void		ft_modif(int *flag, int *check, int f, int c)
+{
+	*flag = f;
+	*check = c;
+}
+
+int				parser(t_data *data, t_room **room)
 {
 	char	*line;
 	int		flag;
 	int		check;
-	int		ret;
 
-	flag = 0;
-	check = 1;
-	while ((ret = (get_next_line(0, &line))) == 1 && check == 1)
+	ft_modif(&flag, &check, 0, 1);
+	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
 		check = 0;
 		if (!flag && ft_lem(line, data, &flag))
 			check = 1;
 		else if (flag && flag != 2 && ft_room(line, room, data, flag))
 		{
-			check = 1;
-			flag = 1;
+			ft_modif(&flag, &check, 1, 1);
 			data->nb_room++;
 		}
 		else if ((flag) && (ft_comment(line) || ft_command(line, &flag)))
 			check = 1;
 		else if ((flag == 1 || flag == 2) && ft_path(line, room))
-		{
-			flag = 2;
-			check = 1;
-		}
+			ft_modif(&flag, &check, 2, 1);
 		if (check == 1)
 			ft_lstadd_end(data->instructions,
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
