@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 15:49:23 by allefebv         ###   ########.fr        #
+#    Updated: 2019/04/25 16:28:08 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,10 @@ SRC		=	src/main.c 							\
 
 OBJ	=	$(SRC:.c=.o)
 
-all: $(NAME)
+all: libft $(NAME)
+
+libft :
+	make -C libft -f Makefile
 
 $(NAME): $(OBJ)
 	make -C libft -f Makefile
