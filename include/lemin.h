@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/24 18:02:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:58:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,12 @@ typedef struct			s_lems
 	t_room				*room;
 }						t_lems;
 
+typedef struct			s_bfs
+{
+	t_room				*tmp_r;
+	t_room				*tmp_r2;
+	t_neighbor			*tmp_n;
+}						t_bfs;
 
 unsigned int		ft_hash(char *str, int size);
 

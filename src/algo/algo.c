@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:49:10 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 18:02:28 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int		ft_algo(t_room **room, t_data data)
 	{
 		if ((shortest_path = ft_bfs(room, data)) != NULL)
 		{
-			//ft_print_bfs(shortest_path);
+			ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
 			all_path = ft_store_path(all_path, data);

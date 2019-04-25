@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:59:25 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/25 17:01:18 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,20 @@ static int		ft_check_room(char **str)
 	int		j;
 
 	i = 0;
-	if (str[i][0] == 'L')
+	if (str[0][0] == 'L')
 		return (0);
 	while (str[i] != 0)
 		i++;
 	if (i != 3)
 		return (0);
-	i--;
+	i = 0;
+	while (str[0][i])
+	{
+		if (str[0][i] == '-')
+			return (0);
+		i++;
+	}
+	i = 2;
 	while (i != 0)
 	{
 		j = 0;
