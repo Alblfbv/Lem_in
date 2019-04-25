@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 13:23:56 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 14:41:54 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int	ft_error(t_data *data, char *line, t_coord	**coord_tab)
+static int	ft_error(t_data *data, char *line, t_coord **coord_tab)
 {
 	free(line);
 	free(coord_tab);
@@ -51,7 +51,6 @@ int			parser(t_data *data, t_room **room)
 	ft_init_coord_tab(&coord_tab);
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
-		//ft_printf("flag = %d /\\ check = %d\n", flag, check);
 		ft_lstadd_end(data->instructions,
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		check = 0;
@@ -71,7 +70,6 @@ int			parser(t_data *data, t_room **room)
 			check = 1;
 		}
 		free(line);
-		//ft_printf("flag = %d /\\ check = %d\n\n", flag, check);
 	}
 	return (ft_error(data, line, coord_tab));
 }
