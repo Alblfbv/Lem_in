@@ -14,14 +14,6 @@ def ft_place_grid(canvas, grid):
 		j += 100
 
 def ft_place_room(room, canvas):
-		"""
-		normalisée = (originale - MIN) * (max - min) / (MAX - MIN) + min
-
-		[MIN,MAX] : interval d'origine
-		[min,max] : interval cible
-		originale : valeur dans l'interval d'origine
-		normalisée : valeur normalisée dans l'interval cible
-		"""
 		i = 0
 		while i < len(room):
 			if room[i].type_room == 'S':

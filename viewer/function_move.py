@@ -15,7 +15,6 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 		i = 0
 		tab_display = list()
 		while i < len(move):
-			print("1")
 			tmp_display = Display()
 			j = 0
 			while j < len(move[i].tab_move):

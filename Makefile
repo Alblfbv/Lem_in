@@ -6,15 +6,15 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/23 22:27:51 by allefebv         ###   ########.fr        #
+#    Updated: 2019/04/25 13:06:11 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = lem-in
 CC = gcc
-RM = rm -f
+RM = rm -Rf
 INCLUDE = -I ./include
-CFLAGS += -Wall -Wextra $(INCLUDE) -g3 -fsanitize=address
+CFLAGS += -Wall -Wextra $(INCLUDE) #-g3 -fsanitize=address
 LIB	= libft/libft.a
 
 SRC		=	src/main.c 							\
@@ -49,7 +49,7 @@ clean:
 
 fclean: clean
 	make -C libft -f Makefile fclean
-	$(RM) $(NAME)
+	$(RM) $(NAME) viewer/__pycache__
 	echo "Fclean lem-in"
 
 re: fclean all

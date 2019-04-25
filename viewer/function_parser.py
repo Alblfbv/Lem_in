@@ -33,8 +33,8 @@ def ft_path(line):
 def	ft_parser(list_room, list_move, list_path, grid):
 	read = list()
 	for line in fileinput.input():
+		print(line, end = '')
 		if line == "Error":
-			print("Error")
 			sys.exit(0)
 		if line[0] != '#' or (line[0] == '#' and line[1] == '#'):
 			read.append(line)
@@ -46,7 +46,6 @@ def	ft_parser(list_room, list_move, list_path, grid):
 	i = 1
 	# Store ROOM
 	while True:
-		print(read[i])
 		read[i] = read[i].replace('-', ' ')
 		line = read[i].split(' ')
 		line = ft_line(line)

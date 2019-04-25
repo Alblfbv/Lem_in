@@ -51,7 +51,6 @@ class Window:
 		root.title("Lem-In")
 		root.resizable(False, False)
 		root.geometry(geometry)
-	#	root.resizable(False, False)
 		root.config(bg = "black")
 
 class Frame_Menu:
