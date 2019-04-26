@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:18 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:47:27 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/26 15:57:20 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ def ft_place_room(room, canvas):
 									outline="#FE53BB",		\
 									width="6",				\
 									fill="black")
+				canvas.create_text(room[i].x - 20, room[i].y - 15, text=room[i].name.capitalize(), fill="#F5D300", anchor="w")
 			if room[i].type_room == 'E':
 				canvas.create_oval(	int(room[i].x),			\
 									int(room[i].y),			\
@@ -44,6 +45,7 @@ def ft_place_room(room, canvas):
 									outline="#FE53BB",		\
 									width="6",				\
 									fill="black")
+				canvas.create_text(room[i].x - 20, room[i].y - 15, text=room[i].name.capitalize(), fill="#F5D300", anchor="w")
 			if room[i].type_room == 'M':
 				canvas.create_oval(	int(room[i].x),			\
 									int(room[i].y),			\
@@ -52,6 +54,7 @@ def ft_place_room(room, canvas):
 									outline="#08F7FE",		\
 									width="6",				\
 									fill="black")
+				canvas.create_text(room[i].x - 20, room[i].y - 15, text=room[i].name.capitalize(), fill="#F5D300", anchor="w")
 			i += 1
 
 def ft_place_path(room, path, canvas):
