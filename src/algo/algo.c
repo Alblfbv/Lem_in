@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/26 14:58:00 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/26 15:56:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ static void	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 			free(shortest_path);
 			i++;
 		}
-		break ;
+		else
+			break ;
 	}
 }
 
