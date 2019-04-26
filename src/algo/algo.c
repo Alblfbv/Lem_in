@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 18:05:30 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/26 14:58:00 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	ft_edmond_karp(t_room **shortest_path)
+static void	ft_edmond_karp(t_room **shortest_path)
 {
 	t_neighbor	*n_forth;
 	t_neighbor	*n_back;
@@ -40,12 +40,14 @@ void	ft_edmond_karp(t_room **shortest_path)
 	}
 }
 
-int		ft_count_bottleneck(t_data data)
+static int	ft_count_bottleneck(t_data data)
 {
 	t_neighbor	*tmp_n;
 	int			b_neck_start;
 	int			b_neck_end;
 
+	if (data.start_room == NULL || data.end_room == NULL)
+		return (0);
 	b_neck_start = 0;
 	tmp_n = ((data.start_room)->neighbor);
 	while (tmp_n != NULL)
@@ -63,7 +65,7 @@ int		ft_count_bottleneck(t_data data)
 	return ((b_neck_end >= b_neck_start) ? b_neck_start : b_neck_end);
 }
 
-void	ft_init_storage_flow(t_room **room, t_data data)
+static void	ft_init_storage_flow(t_room **room, t_data data)
 {
 	t_neighbor	*tmp_n;
 	int			i;
@@ -81,30 +83,11 @@ void	ft_init_storage_flow(t_room **room, t_data data)
 	}
 }
 
-int		ft_check_validity(t_data data)
+static void	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 {
-	if (data.start_room == NULL || data.end_room == NULL)
-		return (0);
-	return (1);
-}
-
-int		ft_algo(t_room **room, t_data data)
-{
-	int		i;
 	t_room	**shortest_path;
-	t_path	***all_path;
-	t_path	**best_path;
+	int		i;
 
-	i = 0;
-	if (!ft_check_validity(data)
-		|| !(data.nb_path = ft_count_bottleneck(data)))
-		return (0);
-	all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1));
-	while (i <= data.nb_path)
-	{
-		all_path[i] = 0;
-		i++;
-	}
 	i = 0;
 	while (i < data.nb_path)
 	{
@@ -113,12 +96,27 @@ int		ft_algo(t_room **room, t_data data)
 			//ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
-			all_path = ft_store_path(all_path, data);
+			*all_path = ft_store_path(*all_path, data);
 			free(shortest_path);
 			i++;
 		}
 		break ;
 	}
+}
+
+int			ft_algo(t_room **room, t_data data)
+{
+	int		i;
+	t_path	***all_path;
+	t_path	**best_path;
+
+	if (!(data.nb_path = ft_count_bottleneck(data)))
+		return (0);
+	all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1));
+	i = -1;
+	while (++i <= data.nb_path)
+		all_path[i] = 0;
+	ft_bfs_loop(data, room, &all_path);
 	//ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
 	if (best_path != NULL)
@@ -126,12 +124,9 @@ int		ft_algo(t_room **room, t_data data)
 		ft_lstprint_str(*data.instructions);
 		ft_printf("\n");
 		ft_lem_manage(best_path, data);
-	}
-	else
-	{
 		ft_free_paths(all_path);
-		return (0);
+		return (1);
 	}
 	ft_free_paths(all_path);
-	return (1);
+	return (0);
 }

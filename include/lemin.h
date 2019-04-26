@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 17:13:50 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/25 19:30:44 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,20 @@ typedef struct			s_lems
 	t_room				*room;
 }						t_lems;
 
+typedef struct			s_bfs
+{
+	t_room				*tmp_r;
+	t_room				*tmp_r2;
+	t_neighbor			*tmp_n;
+}						t_bfs;
+
+typedef struct			s_dispatch
+{
+	int					nb_path;
+	int					sum_len;
+	int					unplaced_lems;
+	int					flag;
+}						t_dispatch;
 
 unsigned int		ft_hash(char *str, int size);
 
@@ -87,7 +101,6 @@ int			ft_path(char *line, t_room **room);
 int			ft_refactoring_room(t_room **room, t_data data, t_room ***final_room);
 int			ft_algo(t_room **room, t_data data);
 t_room		**ft_bfs(t_room **room, t_data data);
-void		ft_compute_nb_lem(t_path **tab, t_data data);
 t_path**	ft_chose_best_path(t_path ***all_path, t_data data);
 int			**ft_create_path_tab(t_room ****all_path);
 t_path		***ft_store_path(t_path ***all_path, t_data data);

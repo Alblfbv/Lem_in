@@ -7,15 +7,7 @@ TODO
 BFS / EK :
 -Ameliorer algo pour gerer les salles pourries
 
-Parser :
--Illegalname room-name 1 1
--Error sur unknown room alors que map traitable
-
-Makefile :
--MAKEFILE ne recompile pas la lib
-
 Global :
--Leaks cas erreur
 -Norme
 -protection retour malloc
 -choisir nombre max fourmis autorise
