@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 16:47:24 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/27 13:05:38 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ class Frame_Canvas:
 		self.fc.grid(column = 1, row = 2)
 
 class Main_Menu:
-	def __init__(self, frame_menu, root):
+	def __init__(self, frame_menu, root, main_canvas):
 		self.button_start = 											\
 			Button(	frame_menu,											\
 					text = "Play",										\
@@ -106,7 +106,7 @@ class Main_Menu:
 														static_list_lem,			\
 														main_menu.button_start,		\
 														grid))
-		self.button_reset.grid(column = 5, row = 1)
+		self.button_reset.grid(column = 2, row = 1)
 		self.button_exit =							\
 			Button(	frame_menu,						\
 					text = "Exit", 					\
@@ -114,7 +114,31 @@ class Main_Menu:
 					height = 1, 					\
 					highlightbackground = "black", 	\
 					command = root.destroy)
-		self.button_exit.grid(column = 6, row = 1)
+		self.button_exit.grid(column = 5, row = 1)
+		self.button_pos =							\
+			Button(	frame_menu,						\
+					text = "+", 					\
+					width = 8,						\
+					height = 1, 					\
+					highlightbackground = "black", 	\
+					state="normal",					\
+					command = lambda : self.zoom_pos())
+		self.button_pos.grid(column = 3, row = 1)
+		self.button_neg =							\
+			Button(	frame_menu,						\
+					text = "-", 					\
+					width = 8,						\
+					height = 1, 					\
+					highlightbackground = "black", 	\
+					state="normal",					\
+					command = lambda : self.zoom_neg())
+		self.button_neg.grid(column = 4, row = 1)
+
+	def zoom_neg(self):
+		main_canvas.canvas.scale("all", 0, 0, 0.9, 0.9)
+	
+	def zoom_pos(self):
+		main_canvas.canvas.scale("all", 0, 0, 1.1, 1.1)
 
 class Main_Canvas:
 	def __init__(self, frame_canvas, grid):
@@ -134,7 +158,6 @@ class Main_Canvas:
 		self.canvas.bind("<Up>",    lambda event: self.canvas.yview_scroll(-1, "units"))
 		self.canvas.bind("<Down>",  lambda event: self.canvas.yview_scroll( 1, "units"))
 		self.canvas.focus_set()
-		self.canvas.bind("<1>", lambda event: self.canvas.focus_set())
 
 #---------------------DEF_RESET-----------------#
 
@@ -159,6 +182,8 @@ def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 	ft_place_room(list_room, canvas)
 	list_step = ft_place_lem(list_lem, canvas)
 	menu.config(state="normal")
+	#menu.button_pos.config(state="normal")
+	menu.button_neg.config(state="normal")
 
 #--------------------MAIN--------------------#
 
@@ -178,7 +203,7 @@ if __name__ == "__main__":
 	frame_canvas = Frame_Canvas(root)
 	main_canvas = Main_Canvas(frame_canvas.fc, grid)
 	frame_menu = Frame_Menu(root)
-	main_menu = Main_Menu(frame_menu.fm, root)
+	main_menu = Main_Menu(frame_menu.fm, root, main_canvas)
 	ft_init_graphic(list_room,					\
 					list_path,					\
 					static_list_lem,			\
