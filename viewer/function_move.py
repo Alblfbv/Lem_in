@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/27 12:48:33 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/29 10:12:28 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,8 @@ class Display:
 		self.x = []
 		self.y = []
 
-def ft_move_lem(move, room, lem, l, canvas, menu):
+def ft_move_lem(move, room, lem, l, canvas, menu, scale_lem):
 		menu.button_start.config(state=DISABLED)
-		menu.button_pos.config(state=DISABLED)
 		menu.button_neg.config(state=DISABLED)
 		i = 0
 		tab_display = list()
@@ -40,8 +39,8 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 				while room[k].name != next_room:
 					k += 1
 				#Cal de x et y
-				x = (int(room[k].x) - int(lem[name_lem].x)) / 50
-				y = (int(room[k].y) - int(lem[name_lem].y)) / 50
+				x = ((int(room[k].x) - int(lem[name_lem].x)) * scale_lem) / 50
+				y = ((int(room[k].y) - int(lem[name_lem].y)) * scale_lem) / 50
 				lem[name_lem].x = int(room[k].x)
 				lem[name_lem].y = int(room[k].y)
 				#Move
@@ -64,4 +63,5 @@ def ft_move_lem(move, room, lem, l, canvas, menu):
 				canvas.update()
 				canvas.after(10)
 			i += 1
-		print("####################################")
+		menu.button_pos.config(state="normal")
+		menu.button_neg.config(state="normal")

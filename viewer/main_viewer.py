@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/27 13:05:38 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/29 10:15:45 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ from function_move import *
 
 list_step = list()
 list_lem = list()
+scale_lem = 1
 
 class Grid:
 	def __init__(self):
@@ -91,7 +92,8 @@ class Main_Menu:
 													list_lem,			\
 													list_step,			\
 													main_canvas.canvas,	\
-													main_menu))
+													main_menu,			\
+													scale_lem))
 		self.button_start.grid(column = 1, row = 1)
 		self.button_reset = 														\
 			Button(	frame_menu,														\
@@ -104,7 +106,7 @@ class Main_Menu:
 														list_path,					\
 														main_canvas.canvas,			\
 														static_list_lem,			\
-														main_menu.button_start,		\
+														main_menu,					\
 														grid))
 		self.button_reset.grid(column = 2, row = 1)
 		self.button_exit =							\
@@ -114,31 +116,22 @@ class Main_Menu:
 					height = 1, 					\
 					highlightbackground = "black", 	\
 					command = root.destroy)
-		self.button_exit.grid(column = 5, row = 1)
-		self.button_pos =							\
-			Button(	frame_menu,						\
-					text = "+", 					\
-					width = 8,						\
-					height = 1, 					\
-					highlightbackground = "black", 	\
-					state="normal",					\
-					command = lambda : self.zoom_pos())
-		self.button_pos.grid(column = 3, row = 1)
+		self.button_exit.grid(column = 4, row = 1)
 		self.button_neg =							\
 			Button(	frame_menu,						\
 					text = "-", 					\
 					width = 8,						\
 					height = 1, 					\
 					highlightbackground = "black", 	\
-					state="normal",					\
+					state=DISABLED,					\
 					command = lambda : self.zoom_neg())
-		self.button_neg.grid(column = 4, row = 1)
+		self.button_neg.grid(column = 3, row = 1)
 
 	def zoom_neg(self):
-		main_canvas.canvas.scale("all", 0, 0, 0.9, 0.9)
-	
-	def zoom_pos(self):
-		main_canvas.canvas.scale("all", 0, 0, 1.1, 1.1)
+		global scale_lem
+		main_canvas.canvas.scale("all", 0, 0, 0.5, 0.5)
+		scale_lem *= 0.5
+		self.button_neg.config(state = DISABLED)
 
 class Main_Canvas:
 	def __init__(self, frame_canvas, grid):
@@ -169,22 +162,24 @@ def ft_init_graphic(list_room, list_path, static_list_lem, canvas, menu, grid):
 	ft_place_path(list_room, list_path, canvas)
 	ft_place_room(list_room, canvas)
 	list_step = ft_place_lem(list_lem, canvas)
-	menu.config(state="normal")
+	menu.button_start.config(state="normal")
+	menu.button_neg.config(state="normal")
 
 
 def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 	global list_step
 	global list_lem
+	global scale_lem
+	scale_lem = 1
 	canvas.delete("all")
 	ft_place_grid(canvas, grid)
 	list_lem = copy.deepcopy(static_list_lem)
 	ft_place_path(list_room, list_path, canvas)
 	ft_place_room(list_room, canvas)
 	list_step = ft_place_lem(list_lem, canvas)
-	menu.config(state="normal")
-	#menu.button_pos.config(state="normal")
+	menu.button_start.config(state="normal")
 	menu.button_neg.config(state="normal")
-
+	
 #--------------------MAIN--------------------#
 
 if __name__ == "__main__":
@@ -208,6 +203,6 @@ if __name__ == "__main__":
 					list_path,					\
 					static_list_lem,			\
 					main_canvas.canvas,			\
-					main_menu.button_start,		\
+					main_menu,					\
 					grid)
 	root.mainloop()
