@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/29 11:11:48 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/29 12:51:47 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ class Frame_Canvas:
 
 class Main_Menu:
 	def __init__(self, frame_menu, root, main_canvas):
+		global scale_lem
 		self.button_start = 											\
 			Button(	frame_menu,											\
 					text = "Play",										\
