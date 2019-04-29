@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/25 19:31:18 by allefebv         ###   ########.fr        #
+#    Updated: 2019/04/29 13:00:17 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,5 +61,5 @@ fclean: clean
 
 re: fclean all
 
-.SILENT: $(OBJ1) $(OBJ2) $(NAME) $(NAME2) all clean fclean re libft
+.SILENT: $(OBJ) $(NAME) all clean fclean re libft
 .PHONY: all libft clean fclean re
