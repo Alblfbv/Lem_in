@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/29 10:15:45 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/29 11:11:48 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ class Move:
 
 class Window:
 	def __init__(self, root, grid):
-		#Root window
 		grid.win_width = (100 * grid.nb_room)
 		grid.win_height = (100 * grid.nb_room)
 		geometry = "%dx%d-100+100" % (1920, 1080)
@@ -126,6 +125,10 @@ class Main_Menu:
 					state=DISABLED,					\
 					command = lambda : self.zoom_neg())
 		self.button_neg.grid(column = 3, row = 1)
+		self.counter = Label(frame_menu, text="Counter =", fg="white", bg="black")
+		self.counter.grid(column = 5, row = 1)
+		self.counter2 = Label(frame_menu, text="0", fg="white", bg="black")
+		self.counter2.grid(column = 6, row = 1)
 
 	def zoom_neg(self):
 		global scale_lem
@@ -170,8 +173,9 @@ def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 	global list_step
 	global list_lem
 	global scale_lem
-	scale_lem = 1
 	canvas.delete("all")
+	menu.counter2.config(text="0")
+	scale_lem = 1
 	ft_place_grid(canvas, grid)
 	list_lem = copy.deepcopy(static_list_lem)
 	ft_place_path(list_room, list_path, canvas)
@@ -194,6 +198,8 @@ if __name__ == "__main__":
 	ft_lem_static(static_list_lem, list_room, grid.nb_lem)
 
 	root = Tk()
+	menubar = Menu(root)
+	root.config(menu=menubar)
 	window = Window(root, grid)
 	frame_canvas = Frame_Canvas(root)
 	main_canvas = Main_Canvas(frame_canvas.fc, grid)
