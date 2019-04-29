@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 19:30:44 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/29 13:08:48 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include "../libft/include/libft.h"
 
 # define HASH_TAB 20011
-
 
 typedef struct 			s_neighbor
 {
@@ -90,27 +89,26 @@ typedef struct			s_dispatch
 }						t_dispatch;
 
 unsigned int		ft_hash(char *str, int size);
-
-int			parser(t_data *data, t_room **room);
-int			ft_lem(char *line, t_data *data, int *flag);
-int			ft_comment(char *line);
-int			ft_command(char *line, int *flag);
-int			ft_room(char *line, t_room **room, t_data *data, int flag);
-int			ft_check_coord(char *line, t_coord **coord_tab);
-int			ft_path(char *line, t_room **room);
-int			ft_refactoring_room(t_room **room, t_data data, t_room ***final_room);
-int			ft_algo(t_room **room, t_data data);
-t_room		**ft_bfs(t_room **room, t_data data);
-t_path**	ft_chose_best_path(t_path ***all_path, t_data data);
-int			**ft_create_path_tab(t_room ****all_path);
-t_path		***ft_store_path(t_path ***all_path, t_data data);
-void		ft_lem_manage(t_path **path, t_data data);
-void		ft_free_ptr(void *content, size_t size);
-void		ft_free_path(t_path ***all_path);
-int			ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
-int			ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
-void		ft_store_type(char **str, t_room **room, t_data *data, int flag);
-int			ft_store_room(char **str, t_room **room);
+int					parser(t_data *data, t_room **room);
+int					ft_lem(char *line, t_data *data, int *flag);
+int					ft_comment(char *line);
+int					ft_command(char *line, int *flag);
+int					ft_room(char *line, t_room **room, t_data *data, int flag);
+int					ft_check_coord(char *line, t_coord **coord_tab);
+int					ft_path(char *line, t_room **room);
+int					ft_refactoring_room(t_room **room, t_data data, t_room ***final_room);
+int					ft_algo(t_room **room, t_data data);
+t_room				**ft_bfs(t_room **room, t_data data);
+t_path**			ft_chose_best_path(t_path ***all_path, t_data data);
+int					**ft_create_path_tab(t_room ****all_path);
+t_path				***ft_store_path(t_path ***all_path, t_data data);
+void				ft_lem_manage(t_path **path, t_data data);
+void				ft_free_ptr(void *content, size_t size);
+void				ft_free_path(t_path ***all_path);
+int					ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
+int					ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
+void				ft_store_type(char **str, t_room **room, t_data *data, int flag);
+int					ft_store_room(char **str, t_room **room);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);
