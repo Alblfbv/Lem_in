@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/29 13:00:17 by jfleury          ###   ########.fr        #
+#    Updated: 2019/04/29 13:03:04 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,12 +51,12 @@ $(NAME): $(OBJ)
 
 clean:
 	make -C libft -f Makefile clean
-	$(RM) $(OBJ)
+	$(RM) $(OBJ) viewer/__pycache__
 	echo "Clean lem-in"
 
 fclean: clean
 	make -C libft -f Makefile fclean
-	$(RM) $(NAME) viewer/__pycache__
+	$(RM) $(NAME)
 	echo "Fclean lem-in"
 
 re: fclean all
