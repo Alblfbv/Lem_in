@@ -6,14 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 17:12:38 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 17:39:19 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/29 15:44:33 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void			ft_store_type2(char **str, t_room **room, t_data *data,
-								t_room *tmp)
+void			ft_store_type2(char **str, t_data *data, t_room *tmp)
 {
 	if (ft_strequ(tmp->name, str[0]))
 		data->start_room = tmp;
@@ -36,7 +35,7 @@ void			ft_store_type(char **str, t_room **room, t_data *data, int flag)
 	key = ft_hash(str[0], HASH_TAB);
 	tmp = room[key];
 	if (flag == 3)
-		ft_store_type2(str, room, data, tmp);
+		ft_store_type2(str, data, tmp);
 	else if (flag == 4)
 	{
 		if (ft_strequ(tmp->name, str[0]))
@@ -66,7 +65,7 @@ static int		ft_store_room2(char **str, t_room **room, int key)
 	return (1);
 }
 
-static int		ft_store_room3(char **str, t_room *tmp, int key)
+static int		ft_store_room3(char **str, t_room *tmp)
 {
 	if (ft_strequ(tmp->name, str[0])
 		|| !(tmp->next = (t_room*)malloc(sizeof(t_room))))
@@ -100,7 +99,7 @@ int				ft_store_room(char **str, t_room **room)
 				return (0);
 			tmp = tmp->next;
 		}
-		if (!(ft_store_room3(str, tmp, key)))
+		if (!(ft_store_room3(str, tmp)))
 			return (0);
 	}
 	return (1);

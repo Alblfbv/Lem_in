@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/29 13:08:48 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/29 15:45:27 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct			s_data
 	long long			nb_lem;
 	int					nb_path;
 	int					nb_room;
+	int					flag_print;
 	t_room				*start_room;
 	t_room				*end_room;
 	t_list				**instructions;
@@ -104,7 +105,7 @@ int					**ft_create_path_tab(t_room ****all_path);
 t_path				***ft_store_path(t_path ***all_path, t_data data);
 void				ft_lem_manage(t_path **path, t_data data);
 void				ft_free_ptr(void *content, size_t size);
-void				ft_free_path(t_path ***all_path);
+void				ft_free_paths(t_path ***all_path);
 int					ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
 int					ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
 void				ft_store_type(char **str, t_room **room, t_data *data, int flag);

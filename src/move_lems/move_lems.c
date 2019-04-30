@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/25 15:47:31 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/29 15:26:30 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ void	ft_lem_move(t_lems *lems, int nb_path, t_data data)
 	int	i;
 	int	cpy;
 	int	start;
+	int	j;
 
 	allowed_movements = nb_path;
 	start = 0;
+	j = 0;
 	while (allowed_movements)
 	{
 		cpy = allowed_movements;
@@ -83,8 +85,11 @@ void	ft_lem_move(t_lems *lems, int nb_path, t_data data)
 				ft_printf(" ");
 			i++;
 		}
+		j++;
 		ft_printf("\n");
 	}
+	if (data.flag_print == 1)
+		ft_printf("\n\nMap solved in %d steps\n", j);
 }
 
 void	ft_place_next(t_path **path)

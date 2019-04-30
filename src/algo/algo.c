@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/26 15:56:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/29 19:13:19 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int			ft_algo(t_room **room, t_data data)
 	while (++i <= data.nb_path)
 		all_path[i] = 0;
 	ft_bfs_loop(data, room, &all_path);
-	//ft_print_paths(all_path);
+	ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
 	if (best_path != NULL)
 	{
