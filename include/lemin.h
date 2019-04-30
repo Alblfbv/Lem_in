@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/29 15:45:27 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/30 16:34:30 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ int					ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
 int					ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
 void				ft_store_type(char **str, t_room **room, t_data *data, int flag);
 int					ft_store_room(char **str, t_room **room);
+int					ft_init_room(t_room ***room);
+int					ft_init_data(t_data *data, int argc, char **argv);
+void				ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt);
+int					ft_clean_main(t_room **room, t_data *data);
+int					ft_clean_refacto(t_room **room, t_data data);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);

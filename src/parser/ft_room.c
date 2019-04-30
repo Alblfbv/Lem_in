@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 18:30:11 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/30 16:12:35 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,29 @@ static int		ft_clean(char **str, int flag)
 	return (0);
 }
 
+static int		ft_check_room2(char **str, int i)
+{
+	int		j;
+
+	while (i != 0)
+	{
+		j = 0;
+		while (str[i][j] != 0)
+		{
+			if (j == 0 && (str[i][j] == '+' || str[i][j] == '-'))
+				j++;
+			if (!(ft_isdigit(str[i][j])))
+				return (0);
+			j++;
+		}
+		i--;
+	}
+	return (1);
+}
+
 static int		ft_check_room(char **str)
 {
 	int		i;
-	int		j;
 
 	i = 0;
 	if (str[0][0] == 'L')
@@ -49,20 +68,7 @@ static int		ft_check_room(char **str)
 		i++;
 	}
 	i = 2;
-	while (i != 0)
-	{
-		j = 0;
-		while (str[i][j] != 0)
-		{
-			if (j == 0 && (str[i][j] == '+' || str[i][j] == '-'))
-				j++;
-			if (!(ft_isdigit(str[i][j])))
-				return (0);
-			j++;
-		}
-		i--;
-	}
-	return (1);
+	return (ft_check_room2(str, i));
 }
 
 int				ft_room(char *line, t_room **room, t_data *data, int flag)

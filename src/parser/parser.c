@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 17:56:17 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/30 16:09:56 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int	ft_error(char *line, t_data *data)
+static int		ft_error(char *line, t_data *data)
 {
 	ft_strdel(&line);
 	if (data->nb_lem == 0)

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 12:13:39 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/30 16:25:44 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_room		**ft_create_shortest_path(t_bfs *bfs)
 	return (shortest_path);
 }
 
-static void	ft_init_data(t_bfs *bfs, t_data data, t_room **room)
+static void	ft_init_data_bfs(t_bfs *bfs, t_data data, t_room **room)
 {
 	int	i;
 
@@ -101,7 +101,7 @@ t_room		**ft_bfs(t_room **room, t_data data)
 	int			flag;
 
 	flag = 0;
-	ft_init_data(&bfs, data, room);
+	ft_init_data_bfs(&bfs, data, room);
 	while (bfs.tmp_r2 != data.end_room)
 	{
 		bfs.tmp_n = bfs.tmp_r->neighbor;
