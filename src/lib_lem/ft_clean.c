@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:35:38 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/04/30 16:39:47 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt)
 	}
 }
 
-int		ft_clean_main(t_room **room, t_data *data)
+int			ft_clean_main(t_room **room, t_data *data)
 {
 	int			i;
 	t_room		*tmp_r;
@@ -55,7 +55,7 @@ int		ft_clean_main(t_room **room, t_data *data)
 	return (0);
 }
 
-int		ft_clean_refacto(t_room **room, t_data data)
+int			ft_clean_refacto(t_room **room, t_data data)
 {
 	int			i;
 	t_neighbor	*tmp_n;
