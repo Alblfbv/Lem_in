@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/29 19:13:35 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/04/30 12:13:39 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_upstream(t_bfs *bfs, int *flag, t_data data)
 			bfs->tmp_r2->visited = 1;
 			bfs->tmp_r2->source = bfs->tmp_r;
 			bfs->tmp_r2->next = NULL;
-			ft_printf("REMONTEE : tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->source->name);
+			//ft_printf("REMONTEE : tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->source->name);
 			if (bfs->tmp_r2 == data.end_room)
 				break ;
 		}
@@ -46,7 +46,7 @@ static void	ft_downstream(t_bfs *bfs, int *flag, t_data data)
 			bfs->tmp_r2->visited = 1;
 			bfs->tmp_r2->source = bfs->tmp_r;
 			bfs->tmp_r2->next = NULL;
-			ft_printf("tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->source->name);
+			//ft_printf("tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_source = %s\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->source->name);
 			if (bfs->tmp_r2 == data.end_room)
 				break ;
 		}
@@ -54,7 +54,7 @@ static void	ft_downstream(t_bfs *bfs, int *flag, t_data data)
 	}
 }
 
-t_room		**ft_create_shortest_path(t_room **room, t_bfs *bfs)
+t_room		**ft_create_shortest_path(t_bfs *bfs)
 {
 	t_room		**shortest_path;
 	int			i;
@@ -109,10 +109,10 @@ t_room		**ft_bfs(t_room **room, t_data data)
 			ft_upstream(&bfs, &flag, data);
 		else
 			ft_downstream(&bfs, &flag, data);
-		ft_printf("tmp_r = %s /\\ tmp_r2 = %s\n", bfs.tmp_r->name, bfs.tmp_r2->name);
+		//ft_printf("tmp_r = %s /\\ tmp_r2 = %s\n", bfs.tmp_r->name, bfs.tmp_r2->name);
 		bfs.tmp_r = bfs.tmp_r->next;
 		if (bfs.tmp_r == NULL)
 			return (NULL);
 	}
-	return (ft_create_shortest_path(room, &bfs));
+	return (ft_create_shortest_path(&bfs));
 }
