@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/01 19:45:56 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:25:12 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ typedef struct 			s_neighbor
 	int					storage_flow;
 	struct s_neighbor	*next;
 }						t_neighbor;
+
+typedef struct			s_ant
+{
+	int					name;
+	int					flag;
+}						t_ant;
 
 typedef struct			s_room
 {
@@ -69,12 +75,6 @@ typedef	struct			s_path
 	int					steps;
 }						t_path;
 
-typedef struct			s_ant
-{
-	int					name;
-	t_room				*room;
-}						t_ant;
-
 typedef struct			s_bfs
 {
 	t_room				*tmp_r;
@@ -92,7 +92,7 @@ typedef struct			s_dispatch
 
 unsigned int		ft_hash(char *str, int size);
 int					parser(t_data *data, t_room **room);
-int					ft_lem(char *line, t_data *data, int *flag);
+int					ft_ants(char *line, t_data *data, int *flag);
 int					ft_comment(char *line);
 int					ft_command(char *line, int *flag);
 int					ft_room(char *line, t_room **room, t_data *data, int flag);

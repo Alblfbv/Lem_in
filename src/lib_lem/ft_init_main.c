@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:22:53 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:24:19 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:07:05 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int		ft_init_data(t_data *data, int argc, char **argv)
 	if (argc == 1)
 		data->flag_print = 0;
 	data->nb_room = 0;
-	data->nb_lem = 0;
+	data->nb_ants = 0;
 	data->start_room = NULL;
 	data->end_room = NULL;
 	data->instructions = (t_list**)malloc(sizeof(t_list*));
