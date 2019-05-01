@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/30 16:36:22 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/01 19:19:27 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ SRC		=	src/main.c 							\
 			src/algo/ft_chose_option.c			\
 			src/algo/ft_path_management.c		\
 			src/algo/ft_bfs.c					\
-			src/move_lems/move_lems.c			\
+			src/move_ants/move_ants.c			\
 			src/algo/del_for_final.c
 
 OBJ	=	$(SRC:.c=.o)

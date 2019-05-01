@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:34:30 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/01 19:45:56 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct			s_room
 	int					flow;
 	short				visited;
 	t_neighbor			*neighbor;
+	t_ant				*ant;
 	struct s_room		*source;
 	struct s_room		*next;
 }						t_room;
@@ -50,7 +51,7 @@ typedef struct			s_coord
 
 typedef struct			s_data
 {
-	long long			nb_lem;
+	long long			nb_ants;
 	int					nb_path;
 	int					nb_room;
 	int					flag_print;
@@ -62,17 +63,17 @@ typedef struct			s_data
 typedef	struct			s_path
 {
 	t_room				**path;
+	t_room				*end;
 	int					length;
-	int					lems;
+	int					ants;
 	int					steps;
 }						t_path;
 
-typedef struct			s_lems
+typedef struct			s_ant
 {
 	int					name;
-	t_path				*path;
 	t_room				*room;
-}						t_lems;
+}						t_ant;
 
 typedef struct			s_bfs
 {
@@ -85,7 +86,7 @@ typedef struct			s_dispatch
 {
 	int					nb_path;
 	int					sum_len;
-	int					unplaced_lems;
+	int					unplaced_ants;
 	int					flag;
 }						t_dispatch;
 
@@ -103,7 +104,7 @@ t_room				**ft_bfs(t_room **room, t_data data);
 t_path**			ft_chose_best_path(t_path ***all_path, t_data data);
 int					**ft_create_path_tab(t_room ****all_path);
 t_path				***ft_store_path(t_path ***all_path, t_data data);
-void				ft_lem_manage(t_path **path, t_data data);
+void				ft_ants_manage(t_path **path, t_data data);
 void				ft_free_ptr(void *content, size_t size);
 void				ft_free_paths(t_path ***all_path);
 int					ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
