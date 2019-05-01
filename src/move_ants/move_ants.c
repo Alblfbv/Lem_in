@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/01 19:51:44 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/01 20:04:27 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,36 @@ void	ft_ants_move(t_ant *ants, t_path **path, t_data data)
 	int	j;
 
 	remaining_ants = data.nb_ants;
+	j = 0;
 	while (remaining_ants)
 	{
+		i = 0;
 		while (path[i] != 0)
 		{
-			if (path[i]->ants != 0)
+			tmp_r = path[i]->end;
+			while (tmp_r != path[i]->path[0])
 			{
-				tmp_r = path[i]->end;
-				while (tmp_r != data.start_room)
+				if (tmp_r->ant != NULL)
 				{
-					ft_printf("")
-					tmp_r->ant = tmp_r->source->ant
+					ft_printf("L%d-%s ", tmp_r->ant->name, tmp_r->next);
+					tmp_r->ant->room = tmp_r->next;
+					tmp_r->ant = tmp_r->source->ant;
+					tmp_r->ant->room = tmp_r;
 					tmp_r = tmp_r->source;
 				}
-				while (ants[j]->room != data.start_room)
-					i++;
-				ants[j]->room = path[i]->path[0];
-				path[i]->path[0]->ant = ants[j];
+			}
+			if (path[i]->ants != 0)
+			{
+				ants[j]->room = tmp_r;
+				ft_printf("L%d-%s ", tmp_r->ant->name, tmp_r);
+				tmp_r->ant = ants[j];
 				path[i]->ants--;
 				remaining_ants--;
+				j++;
 			}
+			i++;
 		}
+		ft_printf("\n");
 	}
 	if (data.flag_print == 1)
 		ft_printf("\n\nMap solved in %d steps\n", j);
