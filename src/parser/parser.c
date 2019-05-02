@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:09:56 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/01 20:28:28 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		ft_error(char *line, t_data *data)
 {
 	ft_strdel(&line);
-	if (data->nb_lem == 0)
+	if (data->nb_ants == 0)
 	{
 		ft_printf("Error\n");
 		return (0);
@@ -54,7 +54,7 @@ int				parser(t_data *data, t_room **room)
 	while ((get_next_line(0, &line)) == 1 && check == 1)
 	{
 		check = 0;
-		if (!flag && ft_lem(line, data, &flag))
+		if (!flag && ft_ants(line, data, &flag))
 			check = 1;
 		else if (flag && flag != 2 && ft_room(line, room, data, flag))
 		{
