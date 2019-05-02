@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/01 21:34:10 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:51:23 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	ft_compute_nb_ants(t_path **path, t_data data)
 {
 	t_dispatch	dis;
 
+	*pos_small = 0;
 	dis.nb_path = 0;
 	dis.sum_len = 0;
 	while (path[dis.nb_path] != 0)
@@ -105,21 +106,19 @@ t_path		**ft_chose_best_path(t_path ***all_path, t_data data)
 	if (all_path[0][0]->path[1] == data.end_room)
 		return (all_path[0]);
 	while (all_path[++i] != 0)
-		ft_compute_nb_ants(all_path[i], data);
-	pos_small = 0;
+		ft_compute_nb_ants(all_path[i], data, &pos_small);
 	smallest_steps = all_path[0][0]->steps;
 	i = -1;
 	while (all_path[++i] != 0)
 	{
-		j = 0;
-		while (all_path[i][j] != 0)
+		j = -1;
+		while (all_path[i][++j] != 0)
 		{
 			if (smallest_steps > all_path[i][j]->steps)
 			{
 				smallest_steps = all_path[i][j]->steps;
 				pos_small = i;
 			}
-			j++;
 		}
 	}
 	return (all_path[pos_small]);

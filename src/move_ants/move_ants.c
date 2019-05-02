@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 16:08:15 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:53:02 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	ft_init(t_path **path)
 	}
 }
 
-void	ft_start_end(t_data data)
+static void	ft_start_end(t_data data)
 {
 	int	i;
 
@@ -47,7 +47,7 @@ void	ft_start_end(t_data data)
 	}
 }
 
-void	ft_print_move(int *flag, int ant_name, char *room_name)
+static void	ft_print_move(int *flag, int ant_name, char *room_name)
 {
 	if (*flag == 1)
 		ft_printf(" L%d-%s", ant_name, room_name);
@@ -56,7 +56,7 @@ void	ft_print_move(int *flag, int ant_name, char *room_name)
 	*flag = 1;
 }
 
-void	ft_ants_move2(t_path *path, int *flag, int *ants, t_data *data)
+static void	ft_ants_move(t_path *path, int *flag, int *ants, t_data *data)
 {
 	t_room *tmp;
 
@@ -101,7 +101,7 @@ void	ft_ants_manage(t_path **path, t_data data)
 			flag = 0;
 			while (path[i] != 0)
 			{
-				ft_ants_move2(path[i], &flag, &ants, &data);
+				ft_ants_move(path[i], &flag, &ants, &data);
 				i++;
 			}
 			ft_printf("\n");
