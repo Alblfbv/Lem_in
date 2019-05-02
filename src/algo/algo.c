@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 17:52:42 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:25:05 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,28 @@ static int	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 {
 	t_room	**shortest_path;
 	int		i;
+	int		ret;
 
 	i = 0;
 	while (i < data.nb_path)
 	{
-		if ((shortest_path = ft_bfs(room, data)) != NULL)
+		if ((ret = ft_bfs(room, data, &shortest_path)) == 1)
 		{
 			//ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
-			if (!(*all_path = ft_store_path(*all_path, data)))
+			if (!(ft_store_path(*all_path, data)))
+			{
+				free(shortest_path);
 				return (ft_malloc_error());
+			}
 			free(shortest_path);
 			i++;
 		}
-		else
+		else if (ret == 0)
 			break ;
+		else
+			return (0);
 	}
 	return (1);
 }
@@ -120,8 +126,11 @@ int			ft_algo(t_room **room, t_data data)
 	i = -1;
 	while (++i <= data.nb_path)
 		all_path[i] = 0;
-	if (!(ft_bfs_loop(data, room, &all_path)))
+	if (!ft_bfs_loop(data, room, &all_path))
+	{
+		ft_free_paths(all_path);
 		return (0);
+	}
 	//ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
 	if (best_path != NULL)

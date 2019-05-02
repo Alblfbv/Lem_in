@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 17:32:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:54:35 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int			ft_clean_main(t_room **room, t_data *data)
 
 	i = 0;
 	tmp_r_nxt = NULL;
+	ft_lstdel(data->instructions, &ft_free_ptr);
 	free(data->instructions);
 	while (i < HASH_TAB)
 	{

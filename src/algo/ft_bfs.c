@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 17:27:14 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 18:09:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ static void	ft_downstream(t_bfs *bfs, int *flag, t_data data)
 	}
 }
 
-t_room		**ft_create_shortest_path(t_bfs *bfs)
+int			ft_create_shortest_path(t_bfs *bfs, t_room ***shortest_path)
 {
-	t_room		**shortest_path;
 	int			i;
 
 	bfs->tmp_r = bfs->tmp_r2;
@@ -66,21 +65,18 @@ t_room		**ft_create_shortest_path(t_bfs *bfs)
 		bfs->tmp_r2 = bfs->tmp_r2->source;
 		i++;
 	}
-	if (!(shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1))))
-	{
-		ft_malloc_error();
-		return (NULL);
-	}
-	shortest_path[i] = 0;
+	if (!(*shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1))))
+		return (ft_malloc_error());
+	shortest_path[0][i] = 0;
 	i--;
 	bfs->tmp_r2 = bfs->tmp_r;
 	while (i >= 0)
 	{
-		shortest_path[i] = bfs->tmp_r2;
+		shortest_path[0][i] = bfs->tmp_r2;
 		bfs->tmp_r2 = bfs->tmp_r2->source;
 		i--;
 	}
-	return (shortest_path);
+	return (1);
 }
 
 static void	ft_init_data_bfs(t_bfs *bfs, t_data data, t_room **room)
@@ -99,10 +95,11 @@ static void	ft_init_data_bfs(t_bfs *bfs, t_data data, t_room **room)
 	bfs->tmp_r2->visited = 1;
 }
 
-t_room		**ft_bfs(t_room **room, t_data data)
+int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path)
 {
 	t_bfs		bfs;
 	int			flag;
+	int			ret;
 
 	flag = 0;
 	ft_init_data_bfs(&bfs, data, room);
@@ -116,7 +113,10 @@ t_room		**ft_bfs(t_room **room, t_data data)
 		//ft_printf("tmp_r = %s /\\ tmp_r2 = %s\n", bfs.tmp_r->name, bfs.tmp_r2->name);
 		bfs.tmp_r = bfs.tmp_r->next;
 		if (bfs.tmp_r == NULL)
-			return (NULL);
+			return (0);
 	}
-	return (ft_create_shortest_path(&bfs));
+	if (!(ret = ft_create_shortest_path(&bfs, shortest_path)))
+		return (-1);
+	else
+		return (1);
 }
