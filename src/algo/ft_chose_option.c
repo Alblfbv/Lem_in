@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 16:51:23 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:54:22 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	ft_compute_nb_ants2(t_dispatch *dis, t_path **path, t_data data)
 	}
 }
 
-static void	ft_compute_nb_ants(t_path **path, t_data data)
+static void	ft_compute_nb_ants(t_path **path, t_data data, int *pos_small)
 {
 	t_dispatch	dis;
 
