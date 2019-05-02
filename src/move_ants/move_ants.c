@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 16:53:02 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:04:13 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	ft_ants_move(t_path *path, int *flag, int *ants, t_data *data)
 	}
 }
 
-void	ft_ants_manage(t_path **path, t_data data)
+void		ft_ants_manage(t_path **path, t_data data)
 {
 	int		i;
 	int		flag;
