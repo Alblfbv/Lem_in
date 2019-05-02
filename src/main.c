@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:33:49 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/02 13:28:55 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int				main(int argc, char **argv)
 	t_data	data;
 	t_room	**room;
 	t_room	**final_room;
-	int		i;
 
-	i = 0;
 	room = NULL;
 	final_room = NULL;
 	if (!(ft_init_data(&data, argc, argv)))
