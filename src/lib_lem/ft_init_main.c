@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:22:53 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/01 20:07:05 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:16:04 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		ft_init_room(t_room ***room)
 
 	i = 0;
 	if (!(*room = (t_room**)malloc(sizeof(t_room*) * HASH_TAB)))
-		return (0);
+		return (ft_malloc_error());
 	while (i < HASH_TAB)
 	{
 		room[0][i] = NULL;
@@ -47,7 +47,8 @@ int		ft_init_data(t_data *data, int argc, char **argv)
 	data->nb_ants = 0;
 	data->start_room = NULL;
 	data->end_room = NULL;
-	data->instructions = (t_list**)malloc(sizeof(t_list*));
+	if (!(data->instructions = (t_list**)malloc(sizeof(t_list*))))
+		return (ft_malloc_error());
 	*data->instructions = NULL;
 	return (1);
 }

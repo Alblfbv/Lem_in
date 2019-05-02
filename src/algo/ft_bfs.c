@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:25:44 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/02 17:27:14 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,11 @@ t_room		**ft_create_shortest_path(t_bfs *bfs)
 		bfs->tmp_r2 = bfs->tmp_r2->source;
 		i++;
 	}
-	shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1));
+	if (!(shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1))))
+	{
+		ft_malloc_error();
+		return (NULL);
+	}
 	shortest_path[i] = 0;
 	i--;
 	bfs->tmp_r2 = bfs->tmp_r;

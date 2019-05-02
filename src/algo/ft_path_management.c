@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 17:03:14 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:42:48 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,10 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 	t_room		*tmp_r;
 	t_neighbor	*tmp_n;
 
-	path = (t_path*)malloc(sizeof(t_path));
-	path->path = (t_room**)malloc(sizeof(t_room*) * (len + 1));
+	if (!(path = (t_path*)malloc(sizeof(t_path))))
+		return (NULL);
+	if (!(path->path = (t_room**)malloc(sizeof(t_room*) * (len + 1))))
+		return (NULL);
 	path->path[len] = 0;
 	path->path[0] = data.start_room;
 	tmp_r = first;
@@ -106,7 +108,8 @@ t_path			***ft_store_path(t_path ***all_path, t_data data)
 	j = 0;
 	while (all_path[j] != 0)
 		j++;
-	all_path[j] = (t_path**)malloc(sizeof(t_path*) * (nb_path + 1));
+	if (!(all_path[j] = (t_path**)malloc(sizeof(t_path*) * (nb_path + 1))))
+		return (NULL);
 	all_path[j][nb_path] = 0;
 	tmp_n = data.start_room->neighbor;
 	i = 0;
@@ -115,7 +118,8 @@ t_path			***ft_store_path(t_path ***all_path, t_data data)
 		while (tmp_n->flow != 1)
 			tmp_n = tmp_n->next;
 		len = ft_path_len(tmp_n->room, data);
-		all_path[j][i] = ft_fill_path(all_path[j][i], tmp_n->room, len, data);
+		if (!(all_path[j][i] = ft_fill_path(all_path[j][i], tmp_n->room, len, data)))
+			return (NULL);
 		tmp_n = tmp_n->next;
 		i++;
 	}

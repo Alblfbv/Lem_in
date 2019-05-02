@@ -6,20 +6,17 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/01 20:28:28 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:39:13 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_error(char *line, t_data *data)
+static int		ft_parser_return(char *line, t_data *data)
 {
 	ft_strdel(&line);
 	if (data->nb_ants == 0)
-	{
-		ft_printf("Error\n");
-		return (0);
-	}
+		return (ft_error());
 	return (1);
 }
 
@@ -70,5 +67,5 @@ int				parser(t_data *data, t_room **room)
 				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
 		ft_strdel(&line);
 	}
-	return (ft_error(line, data));
+	return (ft_parser_return(line, data));
 }

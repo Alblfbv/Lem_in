@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/01 22:37:22 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:52:42 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	ft_init_storage_flow(t_room **room, t_data data)
 	}
 }
 
-static void	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
+static int	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 {
 	t_room	**shortest_path;
 	int		i;
@@ -96,13 +96,15 @@ static void	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 			//ft_print_bfs(shortest_path);
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
-			*all_path = ft_store_path(*all_path, data);
+			if (!(*all_path = ft_store_path(*all_path, data)))
+				return (ft_malloc_error());
 			free(shortest_path);
 			i++;
 		}
 		else
 			break ;
 	}
+	return (1);
 }
 
 int			ft_algo(t_room **room, t_data data)
@@ -113,11 +115,13 @@ int			ft_algo(t_room **room, t_data data)
 
 	if (!(data.nb_path = ft_count_bottleneck(data)))
 		return (0);
-	all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1));
+	if (!(all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1))))
+		return (ft_malloc_error());
 	i = -1;
 	while (++i <= data.nb_path)
 		all_path[i] = 0;
-	ft_bfs_loop(data, room, &all_path);
+	if (!(ft_bfs_loop(data, room, &all_path)))
+		return (0);
 	//ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
 	if (best_path != NULL)
@@ -129,5 +133,5 @@ int			ft_algo(t_room **room, t_data data)
 		return (1);
 	}
 	ft_free_paths(all_path);
-	return (0);
+	return (ft_error());
 }

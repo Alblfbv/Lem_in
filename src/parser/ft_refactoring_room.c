@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/09 16:01:49 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/25 15:53:46 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:15:32 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int		ft_init_final_room(t_room ***room, int size)
 
 	i = 0;
 	if (!(*room = (t_room**)malloc(sizeof(t_room*) * size)))
-		return (0);
+		return (ft_malloc_error());
 	while (i < size)
 	{
 		room[0][i] = NULL;

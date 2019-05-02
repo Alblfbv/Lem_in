@@ -6,11 +6,23 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/30 16:39:47 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/02 17:32:01 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+int		ft_malloc_error(void)
+{
+	ft_printf("Memory Allocation Error\n");
+	return (0);
+}
+
+int		ft_error(void)
+{
+	ft_printf("Error\n");
+	return (0);
+}
 
 void		ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt)
 {
