@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 16:52:08 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 17:03:14 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 			path->end = tmp_r;
 		tmp_r = tmp_n->room;
 	}
-	path->path[i] = tmp_r;
+	path->path[++i] = tmp_r;
 	path->length = i;
 	path->ants = 0;
 	return (path);
