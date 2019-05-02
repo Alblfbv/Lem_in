@@ -6,26 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/01 22:34:15 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 16:08:15 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	ft_init_ants(t_ant *ants, t_data data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data.nb_ants)
-	{
-		ants[i].name = i + 1;
-		ants[i].flag = 0;
-		i++;
-	}
-}
-
-void	ft_init_paths(t_path **path)
+static void	ft_init(t_path **path)
 {
 	int	i;
 	int	j;
@@ -45,14 +32,14 @@ void	ft_init_paths(t_path **path)
 	}
 }
 
-void	ft_start_end(t_ant *ants, t_data data)
+void	ft_start_end(t_data data)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (data.nb_ants)
 	{
-		ft_printf("L%d-%s", ants[i], data.end_room->name);
+		ft_printf("L%d-%s", i, data.end_room->name);
 		data.nb_ants--;
 		i++;
 		if (data.nb_ants)
@@ -60,76 +47,64 @@ void	ft_start_end(t_ant *ants, t_data data)
 	}
 }
 
-void	ft_ants_move(t_ant *ants, t_path **path, t_data data)
+void	ft_print_move(int *flag, int ant_name, char *room_name)
 {
-	int	remaining_ants;
-	t_room	*tmp;
-	int	i;
-	int	j;
-	int	flag;
+	if (*flag == 1)
+		ft_printf(" L%d-%s", ant_name, room_name);
+	else
+		ft_printf("L%d-%s", ant_name, room_name);
+	*flag = 1;
+}
 
-	remaining_ants = data.nb_ants;
-	j = 0;
-	while (remaining_ants)
+void	ft_ants_move2(t_path *path, int *flag, int *ants, t_data *data)
+{
+	t_room *tmp;
+
+	tmp = path->end;
+	while (tmp != path->path[0])
 	{
-		i = 0;
-		flag = 0;
-		while (path[i] != 0)
+		if (tmp->ant != 0)
 		{
-			tmp = path[i]->end;
-			while (tmp != path[i]->path[0])
-			{
-				if (tmp->ant != NULL)
-				{
-					if (tmp == path[i]->end)
-						remaining_ants--;
-					if (flag == 1)
-					{
-						write(1, " ", 1);
-						flag = 0;
-					}
-					ft_printf("L%d-%s", tmp->ant->name, tmp->next->name);
-					if (path[i]->ants != 0 || (tmp != path[i]->path[1] && tmp->source->ant != NULL))
-						ft_printf(" ");
-					else
-						flag = 1;
-					tmp->next->ant = tmp->ant;
-					tmp->ant = tmp->source->ant;
-				}
-				tmp = tmp->source;
-			}
-			tmp = path[i]->path[1];
-			if (path[i]->ants != 0)
-			{
-				ants[j].flag = 0;
-				tmp->ant = ants + j;
-				ft_printf("L%d-%s", tmp->ant->name, tmp->name);
-				if (path[i + 1] != 0 && path[i + 1]->ants != 0)
-					write(1, " ", 1);
-				else
-					flag = 1;
-				path[i]->ants--;
-				j++;
-			}
-			i++;
+			if (tmp == path->end)
+				data->nb_ants--;
+			ft_print_move(flag, tmp->ant, tmp->next->name);
+			tmp->next->ant = tmp->ant;
+			tmp->ant = tmp->source->ant;
 		}
-		ft_printf("\n");
+		tmp = tmp->source;
 	}
-	if (data.flag_print == 1)
-		ft_printf("\n\nMap solved in %d steps\n", j);
+	if (path->ants != 0)
+	{
+		tmp = path->path[1];
+		tmp->ant = *ants;
+		ft_print_move(flag, tmp->ant, tmp->name);
+		path->ants--;
+		(*ants)++;
+	}
 }
 
 void	ft_ants_manage(t_path **path, t_data data)
 {
-	t_ant	*ants;
+	int		i;
+	int		flag;
+	int		ants;
 
-	//ft_printf("%s", ((*path)->path[2]->name));
-	ants = (t_ant*)malloc(sizeof(t_ant) * data.nb_ants);
-	ft_init_ants(ants, data);
-	ft_init_paths(path);
+	ft_init(path);
 	if (!path[1] && path[0]->path[2] == 0)
-		ft_start_end(ants, data);
+		ft_start_end(data);
 	else
-		ft_ants_move(ants, path, data);
-	free(ants);
+	{
+		ants = 1;
+		while (data.nb_ants)
+		{
+			i = 0;
+			flag = 0;
+			while (path[i] != 0)
+			{
+				ft_ants_move2(path[i], &flag, &ants, &data);
+				i++;
+			}
+			ft_printf("\n");
+		}
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/01 20:25:12 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/02 14:39:00 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,6 @@ typedef struct 			s_neighbor
 	struct s_neighbor	*next;
 }						t_neighbor;
 
-typedef struct			s_ant
-{
-	int					name;
-	int					flag;
-}						t_ant;
-
 typedef struct			s_room
 {
 	char				*name;
@@ -43,7 +37,7 @@ typedef struct			s_room
 	int					flow;
 	short				visited;
 	t_neighbor			*neighbor;
-	t_ant				*ant;
+	int					ant;
 	struct s_room		*source;
 	struct s_room		*next;
 }						t_room;
