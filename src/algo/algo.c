@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 15:26:27 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 20:21:58 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static int	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 		if ((ret = ft_bfs(room, data, &shortest_path)) == 1)
 		{
 			//ft_print_bfs(shortest_path);
+			//ft_printf("\n\n");
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
 			if (!(ft_store_path(*all_path, data)))

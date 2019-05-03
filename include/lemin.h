@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 15:26:52 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 19:08:01 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct			s_room
 	int					flow;
 	int					weight;
 	short				visited;
+	short				visited_up;
+	short				upstream;
 	t_neighbor			*neighbor;
 	int					ant;
 	struct s_room		*source;

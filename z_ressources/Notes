@@ -82,3 +82,24 @@ Coordonnees en doublon : Error ou pas ?
 
 Salle reliee a elle meme : OK ?
 Deux ou + chemins entre deux salles : OK ?
+
+
+
+
+
+
+Systeme Bassel : Ponderer les salles selon distance a l'origine et (autoriser visite salles deja visitees)
+
+Systeme Romain/Corentin : Si apres une remontee
+
+Systeme Drew/Barth : Remontee obligatoire la premiere fois. Si salle d'avant visitee pendant ce BFS par une autre remontee
+
+
+Si j'arrive sur un noeud qui a deja un flot a 1 :
+-Si je ne suis pas encore remonte, je suis OBLIGE de remonter (Si poid salle d'arrivee est inferieur, je m'arrete)
+-Si je suis deja remonte, j'explore dans toutes les directions
+
+Si une salle est deja visitee mais poid inferieur, je deviens la source de cette salle et je ne vais pas par la
+
+
+Limite potentielle a ne pas recalculer tous les poids du chemin lors d'un changement de source : une autre sonde pourrait mal casser le chemin
