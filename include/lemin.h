@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 14:34:50 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 15:26:52 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ typedef struct			s_dispatch
 }						t_dispatch;
 
 unsigned int		ft_hash(char *str, int size);
-int					parser(t_data *data, t_room **room);
+int					parser(t_data *data, t_room **room, int flag, int check);
 int					ft_ants(char *line, t_data *data, int *flag);
 int					ft_comment(char *line);
 int					ft_command(char *line, int *flag);

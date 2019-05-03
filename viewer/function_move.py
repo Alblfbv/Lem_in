@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/29 12:53:09 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/03 14:32:02 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ class Display:
 def ft_move_lem(move, room, lem, l, canvas, menu, scale_lem):
 		menu.button_start.config(state=DISABLED)
 		menu.button_neg.config(state=DISABLED)
+		menu.button_reset.config(state=DISABLED)
 		i = 0
 		tab_display = list()
 		while i < len(move):
@@ -66,3 +67,4 @@ def ft_move_lem(move, room, lem, l, canvas, menu, scale_lem):
 			i += 1
 		menu.counter2.config(text=str(i))
 		menu.button_neg.config(state="normal")
+		menu.button_reset.config(state="normal")
