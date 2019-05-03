@@ -6,18 +6,18 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 17:26:04 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/23 13:50:49 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:17:21 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_end(t_list **alst, t_list *elem)
+int		ft_lstadd_end(t_list **alst, t_list *elem)
 {
 	t_list *end;
 
 	if (elem == NULL)
-		return ;
+		return (0) ;
 	if (*alst == NULL)
 		ft_lstadd(alst, elem);
 	else
@@ -28,4 +28,5 @@ void	ft_lstadd_end(t_list **alst, t_list *elem)
 		end->next = elem;
 		elem->next = NULL;
 	}
+	return (1);
 }

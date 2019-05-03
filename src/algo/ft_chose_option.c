@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 17:27:10 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:52:10 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	ft_neg_ants(t_path **path, t_dispatch *dis)
 
 	i = 0;
 	dis->sum_len = dis->sum_len - path[i]->length;
+	free(path[i]->path);
 	free(path[i]);
 	path[i] = path[i + 1];
 	while (path[i] != 0)

@@ -6,13 +6,13 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 18:28:50 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:52:42 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void			ft_free_paths(t_path ***all_path)
+void		ft_free_paths(t_path ***all_path)
 {
 	int	i;
 	int	j;

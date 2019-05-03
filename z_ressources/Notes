@@ -9,7 +9,7 @@ BFS / EK :
 
 Global :
 -Norme
--protection retour malloc
+-protection retour malloc : malloc ft_init_final_room leaks si NULL
 -choisir nombre max fourmis autorise
 
 

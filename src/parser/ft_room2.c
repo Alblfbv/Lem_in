@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 17:12:38 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 16:02:51 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:14:10 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void			ft_store_type(char **str, t_room **room, t_data *data, int flag)
 static int		ft_store_room2(char **str, t_room **room, int key)
 {
 	if (!(room[key] = (t_room*)malloc(sizeof(t_room))))
-		return (0);
+		return (ft_malloc_error());
 	room[key]->neighbor = NULL;
 	room[key]->next = NULL;
 	room[key]->name = str[0];
@@ -68,9 +68,10 @@ static int		ft_store_room2(char **str, t_room **room, int key)
 
 static int		ft_store_room3(char **str, t_room *tmp)
 {
-	if (ft_strequ(tmp->name, str[0])
-		|| !(tmp->next = (t_room*)malloc(sizeof(t_room))))
+	if (ft_strequ(tmp->name, str[0]))
 		return (0);
+	else if (!(tmp->next = (t_room*)malloc(sizeof(t_room))))
+		return (ft_malloc_error());
 	tmp->next->neighbor = NULL;
 	tmp->next->next = NULL;
 	tmp->next->name = str[0];

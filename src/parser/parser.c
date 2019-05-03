@@ -6,17 +6,19 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 18:46:45 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 10:27:15 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int		ft_parser_return(char *line, t_data *data)
+static int		ft_parser_return(char *line, t_data *data, int flag)
 {
 	ft_strdel(&line);
 	if (data->nb_ants == 0)
 		return (ft_error());
+	if (flag == 2)
+		return (ft_malloc_error());
 	return (1);
 }
 
@@ -63,9 +65,10 @@ int				parser(t_data *data, t_room **room)
 		else if ((flag == 1 || flag == 2) && ft_path(line, room))
 			ft_modif(&flag, &check, 2, 1);
 		if (check == 1)
-			ft_lstadd_end(data->instructions,
-				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))));
+			if (!(ft_lstadd_end(data->instructions,
+				ft_lstnew(line, sizeof(char) * ((ft_strlen(line) + 1))))))
+				return (ft_parser_return(line, data, 2));
 		ft_strdel(&line);
 	}
-	return (ft_parser_return(line, data));
+	return (ft_parser_return(line, data, 1));
 }

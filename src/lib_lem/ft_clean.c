@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 18:54:35 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 11:13:15 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void		ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt)
 			free(tmp_n);
 			tmp_n = tmp_n_nxt;
 		}
-		free(tmp_r->name);
 		tmp_r_nxt = tmp_r->next;
+		free(tmp_r->name);
+		free(tmp_r->x);
+		free(tmp_r->y);
 		free(tmp_r);
 		tmp_r = tmp_r_nxt;
 	}
