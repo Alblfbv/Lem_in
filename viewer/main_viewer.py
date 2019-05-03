@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/04/29 12:59:49 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/03 14:30:52 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ class Main_Menu:
 					text = "Reset",													\
 					width = 8, 														\
 					height = 1, 													\
+					state = DISABLED, 												\
 					highlightbackground = "black", 									\
 					command = 														\
 						lambda x = 2 : ft_reset_graphic(list_room,					\
@@ -168,6 +169,7 @@ def ft_init_graphic(list_room, list_path, static_list_lem, canvas, menu, grid):
 	list_step = ft_place_lem(list_lem, canvas)
 	menu.button_start.config(state="normal")
 	menu.button_neg.config(state="normal")
+	menu.button_reset.config(state="normal")
 
 
 def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
@@ -184,7 +186,8 @@ def ft_reset_graphic(list_room, list_path, canvas, list_lem_static, menu, grid):
 	list_step = ft_place_lem(list_lem, canvas)
 	menu.button_start.config(state="normal")
 	menu.button_neg.config(state="normal")
-	
+	menu.button_reset.config(state="normal")
+
 #--------------------MAIN--------------------#
 
 if __name__ == "__main__":
