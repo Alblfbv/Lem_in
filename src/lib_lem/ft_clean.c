@@ -6,19 +6,19 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 11:39:22 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 13:50:03 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		ft_malloc_error(void)
+int			ft_malloc_error(void)
 {
 	ft_printf("Memory Allocation Error\n");
 	return (0);
 }
 
-int		ft_error(void)
+int			ft_error(void)
 {
 	ft_printf("Error\n");
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 11:40:26 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 14:03:49 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int				main(int argc, char **argv)
 	final_room = NULL;
 	if (!(ft_init_data(&data, argc, argv)))
 		return (0);
-	if (!(ft_init_room(&room)) || !(parser(&data, room)))
+	if (!(ft_init_room(&room)) || !(parser(&data, room, 0, 1)))
 	{
 		ft_clean_main(room, &data);
 		return (0);
