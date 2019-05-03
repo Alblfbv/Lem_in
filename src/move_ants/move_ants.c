@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/03 12:40:37 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 15:20:26 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,9 @@ static void	ft_ants_move(t_path *path, int *flag, int *ants, t_data *data)
 		if (tmp->ant != 0)
 		{
 			if (tmp == path->end)
+			{
 				data->nb_ants--;
+			}
 			ft_print_move(flag, tmp->ant, tmp->next->name);
 			tmp->next->ant = tmp->ant;
 			tmp->ant = tmp->source->ant;

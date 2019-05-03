@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 18:24:53 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 14:34:50 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct			s_room
 	char				*x;
 	char				*y;
 	int					flow;
+	int					weight;
 	short				visited;
 	t_neighbor			*neighbor;
 	int					ant;
@@ -115,5 +116,6 @@ int					ft_error(void);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);
+void		ft_print_bfs(t_room **shortest_path);
 
 #endif

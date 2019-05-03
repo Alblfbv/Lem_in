@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 11:43:19 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 15:06:33 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path)
 	while (bfs.tmp_r2 != data.end_room)
 	{
 		bfs.tmp_n = bfs.tmp_r->neighbor;
-		if (bfs.tmp_r->flow == 1 && flag == 0)
+		if (bfs.tmp_r->flow == 1)
 			ft_upstream(&bfs, &flag, data);
 		else
 			ft_downstream(&bfs, &flag, data);
