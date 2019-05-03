@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/02 17:04:13 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/03 12:40:37 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@ static void	ft_start_end(t_data data)
 		if (data.nb_ants)
 			write(1, " ", 1);
 	}
+	ft_printf("\n");
+	if (data.flag_print == 1)
+		ft_printf("\nMap solved in 1 step\n");
 }
 
 static void	ft_print_move(int *flag, int ant_name, char *room_name)
@@ -86,6 +89,7 @@ static void	ft_ants_move(t_path *path, int *flag, int *ants, t_data *data)
 void		ft_ants_manage(t_path **path, t_data data)
 {
 	int		i;
+	int		steps;
 	int		flag;
 	int		ants;
 
@@ -95,6 +99,7 @@ void		ft_ants_manage(t_path **path, t_data data)
 	else
 	{
 		ants = 1;
+		steps = 0;
 		while (data.nb_ants)
 		{
 			i = 0;
@@ -105,6 +110,9 @@ void		ft_ants_manage(t_path **path, t_data data)
 				i++;
 			}
 			ft_printf("\n");
+			steps++;
 		}
+		if (data.flag_print == 1)
+			ft_printf("\nMap solved in %d steps\n", steps);
 	}
 }
