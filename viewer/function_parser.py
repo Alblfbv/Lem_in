@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:15 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/03 12:47:31 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/03 12:50:39 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,7 @@ def	ft_parser(list_room, list_move, list_path, grid):
 		print(line, end = '')
 		if line == "Error":
 			sys.exit(0)
-		if line[0] != '#' or (line[0] == '#' and line[1] == '#'):
+		if line[0] != '#' or (line == '##start\n' or line == '##end\n'):
 			read.append(line)
 	i = 0
 	while i < len(read):
