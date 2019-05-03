@@ -60,7 +60,7 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 				{
 					tmp_up_source = tmp_up_n->source;
 					tmp_up_n->source = tmp_up_r;
-					tmp_up_n->weight = tmp_up_r->weight - 1;
+					tmp_up_n->weight = bfs->tmp_r->weight - 1;
 					//ft_printf("source = %s n = %s r = %s\n", tmp_up_source->name, tmp_up_n->name, tmp_up_r->name);
 					tmp_up_r = tmp_up_n;
 					tmp_up_n = tmp_up_source;
