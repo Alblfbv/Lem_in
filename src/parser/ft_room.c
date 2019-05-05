@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 17:10:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 13:29:29 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/05 11:29:22 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,13 @@ int				ft_room(char *line, t_room **room, t_data *data, int flag)
 
 	str = ft_strsplit(line, ' ');
 	if (!(ft_check_room(str)))
+	{
 		return (ft_clean(str, 1));
+	}
 	if (!(ft_store_room(str, room)))
+	{
 		return (ft_clean(str, 1));
+	}
 	ft_store_type(str, room, data, flag);
 	ft_clean(str, 0);
 	return (1);

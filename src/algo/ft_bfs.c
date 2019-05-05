@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 20:47:48 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/05 15:12:11 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 				bfs->tmp_r2->next = (t_room*)bfs->tmp_n->room;
 				bfs->tmp_r2 = bfs->tmp_r2->next;
 				bfs->tmp_r2->visited_up = 1;
-				bfs->tmp_r2->upstream = 1;
+				bfs->tmp_r->upstream = 1;
 				bfs->tmp_r2->weight = bfs->tmp_r->weight - 1;
 				bfs->tmp_r2->visited = 1;
 				bfs->tmp_r2->source = bfs->tmp_r;
@@ -56,12 +56,17 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 			{
 				tmp_up_n = (t_room*)bfs->tmp_n->room;
 				tmp_up_r = bfs->tmp_r;
-				while (tmp_up_r->weight <= tmp_up_n->weight && tmp_up_n->source != data.start_room)
+				while (((tmp_up_r->weight <= tmp_up_n->weight && tmp_up_n->flow == 1)
+						|| (tmp_up_r->weight < tmp_up_n->weight && tmp_up_n->flow == 0))
+						&& tmp_up_n->source != data.start_room)
 				{
 					tmp_up_source = tmp_up_n->source;
 					tmp_up_n->source = tmp_up_r;
-					tmp_up_n->weight = bfs->tmp_r->weight - 1;
-					//ft_printf("source = %s n = %s r = %s\n", tmp_up_source->name, tmp_up_n->name, tmp_up_r->name);
+					if (tmp_up_n->flow == 1)
+						tmp_up_n->weight = tmp_up_r->weight - 1;
+					else
+						tmp_up_n->weight = tmp_up_r->weight + 1;
+					//ft_printf("s_n_initial = %s n = %s r = %s w_n = %d new_n_source %s\n", tmp_up_source->name, tmp_up_n->name, tmp_up_r->name, tmp_up_n->weight, tmp_up_n->source->name);
 					tmp_up_r = tmp_up_n;
 					tmp_up_n = tmp_up_source;
 				}
@@ -155,13 +160,9 @@ int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path)
 		bfs.tmp_n = bfs.tmp_r->neighbor;
 		//ft_print_file(bfs.tmp_r);
 		if (bfs.tmp_r->flow == 1)
-		{
 			ft_upstream(&bfs, data);
-		}
-		if (bfs.tmp_r->flow == 0 || (bfs.tmp_r->flow == 1 && bfs.tmp_r->upstream == 1))
-		{
+		if (bfs.tmp_r->flow == 0)
 			ft_downstream(&bfs, data);
-		}
 		bfs.tmp_r = bfs.tmp_r->next;
 		if (bfs.tmp_r == NULL)
 			return (0);

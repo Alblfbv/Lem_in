@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/02 12:48:45 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/02 13:35:54 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/05 11:38:51 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int				ft_command(char *line, int *flag)
 		return (1);
 	}
 	if (line[0] == '#' && line[1] == '#' && (ft_strequ(line, "##start") != 1
-		|| ft_strequ(line, "##end") != 0))
+		&& ft_strequ(line, "##end") != 1))
 		return (1);
 	return (0);
 }

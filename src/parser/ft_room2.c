@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 17:12:38 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 15:26:40 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/05 11:37:08 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void			ft_store_type2(char **str, t_data *data, t_room *tmp)
 	{
 		while (!ft_strequ(tmp->name, str[0]))
 		{
+			tmp = tmp->next;
 			if (ft_strequ(tmp->name, str[0]))
 				data->start_room = tmp;
-			tmp = tmp->next;
 		}
 	}
 }
@@ -44,9 +44,9 @@ void			ft_store_type(char **str, t_room **room, t_data *data, int flag)
 		{
 			while (!ft_strequ(tmp->name, str[0]))
 			{
+				tmp = tmp->next;
 				if (ft_strequ(tmp->name, str[0]))
 					data->end_room = tmp;
-				tmp = tmp->next;
 			}
 		}
 	}

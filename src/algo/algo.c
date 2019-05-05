@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 20:21:58 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/05 11:38:18 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,9 @@ int			ft_algo(t_room **room, t_data data)
 	t_path	**best_path;
 
 	if (!(data.nb_path = ft_count_bottleneck(data)))
+	{
 		return (ft_error());
+	}
 	if (!(all_path = (t_path***)malloc(sizeof(t_path**) * (data.nb_path + 1))))
 		return (ft_malloc_error());
 	i = -1;

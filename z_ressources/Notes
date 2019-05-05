@@ -103,3 +103,16 @@ Si une salle est deja visitee mais poid inferieur, je deviens la source de cette
 
 
 Limite potentielle a ne pas recalculer tous les poids du chemin lors d'un changement de source : une autre sonde pourrait mal casser le chemin
+
+
+Si remontee et salle arrivee a elle meme ete deja visitee
+Alors on la rajoute a la file et on passe un flag a 1 + on ajoute 2eme source
+Quand on reviendra dessus dans la file, on ne fait que du descendant
+
+
+
+Lors d'une remontee j'arrive sur une salle deja visitee.
+J'ouvre une recursion.
+La recursion effectue un BFS descendant
+
+
