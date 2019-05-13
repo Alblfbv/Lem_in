@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/05 11:38:18 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/13 20:31:34 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,9 @@ static void	ft_edmond_karp(t_room **shortest_path)
 			n_forth = shortest_path[i]->neighbor;
 			while (n_forth->room != shortest_path[i + 1])
 				n_forth = n_forth->next;
+			//ft_printf("n_forth = %s /\\ flow = %d\n", ((t_room*)(n_forth->room))->name, n_forth->flow);
 			n_forth->flow = n_forth->flow + 1;
+			//ft_printf("n_forth = %s /\\ flow = %d\n", ((t_room*)(n_forth->room))->name, n_forth->flow);
 		}
 		if (i != 0)
 		{
@@ -34,7 +36,9 @@ static void	ft_edmond_karp(t_room **shortest_path)
 			n_back = shortest_path[i]->neighbor;
 			while (n_back->room != shortest_path[i - 1])
 				n_back = n_back->next;
+			//ft_printf("n_back = %s /\\ flow = %d\n", ((t_room*)(n_back->room))->name, n_back->flow);
 			n_back->flow = n_back->flow - 1;
+			//ft_printf("n_back = %s /\\ flow = %d\n", ((t_room*)(n_back->room))->name, n_back->flow);
 		}
 		i++;
 	}

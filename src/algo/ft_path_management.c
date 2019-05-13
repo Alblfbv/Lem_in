@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/03 15:22:34 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/13 20:33:01 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ static int		ft_path_len(t_room *room, t_data data)
 	while (tmp_r != data.end_room)
 	{
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
+		while (tmp_n->flow != 1)// || tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
+		//ft_printf("\n\n\n");
 		len++;
 		tmp_r = tmp_n->room;
 	}
@@ -74,9 +75,9 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 	{
 		path->path[++i] = tmp_r;
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1 || tmp_n->storage_flow == 1)
+		while (tmp_n->flow != 1) //|| tmp_n->storage_flow == 1)
 			tmp_n = tmp_n->next;
-		tmp_n->storage_flow = 1;
+		//tmp_n->storage_flow = 1;
 		if (tmp_n->room == data.end_room)
 			path->end = tmp_r;
 		tmp_r = tmp_n->room;
