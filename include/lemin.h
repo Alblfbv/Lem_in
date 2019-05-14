@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 19:08:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:55:59 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,9 +115,5 @@ int					ft_clean_main(t_room **room, t_data *data);
 int					ft_clean_refacto(t_room **room, t_data data);
 int					ft_malloc_error(void);
 int					ft_error(void);
-
-//A SUPPRIMER POUR LE RENDU
-void		ft_print_paths(t_path ***all_path);
-void		ft_print_bfs(t_room **shortest_path);
 
 #endif

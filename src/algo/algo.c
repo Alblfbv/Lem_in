@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 14:58:37 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:55:06 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,12 @@ static void	ft_edmond_karp(t_room **shortest_path)
 	i = 0;
 	while (shortest_path && shortest_path[i] != 0)
 	{
-		//ft_printf("\n");
 		if (shortest_path[i + 1] != 0)
 		{
 			n_forth = shortest_path[i]->neighbor;
 			while (n_forth->room != shortest_path[i + 1])
 				n_forth = n_forth->next;
-			//ft_printf("n_forth = %s /\\ flow = %d\n", ((t_room*)(n_forth->room))->name, n_forth->flow);
 			n_forth->flow = n_forth->flow + 1;
-			//ft_printf("n_forth = %s /\\ flow = %d\n", ((t_room*)(n_forth->room))->name, n_forth->flow);
 		}
 		if (i != 0)
 		{
@@ -37,9 +34,7 @@ static void	ft_edmond_karp(t_room **shortest_path)
 			n_back = shortest_path[i]->neighbor;
 			while (n_back->room != shortest_path[i - 1])
 				n_back = n_back->next;
-			//ft_printf("n_back = %s /\\ flow = %d\n", ((t_room*)(n_back->room))->name, n_back->flow);
 			n_back->flow = n_back->flow - 1;
-			//ft_printf("n_back = %s /\\ flow = %d\n", ((t_room*)(n_back->room))->name, n_back->flow);
 		}
 		i++;
 	}
@@ -99,8 +94,6 @@ static int	ft_bfs_loop(t_data data, t_room **room, t_path ****all_path)
 	{
 		if ((ret = ft_bfs(room, data, &shortest_path)) == 1)
 		{
-			//ft_print_bfs(shortest_path);
-			//ft_printf("\n\n");
 			ft_edmond_karp(shortest_path);
 			ft_init_storage_flow(room, data);
 			if (!(ft_store_path(*all_path, data)))
@@ -139,7 +132,6 @@ int			ft_algo(t_room **room, t_data data)
 		ft_free_paths(all_path);
 		return (0);
 	}
-	//ft_print_paths(all_path);
 	best_path = ft_chose_best_path(all_path, data);
 	if (best_path != NULL)
 	{

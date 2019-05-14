@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/14 10:52:18 by allefebv         ###   ########.fr        #
+#    Updated: 2019/05/14 17:14:09 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC			= 	src/main.c 							\
 				src/lib_lem/ft_init_main.c 			\
 				src/lib_lem/ft_free_ptr.c 			\
 				src/lib_lem/ft_clean.c 				\
+				src/lib_lem/ft_error.c 				\
 				src/parser/parser.c					\
 				src/parser/ft_room.c				\
 				src/parser/ft_room2.c				\
@@ -35,8 +36,8 @@ SRC			= 	src/main.c 							\
 				src/algo/ft_chose_option.c			\
 				src/algo/ft_path_management.c		\
 				src/algo/ft_bfs.c					\
-				src/move_ants/move_ants.c			\
-				src/algo/del_for_final.c
+				src/move_ants/move_ants.c
+
 OBJ			= $(SRC:.c=.o)
 
 all: libft $(NAME)

@@ -6,32 +6,11 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:37:47 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/13 20:33:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:16:16 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void		ft_free_paths(t_path ***all_path)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (all_path[i] != 0)
-	{
-		j = 0;
-		while (all_path[i][j] != 0)
-		{
-			free(all_path[i][j]->path);
-			free(all_path[i][j]);
-			j++;
-		}
-		free(all_path[i]);
-		i++;
-	}
-	free(all_path);
-}
 
 static int		ft_path_len(t_room *room, t_data data)
 {
@@ -44,14 +23,27 @@ static int		ft_path_len(t_room *room, t_data data)
 	while (tmp_r != data.end_room)
 	{
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1)// || tmp_n->storage_flow == 1)
+		while (tmp_n->flow != 1)
 			tmp_n = tmp_n->next;
-		//ft_printf("\n\n\n");
 		len++;
 		tmp_r = tmp_n->room;
 	}
 	len++;
 	return (len);
+}
+
+static int		ft_init_fill(t_path **path, t_data data, int len)
+{
+	if (!(*path = (t_path*)malloc(sizeof(t_path))))
+		return (0);
+	if (!((*path)->path = (t_room**)malloc(sizeof(t_room*) * (len + 1))))
+	{
+		free(*path);
+		return (0);
+	}
+	(*path)->path[len] = 0;
+	(*path)->path[0] = data.start_room;
+	return (1);
 }
 
 static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
@@ -60,24 +52,16 @@ static t_path	*ft_fill_path(t_path *path, t_room *first, int len, t_data data)
 	t_room		*tmp_r;
 	t_neighbor	*tmp_n;
 
-	if (!(path = (t_path*)malloc(sizeof(t_path))))
+	if (!(ft_init_fill(&path, data, len)))
 		return (NULL);
-	if (!(path->path = (t_room**)malloc(sizeof(t_room*) * (len + 1))))
-	{
-		free(path);
-		return (NULL);
-	}
-	path->path[len] = 0;
-	path->path[0] = data.start_room;
 	tmp_r = first;
 	i = 0;
 	while (tmp_r != data.end_room)
 	{
 		path->path[++i] = tmp_r;
 		tmp_n = tmp_r->neighbor;
-		while (tmp_n->flow != 1) //|| tmp_n->storage_flow == 1)
+		while (tmp_n->flow != 1)
 			tmp_n = tmp_n->next;
-		//tmp_n->storage_flow = 1;
 		if (tmp_n->room == data.end_room)
 			path->end = tmp_r;
 		tmp_r = tmp_n->room;
@@ -100,7 +84,7 @@ static void		ft_init_path(t_neighbor **tmp_n, int *nb_path, t_data data)
 	}
 }
 
-int				ft_store_path(t_path ***all_path, t_data data)
+int				ft_store_path(t_path ***paths, t_data data)
 {
 	t_neighbor	*tmp_n;
 	int			nb_path;
@@ -110,22 +94,21 @@ int				ft_store_path(t_path ***all_path, t_data data)
 
 	ft_init_path(&tmp_n, &nb_path, data);
 	j = 0;
-	while (all_path[j] != 0)
+	while (paths[j] != 0)
 		j++;
-	if (!(all_path[j] = (t_path**)malloc(sizeof(t_path*) * (nb_path + 1))))
+	if (!(paths[j] = (t_path**)malloc(sizeof(t_path*) * (nb_path + 1))))
 		return (0);
-	all_path[j][nb_path] = 0;
+	paths[j][nb_path] = 0;
 	tmp_n = data.start_room->neighbor;
-	i = 0;
-	while (i < nb_path)
+	i = -1;
+	while (++i < nb_path)
 	{
 		while (tmp_n->flow != 1)
 			tmp_n = tmp_n->next;
 		len = ft_path_len(tmp_n->room, data);
-		if (!(all_path[j][i] = ft_fill_path(all_path[j][i], tmp_n->room, len, data)))
+		if (!(paths[j][i] = ft_fill_path(paths[j][i], tmp_n->room, len, data)))
 			return (0);
 		tmp_n = tmp_n->next;
-		i++;
 	}
 	return (1);
 }

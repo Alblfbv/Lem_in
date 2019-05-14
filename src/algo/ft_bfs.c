@@ -6,24 +6,11 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 16:28:10 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:52:59 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//				ft_printf("tmp_r = %s /\\ tmp_n = %s /\\ SOURCE = %s\n", bfs->tmp_r->name, ((t_room*)(bfs->tmp_n->room))->name, ((t_room*)(bfs->tmp_n->room))->source->name);
-
 #include "lemin.h"
-
-void		ft_print_file(t_room *start)
-{
-	ft_printf("file from tmp_r  = ");
-	while (start != NULL)
-	{
-		ft_printf("%s - ", start->name);
-		start = start->next;
-	}
-	ft_printf("\n");
-}
 
 static int	ft_check_circle(t_room *tmp_r, t_room *tmp_n)
 {
@@ -73,7 +60,6 @@ int			ft_create_shortest_path(t_bfs *bfs, t_room ***shortest_path)
 	i = 1;
 	while (bfs->tmp_r2->source != NULL)
 	{
-		//ft_printf("tmp_r2 = %s / source = %s\n", bfs->tmp_r2->name, bfs->tmp_r2->source->name);
 		bfs->tmp_r2 = bfs->tmp_r2->source;
 		i++;
 	}
@@ -125,13 +111,10 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 
 	while (bfs->tmp_n != NULL)
 	{
-		//Recherche de voisin a remonter (flot -1) et non visite
-		//Changer la non visite par les ponderations
 		if (bfs->tmp_n->flow == -1)
 		{
 			if (((t_room*)(bfs->tmp_n->room))->visited == 0)
 			{
-				//ft_printf("REMONTEE : tmp_r = %s /\\ tmp_r2 = %s /\\ tmp_r2_flow = %d /\\ tmp_r2 weight = %d\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->flow, bfs->tmp_r2->weight);
 				if (ft_quick_upstream(bfs, data))
 					break ;
 			}
@@ -140,7 +123,6 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 			{
 				tmp_up_n = (t_room*)bfs->tmp_n->room;
 				tmp_up_r = bfs->tmp_r;
-				//ft_printf("tmp_up_n = %p /\\ tmp_up_r = %p\n", tmp_up_n->name, tmp_up_r->name);
 				while (tmp_up_n != data.start_room
 						&& tmp_up_n->source != data.start_room
 						&& !ft_check_circle(tmp_up_r, tmp_up_n)
@@ -156,10 +138,8 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 					}
 					else
 						tmp_up_n->weight = tmp_up_r->weight + 1;
-					//ft_printf("up - s_n_initial = %s n = %s r = %s w_n = %d new_n_source %s\n", tmp_up_source->name, tmp_up_n->name, tmp_up_r->name, tmp_up_n->weight, tmp_up_n->source->name);
 					tmp_up_r = tmp_up_n;
 					tmp_up_n = tmp_up_source;
-					//ft_printf("tmp_up_n = %p /\\ tmp_up_r = %p\n", tmp_up_n, tmp_up_r);
 				}
 			}
 		}
@@ -177,7 +157,6 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 	{
 		if (bfs->tmp_n->flow != 1)
 		{
-			//ft_printf("tmp_r = %s\n", bfs->tmp_r->name);
 			if (((t_room*)(bfs->tmp_n->room))->visited == 0)
 			{
 				bfs->tmp_r2->next = (t_room*)bfs->tmp_n->room;
@@ -186,18 +165,14 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 				bfs->tmp_r2->source = bfs->tmp_r;
 				bfs->tmp_r2->weight = bfs->tmp_r2->source->weight + 1;
 				bfs->tmp_r2->next = NULL;
-				//ft_printf("tmp_r = %s /\\ tmp_r2 = %s /\\ flow_r2 = %d /\\ tmp_r2 weight = %d\n", bfs->tmp_r->name, bfs->tmp_r2->name, bfs->tmp_r2->flow, bfs->tmp_r2->weight);
 				if (bfs->tmp_r2 == data.end_room)
 					break ;
 			}
 			else if (bfs->tmp_r->weight <= ((t_room*)(bfs->tmp_n->room))->weight
 				&& ((t_room*)(bfs->tmp_n->room))->source != bfs->tmp_r)
 			{
-			//ft_printf("------>>>>> tmp_r = %s\n", bfs->tmp_r->name);
 				tmp_up_n = (t_room*)bfs->tmp_n->room;
 				tmp_up_r = bfs->tmp_r;
-				//while (((tmp_up_r->weight <= tmp_up_n->weight && tmp_up_n->flow == 1 && tmp_up_n->upstream == 0)
-				//		|| (tmp_up_r->weight < tmp_up_n->weight && tmp_up_n->flow == 0))
 				while (tmp_up_n != data.start_room
 						&& tmp_up_n->source != data.start_room
 						&& !ft_check_circle(tmp_up_r, tmp_up_n)
@@ -210,7 +185,6 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 					tmp_up_n->weight = tmp_up_r->weight + 1;
 					if (tmp_up_n->flow == 1)
 						break ;
-					//ft_printf("down - source voisin = %s voisin = %s position actuelle = %s poids voisin = %d nouvelle source voisin %s\n", tmp_up_source->name, tmp_up_n->name, tmp_up_r->name, tmp_up_n->weight, tmp_up_n->source->name);
 					tmp_up_r = tmp_up_n;
 					tmp_up_n = tmp_up_source;
 				}
@@ -233,7 +207,6 @@ int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path)
 		if (bfs.tmp_r->flow == 1)
 			ft_upstream(&bfs, data);
 		bfs.tmp_n = bfs.tmp_r->neighbor;
-		//ft_printf("tmp_r %s upstream = %d\n", bfs.tmp_r->name, bfs.tmp_r->upstream);
 		if (bfs.tmp_r->flow == 0 || bfs.tmp_r->upstream == 1)
 			ft_downstream(&bfs, data);
 		bfs.tmp_r = bfs.tmp_r->next;
