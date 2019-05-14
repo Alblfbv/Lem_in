@@ -6,109 +6,41 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 16:52:59 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:58:56 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-static int	ft_check_circle(t_room *tmp_r, t_room *tmp_n)
+static void	ft_upstream2(t_bfs *bfs, t_data data)
 {
-	while (tmp_r->source != NULL)
+	t_room	*up_src;
+	t_room	*up_r;
+	t_room	*up_n;
+
+	up_n = (t_room*)bfs->tmp_n->room;
+	up_r = bfs->tmp_r;
+	while (up_n != data.start_room && up_n->source != data.start_room
+			&& !ft_check_circle(up_r, up_n) && ((up_r->weight <= up_n->weight
+					&& up_n->flow == 1 && ft_check_same_path(up_r, up_n))
+				|| (up_r->weight < up_n->weight && up_n->flow == 0)))
 	{
-		if (tmp_r == tmp_n)
-			return (1);
-		tmp_r = tmp_r->source;
+		up_src = up_n->source;
+		up_n->source = up_r;
+		if (up_n->flow == 1)
+		{
+			up_n->weight = up_r->weight - 1;
+			up_n->upstream = 1;
+		}
+		else
+			up_n->weight = up_r->weight + 1;
+		up_r = up_n;
+		up_n = up_src;
 	}
-	return (0);
-}
-
-static int ft_check_same_path(t_room *tmp_r, t_room *tmp_n_r)
-{
-	t_neighbor	*tmp_n;
-
-	tmp_n = tmp_r->neighbor;
-	while (tmp_n->room != tmp_n_r)
-		tmp_n = tmp_n->next;
-	if (tmp_n->flow == -1)
-		return (1);
-	return (0);
-}
-
-static void	ft_init_data_bfs(t_bfs *bfs, t_data data, t_room **room)
-{
-	int	i;
-
-	i = 0;
-	while (i < data.nb_room)
-	{
-		room[i]->visited = 0;
-		room[i]->upstream = 0;
-		i++;
-	}
-	bfs->tmp_r = data.start_room;
-	bfs->tmp_r->source = NULL;
-	bfs->tmp_r2 = bfs->tmp_r;
-	bfs->tmp_r2->visited = 1;
-}
-
-int			ft_create_shortest_path(t_bfs *bfs, t_room ***shortest_path)
-{
-	int			i;
-
-	bfs->tmp_r = bfs->tmp_r2;
-	i = 1;
-	while (bfs->tmp_r2->source != NULL)
-	{
-		bfs->tmp_r2 = bfs->tmp_r2->source;
-		i++;
-	}
-	if (!(*shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1))))
-		return (ft_malloc_error());
-	shortest_path[0][i] = 0;
-	i--;
-	bfs->tmp_r2 = bfs->tmp_r;
-	while (i >= 0)
-	{
-		shortest_path[0][i] = bfs->tmp_r2;
-		bfs->tmp_r2 = bfs->tmp_r2->source;
-		i--;
-	}
-	return (1);
-}
-
-static int	ft_quick_upstream(t_bfs *bfs, t_data data)
-{
-	t_room		*quick_r;
-	t_neighbor	*quick_n;
-
-	quick_r = bfs->tmp_r;
-	quick_n = bfs->tmp_n;
-	while (((t_room*)(quick_n->room))->visited == 0)
-	{
-		bfs->tmp_r2->next = (t_room*)quick_n->room;
-		bfs->tmp_r2 = (t_room*)quick_n->room;
-		bfs->tmp_r2->weight = quick_r->weight - 1;
-		bfs->tmp_r2->visited = 1;
-		bfs->tmp_r2->upstream = 1;
-		bfs->tmp_r2->source = quick_r;
-		bfs->tmp_r2->next = NULL;
-		if (bfs->tmp_r2 == data.end_room)
-			return (1);
-		quick_r = bfs->tmp_r2;
-		quick_n = bfs->tmp_r2->neighbor;
-		while ((t_room*)quick_n->room != data.start_room && quick_n->flow != -1)
-			quick_n = quick_n->next;
-	}
-	return (0);
 }
 
 static void	ft_upstream(t_bfs *bfs, t_data data)
 {
-	t_room	*tmp_up_n;
-	t_room	*tmp_up_r;
-	t_room	*tmp_up_source;
-
 	while (bfs->tmp_n != NULL)
 	{
 		if (bfs->tmp_n->flow == -1)
@@ -120,39 +52,37 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 			}
 			else if (bfs->tmp_r->weight <= ((t_room*)(bfs->tmp_n->room))->weight
 					&& ((t_room*)(bfs->tmp_n->room))->source != bfs->tmp_r)
-			{
-				tmp_up_n = (t_room*)bfs->tmp_n->room;
-				tmp_up_r = bfs->tmp_r;
-				while (tmp_up_n != data.start_room
-						&& tmp_up_n->source != data.start_room
-						&& !ft_check_circle(tmp_up_r, tmp_up_n)
-						&& ((tmp_up_r->weight <= tmp_up_n->weight && tmp_up_n->flow == 1 && ft_check_same_path(tmp_up_r, tmp_up_n))
-						|| (tmp_up_r->weight < tmp_up_n->weight && tmp_up_n->flow == 0)))
-				{
-					tmp_up_source = tmp_up_n->source;
-					tmp_up_n->source = tmp_up_r;
-					if (tmp_up_n->flow == 1)
-					{
-						tmp_up_n->weight = tmp_up_r->weight - 1;
-						tmp_up_n->upstream = 1;
-					}
-					else
-						tmp_up_n->weight = tmp_up_r->weight + 1;
-					tmp_up_r = tmp_up_n;
-					tmp_up_n = tmp_up_source;
-				}
-			}
+				ft_upstream2(bfs, data);
 		}
 		bfs->tmp_n = bfs->tmp_n->next;
 	}
 }
 
+static void	ft_downstream2(t_bfs *bfs, t_data data)
+{
+	t_room	*up_n;
+	t_room	*up_r;
+	t_room	*up_src;
+
+	up_n = (t_room*)bfs->tmp_n->room;
+	up_r = bfs->tmp_r;
+	while (up_n != data.start_room
+			&& up_n->source != data.start_room && !ft_check_circle(up_r, up_n)
+			&& up_r->weight < up_n->weight && ((up_n->flow == 0)
+				|| (up_n->flow == 1 && up_n->upstream == 0)))
+	{
+		up_src = up_n->source;
+		up_n->source = up_r;
+		up_n->weight = up_r->weight + 1;
+		if (up_n->flow == 1)
+			break ;
+		up_r = up_n;
+		up_n = up_src;
+	}
+}
+
 static void	ft_downstream(t_bfs *bfs, t_data data)
 {
-	t_room	*tmp_up_n;
-	t_room	*tmp_up_r;
-	t_room	*tmp_up_source;
-
 	while (bfs->tmp_n != NULL)
 	{
 		if (bfs->tmp_n->flow != 1)
@@ -170,30 +100,11 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 			}
 			else if (bfs->tmp_r->weight <= ((t_room*)(bfs->tmp_n->room))->weight
 				&& ((t_room*)(bfs->tmp_n->room))->source != bfs->tmp_r)
-			{
-				tmp_up_n = (t_room*)bfs->tmp_n->room;
-				tmp_up_r = bfs->tmp_r;
-				while (tmp_up_n != data.start_room
-						&& tmp_up_n->source != data.start_room
-						&& !ft_check_circle(tmp_up_r, tmp_up_n)
-						&& tmp_up_r->weight < tmp_up_n->weight
-						&& ((tmp_up_n->flow == 0)
-							|| (tmp_up_n->flow == 1 && tmp_up_n->upstream == 0)))
-				{
-					tmp_up_source = tmp_up_n->source;
-					tmp_up_n->source = tmp_up_r;
-					tmp_up_n->weight = tmp_up_r->weight + 1;
-					if (tmp_up_n->flow == 1)
-						break ;
-					tmp_up_r = tmp_up_n;
-					tmp_up_n = tmp_up_source;
-				}
-			}
+				ft_downstream2(bfs, data);
 		}
 		bfs->tmp_n = bfs->tmp_n->next;
 	}
 }
-
 
 int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path)
 {
