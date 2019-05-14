@@ -6,13 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 17:13:04 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:23:04 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void		ft_free_paths(t_path ***paths)
+int			ft_free_paths(t_path ***paths)
 {
 	int	i;
 	int	j;
@@ -31,6 +31,7 @@ void		ft_free_paths(t_path ***paths)
 		i++;
 	}
 	free(paths);
+	return (0);
 }
 
 void		ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt)
