@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/05 11:40:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:55:54 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,6 @@ static int		ft_parser_return(char *line, t_data *data, int flag)
 		return (ft_malloc_error());
 	return (1);
 }
-
-/*int			ft_init_coord_tab(t_coord ***coord_tab)
-{
-	int	i;
-
-	i = 0;
-	if (!(*coord_tab = (t_coord**)malloc(sizeof(t_coord*) * HASH_TAB)))
-		return (0);
-	while (i < HASH_TAB)
-	{
-		(*coord_tab)[i] = NULL;
-		i++;
-	}
-	return (1);
-}*/
 
 static void		ft_modif(int *flag, int *check, int f, int c)
 {

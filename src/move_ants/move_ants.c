@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/22 15:21:07 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/14 14:58:54 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 16:56:49 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,13 +104,10 @@ void		ft_ants_manage(t_path **path, t_data data)
 		steps = 0;
 		while (data.nb_ants)
 		{
-			i = 0;
+			i = -1;
 			flag = 0;
-			while (path[i] != 0)
-			{
+			while (path[++i] != 0)
 				ft_ants_move(path[i], &flag, &ants, &data);
-				i++;
-			}
 			ft_printf("\n");
 			steps++;
 		}
