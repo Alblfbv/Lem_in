@@ -6,11 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2019/05/14 17:16:55 by jfleury          ###   ########.fr       */
-=======
-/*   Updated: 2019/05/14 16:55:59 by allefebv         ###   ########.fr       */
->>>>>>> 1db448d0a211e4bd5d3b90c3b20a0782b20b6c14
+/*   Updated: 2019/05/14 17:23:49 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +103,7 @@ int					**ft_create_path_tab(t_room ****all_path);
 int					ft_store_path(t_path ***all_path, t_data data);
 void				ft_ants_manage(t_path **path, t_data data);
 void				ft_free_ptr(void *content, size_t size);
-void				ft_free_paths(t_path ***all_path);
+int					ft_free_paths(t_path ***all_path);
 int					ft_neigh_1(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n1);
 int					ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
 void				ft_store_type(char **str, t_room **room, t_data *data, int flag);
