@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    main_viewer.py                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
+#    By: allefebv <allefebv@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/03 14:30:52 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/14 11:49:56 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -115,6 +115,7 @@ class Main_Menu:
 					text = "Exit", 					\
 					width = 8,						\
 					height = 1, 					\
+					disabledforeground = "black",	\
 					highlightbackground = "black", 	\
 					command = root.destroy)
 		self.button_exit.grid(column = 4, row = 1)

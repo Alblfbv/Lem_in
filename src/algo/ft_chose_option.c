@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/03 15:21:20 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:59:49 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,11 @@ static void	ft_compute_nb_ants2(t_dispatch *dis, t_path **path, t_data data)
 	}
 }
 
-static void	ft_compute_nb_ants(t_path **path, t_data data, int *pos_small)
+static void	ft_compute_nb_ants(t_path **path, t_data data, int *pos_less)
 {
 	t_dispatch	dis;
 
-	*pos_small = 0;
+	*pos_less = 0;
 	dis.nb_path = 0;
 	dis.sum_len = 0;
 	while (path[dis.nb_path] != 0)
@@ -100,27 +100,33 @@ t_path		**ft_chose_best_path(t_path ***all_path, t_data data)
 {
 	int	i;
 	int	j;
-	int	smallest_steps;
-	int	pos_small;
+	int	max_global;
+	int max_block;
+	int	pos_less;
 
 	i = -1;
 	if (all_path[0][0]->path[1] == data.end_room)
 		return (all_path[0]);
 	while (all_path[++i] != 0)
-		ft_compute_nb_ants(all_path[i], data, &pos_small);
-	smallest_steps = all_path[0][0]->steps;
+		ft_compute_nb_ants(all_path[i], data, &pos_less);
+	max_global = all_path[0][0]->steps;
 	i = -1;
 	while (all_path[++i] != 0)
 	{
 		j = -1;
+		max_block = all_path[i][0]->steps;
 		while (all_path[i][++j] != 0)
 		{
-			if (smallest_steps > all_path[i][j]->steps)
+			if (max_block > all_path[i][j]->steps)
 			{
-				smallest_steps = all_path[i][j]->steps;
-				pos_small = i;
+				max_block = all_path[i][j]->steps;
 			}
 		}
+		if (max_block < max_global)
+		{
+			max_global = max_block;
+			pos_less = i;
+		}
 	}
-	return (all_path[pos_small]);
+	return (all_path[pos_less]);
 }

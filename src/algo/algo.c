@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/13 20:31:34 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 14:58:37 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void	ft_edmond_karp(t_room **shortest_path)
 	i = 0;
 	while (shortest_path && shortest_path[i] != 0)
 	{
+		//ft_printf("\n");
 		if (shortest_path[i + 1] != 0)
 		{
 			n_forth = shortest_path[i]->neighbor;
