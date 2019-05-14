@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 19:08:01 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/14 17:16:55 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,10 @@ int					ft_clean_main(t_room **room, t_data *data);
 int					ft_clean_refacto(t_room **room, t_data data);
 int					ft_malloc_error(void);
 int					ft_error(void);
+void				ft_place_remaining_ants(int unplaced_ants, t_path **path);
+void				ft_neg_ants(t_path **path, t_dispatch *dis);
+void				ft_compute_nb_ants2(t_dispatch *dis, t_path **path, t_data data);
+void				ft_compute_nb_ants(t_path **path, t_data data);
 
 //A SUPPRIMER POUR LE RENDU
 void		ft_print_paths(t_path ***all_path);
