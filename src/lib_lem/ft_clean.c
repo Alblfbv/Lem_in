@@ -6,22 +6,31 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:33:40 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 13:50:03 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/14 17:13:04 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int			ft_malloc_error(void)
+void		ft_free_paths(t_path ***paths)
 {
-	ft_printf("Memory Allocation Error\n");
-	return (0);
-}
+	int	i;
+	int	j;
 
-int			ft_error(void)
-{
-	ft_printf("Error\n");
-	return (0);
+	i = 0;
+	while (paths[i] != 0)
+	{
+		j = 0;
+		while (paths[i][j] != 0)
+		{
+			free(paths[i][j]->path);
+			free(paths[i][j]);
+			j++;
+		}
+		free(paths[i]);
+		i++;
+	}
+	free(paths);
 }
 
 void		ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt)

@@ -6,7 +6,11 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/05/14 17:16:55 by jfleury          ###   ########.fr       */
+=======
+/*   Updated: 2019/05/14 16:55:59 by allefebv         ###   ########.fr       */
+>>>>>>> 1db448d0a211e4bd5d3b90c3b20a0782b20b6c14
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +123,5 @@ void				ft_place_remaining_ants(int unplaced_ants, t_path **path);
 void				ft_neg_ants(t_path **path, t_dispatch *dis);
 void				ft_compute_nb_ants2(t_dispatch *dis, t_path **path, t_data data);
 void				ft_compute_nb_ants(t_path **path, t_data data);
-
-//A SUPPRIMER POUR LE RENDU
-void		ft_print_paths(t_path ***all_path);
-void		ft_print_bfs(t_room **shortest_path);
 
 #endif
