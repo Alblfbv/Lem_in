@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 13:35:39 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 20:36:31 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int		ft_parser_return(char *line, t_data *data, int flag)
 {
 	ft_strdel(&line);
-	if (data->nb_ants == 0)
+	if (data->nb_ants == 0 || !data->start_room || !data->end_room)
 		return (ft_error());
 	if (flag == 2)
 		return (ft_malloc_error());
