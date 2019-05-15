@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 19:22:36 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/02 11:44:31 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/15 17:55:40 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ char	*ft_precision_p(t_conv_spec conv_spec, char *str)
 		free(str);
 		str = ft_strdup("0x");
 	}
-	else if (conv_spec.precision != -1 &&
-		(((int)ft_strlen(str) - 2) <= conv_spec.precision))
+	else if (conv_spec.precision != -1
+		&& (((int)ft_strlen(str) - 2) <= conv_spec.precision))
 	{
 		tmp = ft_strnew(2 + conv_spec.precision);
 		tmp[0] = '0';

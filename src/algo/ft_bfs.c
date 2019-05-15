@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 16:34:03 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/15 17:52:26 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	ft_upstream(t_bfs *bfs, t_data data)
 					break ;
 			}
 			else if (bfs->tmp_r->weight <= ((t_room*)(bfs->tmp_n->room))->weight
-					&& ((t_room*)(bfs->tmp_n->room))->source != bfs->tmp_r)
+				&& ((t_room*)(bfs->tmp_n->room))->source != bfs->tmp_r)
 				ft_upstream2(bfs, data);
 		}
 		bfs->tmp_n = bfs->tmp_n->next;
@@ -67,9 +67,9 @@ static void	ft_downstream2(t_bfs *bfs, t_data data)
 	up_n = (t_room*)bfs->tmp_n->room;
 	up_r = bfs->tmp_r;
 	while (up_n != data.start_room
-			&& up_n->source != data.start_room && !ft_check_circle(up_r, up_n)
-			&& up_r->weight < up_n->weight && ((up_n->flow == 0)
-				|| (up_n->flow == 1 && up_n->upstream == 0)))
+		&& up_n->source != data.start_room && !ft_check_circle(up_r, up_n)
+		&& up_r->weight < up_n->weight && ((up_n->flow == 0)
+			|| (up_n->flow == 1 && up_n->upstream == 0)))
 	{
 		up_src = up_n->source;
 		up_n->source = up_r;
@@ -88,9 +88,9 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 		if (bfs->tmp_n->flow != 1)
 		{
 			if (((t_room*)(bfs->tmp_n->room))->visited == 0
-					&& ((((t_room*)(bfs->tmp_n->room))->flow == 0)
-						|| (((t_room*)(bfs->tmp_n->room))->flow == 1
-							&& ((t_room*)(bfs->tmp_n->room))->src_neigh == 0)))
+				&& ((((t_room*)(bfs->tmp_n->room))->flow == 0)
+					|| (((t_room*)(bfs->tmp_n->room))->flow == 1
+						&& ((t_room*)(bfs->tmp_n->room))->src_neigh == 0)))
 			{
 				bfs->tmp_r2->next = (t_room*)bfs->tmp_n->room;
 				bfs->tmp_r2 = bfs->tmp_r2->next;

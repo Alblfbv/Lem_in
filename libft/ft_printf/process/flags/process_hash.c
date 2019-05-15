@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 15:20:36 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/05 18:43:37 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/15 18:02:46 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static char	*ft_hash_preci(char *str, int i, t_conv_spec conv_spec)
 {
 	while (str[i] == ' ')
 		i++;
-	if (conv_spec.conv_id != 'o' && (str[i] == '\0' ||
-		(str[i] == '0' && str[i + 1] == '\0')))
+	if (conv_spec.conv_id != 'o' && (str[i] == '\0'
+			|| (str[i] == '0' && str[i + 1] == '\0')))
 		return (str);
 	if (conv_spec.conv_id == 'x')
 		str = ft_hash_x_preci(str, i);
@@ -84,9 +84,8 @@ char		*ft_process_hash(t_conv_spec conv_spec, char *str)
 	int	i;
 
 	i = 0;
-	if (conv_spec.precision != -1 ||
-		(conv_spec.precision == -1 &&
-		((conv_spec.flags[2] == -1) || conv_spec.flags[4] == 1)))
+	if (conv_spec.precision != -1 || (conv_spec.precision == -1
+			&& ((conv_spec.flags[2] == -1) || conv_spec.flags[4] == 1)))
 		str = ft_hash_preci(str, i, conv_spec);
 	else
 		str = ft_hash_zero(str, i, conv_spec);

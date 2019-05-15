@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/11 12:16:02 by allefebv          #+#    #+#             */
-/*   Updated: 2019/04/02 11:44:16 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/15 17:59:20 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ char		*ft_process_zero(t_conv_spec conv_spec, char *str)
 		|| conv_spec.flags[4] == 1)
 		return (str);
 	i = 0;
-	if (conv_spec.flags[1] == 1 && conv_spec.flags[0] == -1 &&
-		(conv_spec.conv_id == 'd' || conv_spec.conv_id == 'i') && str[i] != '-')
+	if (conv_spec.flags[1] == 1 && conv_spec.flags[0] == -1 && str[i] != '-'
+		&& (conv_spec.conv_id == 'd' || conv_spec.conv_id == 'i'))
 		i++;
 	str = ft_process_zero_cont(conv_spec, str, i);
 	return (str);

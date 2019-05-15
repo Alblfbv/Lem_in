@@ -6,14 +6,14 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 16:41:09 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/14 17:19:38 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/15 18:03:45 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 static void	ft_choose_best_path2(int *i, int *max_global,
-									int *max_block, int *pos_less)
+	int *max_block, int *pos_less)
 {
 	if (*max_block < *max_global)
 	{
