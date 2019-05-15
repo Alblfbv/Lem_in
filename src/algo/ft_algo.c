@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */
+/*   ft_algo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 14:34:16 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 12:51:09 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 17:11:02 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+static void	ft_allocate_flows(t_room **shortest_path, int i,
+	t_neighbor **n_forth, t_neighbor **n_back)
+{
+	if (shortest_path[i + 1] != 0)
+	{
+		*n_forth = shortest_path[i]->neighbor;
+		while ((*n_forth)->room != shortest_path[i + 1])
+			*n_forth = (*n_forth)->next;
+		(*n_forth)->flow = (*n_forth)->flow + 1;
+	}
+	if (i != 0)
+	{
+		*n_back = shortest_path[i]->neighbor;
+		while ((*n_back)->room != shortest_path[i - 1])
+			*n_back = (*n_back)->next;
+		(*n_back)->flow = (*n_back)->flow - 1;
+		if (shortest_path[i + 1] != 0
+			&& (*n_back)->flow == 0 && (*n_forth)->flow == 0)
+			shortest_path[i]->flow = 0;
+		else
+			shortest_path[i]->flow = 1;
+	}
+}
 
 static void	ft_edmond_karp(t_room **shortest_path)
 {
@@ -21,68 +45,7 @@ static void	ft_edmond_karp(t_room **shortest_path)
 	i = 0;
 	while (shortest_path && shortest_path[i] != 0)
 	{
-		if (shortest_path[i + 1] != 0)
-		{
-			n_forth = shortest_path[i]->neighbor;
-			while (n_forth->room != shortest_path[i + 1])
-				n_forth = n_forth->next;
-			n_forth->flow = n_forth->flow + 1;
-		}
-		if (i != 0)
-		{
-			n_back = shortest_path[i]->neighbor;
-			while (n_back->room != shortest_path[i - 1])
-				n_back = n_back->next;
-			n_back->flow = n_back->flow - 1;
-			if (shortest_path[i + 1] != 0
-				&& n_back->flow == 0 && n_forth->flow == 0)
-				shortest_path[i]->flow = 0;
-			else
-				shortest_path[i]->flow = 1;
-		}
-		i++;
-	}
-}
-
-static int	ft_count_bottleneck(t_data data)
-{
-	t_neighbor	*tmp_n;
-	int			b_neck_start;
-	int			b_neck_end;
-
-	if (data.start_room == NULL || data.end_room == NULL)
-		return (0);
-	b_neck_start = 0;
-	tmp_n = ((data.start_room)->neighbor);
-	while (tmp_n != NULL)
-	{
-		b_neck_start++;
-		tmp_n = tmp_n->next;
-	}
-	b_neck_end = 0;
-	tmp_n = ((data.end_room)->neighbor);
-	while (tmp_n != NULL)
-	{
-		b_neck_end++;
-		tmp_n = tmp_n->next;
-	}
-	return ((b_neck_end >= b_neck_start) ? b_neck_start : b_neck_end);
-}
-
-static void	ft_init_storage_flow(t_room **room, t_data data)
-{
-	t_neighbor	*tmp_n;
-	int			i;
-
-	i = 0;
-	while (i < data.nb_room)
-	{
-		tmp_n = room[i]->neighbor;
-		while (tmp_n != NULL)
-		{
-			tmp_n->storage_flow = 0;
-			tmp_n = tmp_n->next;
-		}
+		ft_allocate_flows(shortest_path, i, &n_back, &n_forth);
 		i++;
 	}
 }

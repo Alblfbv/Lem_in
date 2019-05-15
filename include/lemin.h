@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 15:35:15 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 17:05:37 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ int					ft_check_coord(char *line, t_coord **coord_tab);
 int					ft_path(char *line, t_room **room);
 int					ft_refactoring_room(t_room **room, t_data data, t_room ***final_room);
 int					ft_algo(t_room **room, t_data data);
+int					ft_count_bottleneck(t_data data);
+void				ft_init_storage_flow(t_room **room, t_data data);
 int					ft_bfs(t_room **room, t_data data, t_room ***shortest_path);
 t_path**			ft_chose_best_path(t_path ***all_path, t_data data);
 int					**ft_create_path_tab(t_room ****all_path);
