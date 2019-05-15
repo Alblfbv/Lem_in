@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:15 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/03 12:50:39 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/15 10:42:05 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ from main_viewer import *
 def ft_line(line):
 	i = 0
 	while i < len(line):
-			while line[i] == '':
-				line.pop(i)
-			i += 1
+		while line[i] == '':
+			line.pop(i)
+		i += 1
 	return line
 
 def ft_room(line, type, grid):

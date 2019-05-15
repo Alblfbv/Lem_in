@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    main_viewer.py                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: allefebv <allefebv@student.42.fr>          +#+  +:+       +#+         #
+#    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:21 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/14 11:49:56 by allefebv         ###   ########.fr        #
+#    Updated: 2019/05/15 10:46:54 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,20 +79,20 @@ class Frame_Canvas:
 class Main_Menu:
 	def __init__(self, frame_menu, root, main_canvas):
 		global scale_lem
-		self.button_start = 											\
-			Button(	frame_menu,											\
-					text = "Play",										\
-					width = 8, 											\
-					height = 1, 										\
-					highlightbackground = "black", 						\
-					state = DISABLED, 									\
-					command = 											\
-						lambda x = 1 : ft_move_lem(	list_move,			\
-													list_room,			\
-													list_lem,			\
-													list_step,			\
-													main_canvas.canvas,	\
-													main_menu,			\
+		self.button_start = 										                	\
+			Button(	frame_menu,										        			\
+					text = "Play",								        				\
+					width = 8, 															\
+					height = 1, 							            				\
+					highlightbackground = "black", 		                   				\
+					state = DISABLED, 								   			     	\
+					command = 															\
+						lambda x = 1 : ft_move_lem(	list_move,							\
+													list_room,							\
+													list_lem,							\
+													list_step,							\
+													main_canvas.canvas,     			\
+													main_menu,							\
 													scale_lem))
 		self.button_start.grid(column = 1, row = 1)
 		self.button_reset = 														\
@@ -141,8 +141,8 @@ class Main_Menu:
 
 class Main_Canvas:
 	def __init__(self, frame_canvas, grid):
-		self.canvas = 																\
-			Canvas(	frame_canvas, 													\
+		self.canvas =																\
+			Canvas(	frame_canvas,													\
 					borderwidth=2,													\
 					width = 1910,													\
 					height = 1042,													\
