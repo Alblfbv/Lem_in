@@ -6,16 +6,17 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/15 17:00:41 by allefebv         ###   ########.fr        #
+#    Updated: 2019/05/15 19:58:05 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 		= lem-in
-CC 			= gcc
-RM 			= rm -Rf
-INCLUDE 	= -I ./include
-CFLAGS 		+= -Wall -Wextra -Werror $(INCLUDE)
-LIB			= libft/libft.a
+NAME 		=	lem-in
+CC 			=	gcc
+RM 			=	rm -Rf
+INCLUDE 	=	-I ./include
+INCLUDE_L	=	-I ./libft/include
+CFLAGS 		+=	-Wall -Wextra -Werror $(INCLUDE) $(INCLUDE_L)
+LIB			=	libft/libft.a
 SRC			= 	src/main.c 							\
 				src/lib_lem/ft_init_main.c 			\
 				src/lib_lem/ft_free_ptr.c 			\

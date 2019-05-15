@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 18:14:41 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 19:57:17 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "../libft/include/libft.h"
+# include "libft.h"
 
 # define HASH_TAB 20011
 
