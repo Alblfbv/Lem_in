@@ -6,11 +6,23 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/30 16:22:53 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 11:40:18 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 15:36:07 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+void	ft_init_start_neigh(t_data *data)
+{
+	t_neighbor	*tmp_n;
+
+	tmp_n = data->start_room->neighbor;
+	while (tmp_n != NULL)
+	{
+		((t_room*)(tmp_n->room))->src_neigh = 1;
+		tmp_n = tmp_n->next;
+	}
+}
 
 int		ft_init_room(t_room ***room)
 {

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 18:00:53 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 15:35:15 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ typedef struct			s_room
 	char				*x;
 	char				*y;
 	int					flow;
+	int					src_neigh;
 	int					weight;
 	short				visited;
-	short				visited_up;
 	short				upstream;
 	t_neighbor			*neighbor;
 	int					ant;
@@ -109,6 +109,7 @@ int					ft_neigh_2(t_room *tmp_r1, t_room *tmp_r2, t_neighbor *tmp_n2);
 void				ft_store_type(char **str, t_room **room, t_data *data, int flag);
 int					ft_store_room(char **str, t_room **room);
 int					ft_init_room(t_room ***room);
+void				ft_init_start_neigh(t_data *data);
 int					ft_init_data(t_data *data, int argc, char **argv);
 void				ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt);
 int					ft_clean_main(t_room **room, t_data *data);

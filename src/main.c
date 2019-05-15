@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/05 11:39:13 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 15:33:47 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int				main(int argc, char **argv)
 	}
 	if (!(ft_refactoring_room(room, data, &final_room)))
 		return (ft_clean_main(room, &data));
+	ft_init_start_neigh(&data);
 	ft_algo(final_room, data);
 	ft_lstdel(data.instructions, &ft_free_ptr);
 	free(data.instructions);

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/14 17:58:56 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 15:40:07 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ static void	ft_downstream(t_bfs *bfs, t_data data)
 	{
 		if (bfs->tmp_n->flow != 1)
 		{
-			if (((t_room*)(bfs->tmp_n->room))->visited == 0)
+			if (((t_room*)(bfs->tmp_n->room))->visited == 0
+					&& ((((t_room*)(bfs->tmp_n->room))->flow == 0)
+						|| (((t_room*)(bfs->tmp_n->room))->flow == 1
+							&& ((t_room*)(bfs->tmp_n->room))->src_neigh == 0)))
 			{
 				bfs->tmp_r2->next = (t_room*)bfs->tmp_n->room;
 				bfs->tmp_r2 = bfs->tmp_r2->next;

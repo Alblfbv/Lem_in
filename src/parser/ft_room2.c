@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 17:12:38 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/05 11:37:08 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 15:34:33 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static int		ft_store_room2(char **str, t_room **room, int key)
 	room[key]->flow = 0;
 	room[key]->weight = 0;
 	room[key]->ant = 0;
+	room[key]->src_neigh = 0;
 	return (1);
 }
 
@@ -81,6 +82,7 @@ static int		ft_store_room3(char **str, t_room *tmp)
 	tmp->next->flow = 0;
 	tmp->next->weight = 0;
 	tmp->next->ant = 0;
+	tmp->next->src_neigh = 0;
 	return (1);
 }
 
