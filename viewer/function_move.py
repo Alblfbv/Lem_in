@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/25 16:47:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/03 14:32:02 by jfleury          ###   ########.fr        #
+#    Updated: 2019/05/15 16:45:38 by jfleury          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,5 +66,4 @@ def ft_move_lem(move, room, lem, l, canvas, menu, scale_lem):
 				canvas.after(10)
 			i += 1
 		menu.counter2.config(text=str(i))
-		menu.button_neg.config(state="normal")
 		menu.button_reset.config(state="normal")

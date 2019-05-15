@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 15:40:07 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/15 16:34:03 by jfleury          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static void	ft_upstream2(t_bfs *bfs, t_data data)
 	up_n = (t_room*)bfs->tmp_n->room;
 	up_r = bfs->tmp_r;
 	while (up_n != data.start_room && up_n->source != data.start_room
-			&& !ft_check_circle(up_r, up_n) && ((up_r->weight <= up_n->weight
-					&& up_n->flow == 1 && ft_check_same_path(up_r, up_n))
-				|| (up_r->weight < up_n->weight && up_n->flow == 0)))
+		&& !ft_check_circle(up_r, up_n) && ((up_r->weight <= up_n->weight
+				&& up_n->flow == 1 && ft_check_same_path(up_r, up_n))
+			|| (up_r->weight < up_n->weight && up_n->flow == 0)))
 	{
 		up_src = up_n->source;
 		up_n->source = up_r;
