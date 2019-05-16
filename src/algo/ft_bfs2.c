@@ -6,7 +6,7 @@
 /*   By: allefebv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 17:53:14 by allefebv          #+#    #+#             */
-/*   Updated: 2019/05/14 17:56:44 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/16 19:10:07 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		ft_create_shortest_path(t_bfs *bfs, t_room ***shortest_path)
 		i++;
 	}
 	if (!(*shortest_path = (t_room**)malloc(sizeof(t_room*) * (i + 1))))
-		return (ft_malloc_error());
+		return (ft_malloc_error(0));
 	shortest_path[0][i] = 0;
 	i--;
 	bfs->tmp_r2 = bfs->tmp_r;

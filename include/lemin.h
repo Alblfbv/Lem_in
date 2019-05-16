@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 12:34:08 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 19:57:17 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/16 19:07:47 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int						ft_algo(t_room **room, t_data data);
 int						ft_count_bottleneck(t_data data);
 void					ft_init_storage_flow(t_room **room, t_data data);
 int						ft_bfs(t_room **room, t_data data,
-							t_room ***shortest_path);
+							t_room ***shortest_path, int i);
 t_path					**ft_chose_best_path(t_path ***all_path, t_data data);
 int						**ft_create_path_tab(t_room ****all_path);
 int						ft_store_path(t_path ***all_path, t_data data);
@@ -122,8 +122,8 @@ int						ft_init_data(t_data *data, int argc, char **argv);
 void					ft_clean_main2(t_room *tmp_r, t_room *tmp_r_nxt);
 int						ft_clean_main(t_room **room, t_data *data);
 int						ft_clean_refacto(t_room **room, t_data data);
-int						ft_malloc_error(void);
-int						ft_error(void);
+int						ft_malloc_error(int r_value);
+int						ft_error(int r_value);
 int						ft_check_circle(t_room *tmp_r, t_room *tmp_n);
 int						ft_check_same_path(t_room *tmp_r, t_room *tmp_n_r);
 void					ft_init_data_bfs(t_bfs *bfs, t_data data,

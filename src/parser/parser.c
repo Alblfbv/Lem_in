@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 20:36:31 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/16 19:13:11 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ static int		ft_parser_return(char *line, t_data *data, int flag)
 {
 	ft_strdel(&line);
 	if (data->nb_ants == 0 || !data->start_room || !data->end_room)
-		return (ft_error());
+		return (ft_error(0));
 	if (flag == 2)
-		return (ft_malloc_error());
+		return (ft_malloc_error(0));
 	return (1);
 }
 
@@ -43,7 +43,7 @@ int				parser(t_data *data, t_room **room, int flag, int check)
 			ft_modif(&flag, &check, 1, 1);
 			data->nb_room++;
 		}
-		else if ((flag) && (ft_comment(line) || ft_command(line, &flag)))
+		else if ((flag && ft_command(line, &flag)) || ft_comment(line))
 			check = 1;
 		else if ((flag == 1 || flag == 2) && ft_path(line, room))
 			ft_modif(&flag, &check, 2, 1);
