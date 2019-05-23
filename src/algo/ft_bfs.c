@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 12:58:24 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/16 19:06:54 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/23 13:35:05 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int			ft_bfs(t_room **room, t_data data, t_room ***shortest_path, int i)
 			ft_downstream(&bfs, data);
 		bfs.tmp_r = bfs.tmp_r->next;
 		if (bfs.tmp_r == NULL && i == 0)
-			return(ft_error(-1));
+			return (ft_error(-1));
 		if (bfs.tmp_r == NULL)
 			return (0);
 	}
