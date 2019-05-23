@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/05 15:35:42 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/03 10:17:49 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/23 12:32:39 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 void				ft_lstprint_str(t_list *lst);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int					ft_sstrdel(char **str, int size);
-int					get_next_line(const int fd, char **line);
+int					get_next_line(const int fd, char **line, int check);
 unsigned long long	ft_power(unsigned long long nb, unsigned long long power);
 char				*ft_char_replace(char *str, char c, char r);
 char				*ft_strupcase(char *str);

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/27 20:19:32 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/16 19:13:11 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/23 12:32:21 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int				parser(t_data *data, t_room **room, int flag, int check)
 	char	*line;
 
 	ft_modif(&flag, &check, 0, 1);
-	while ((get_next_line(0, &line)) == 1 && check == 1)
+	line = NULL;
+	while ((get_next_line(0, &line, check)) == 1 && check == 1)
 	{
 		check = 0;
 		if (!flag && ft_ants(line, data, &flag))

@@ -6,7 +6,7 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 10:07:18 by jfleury           #+#    #+#             */
-/*   Updated: 2018/11/13 18:41:26 by jfleury          ###   ########.fr       */
+/*   Updated: 2019/05/23 12:22:31 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_strdel(char **as)
 {
-	if (as != NULL)
+	if (as != NULL && *as != NULL)
 	{
 		free(*as);
 		*as = NULL;

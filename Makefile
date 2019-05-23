@@ -6,7 +6,7 @@
 #    By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/03/19 14:24:03 by jfleury           #+#    #+#              #
-#    Updated: 2019/05/15 19:58:05 by allefebv         ###   ########.fr        #
+#    Updated: 2019/05/23 12:35:48 by allefebv         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC 			=	gcc
 RM 			=	rm -Rf
 INCLUDE 	=	-I ./include
 INCLUDE_L	=	-I ./libft/include
-CFLAGS 		+=	-Wall -Wextra -Werror $(INCLUDE) $(INCLUDE_L)
+CFLAGS 		+=	-Wall -Wextra -Werror $(INCLUDE) $(INCLUDE_L) #-g3 -fsanitize=address
 LIB			=	libft/libft.a
 SRC			= 	src/main.c 							\
 				src/lib_lem/ft_init_main.c 			\

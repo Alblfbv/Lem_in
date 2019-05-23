@@ -6,11 +6,13 @@
 /*   By: jfleury <jfleury@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/19 10:32:11 by jfleury           #+#    #+#             */
-/*   Updated: 2019/05/15 15:33:47 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/23 13:04:35 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+//void			end(void) __attribute__ ((destructor));
 
 int				main(int argc, char **argv)
 {
@@ -37,3 +39,10 @@ int				main(int argc, char **argv)
 	free(room);
 	return (0);
 }
+/*
+void	end(void)
+{
+	ft_printf("DESTRUCT");
+	while (1);
+}
+*/

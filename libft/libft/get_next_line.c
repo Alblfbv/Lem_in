@@ -6,7 +6,7 @@
 /*   By: jfleury <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/12 13:50:20 by jfleury           #+#    #+#             */
-/*   Updated: 2019/04/04 14:39:45 by allefebv         ###   ########.fr       */
+/*   Updated: 2019/05/23 12:31:24 by allefebv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_checktmp(char *tmp, char **line, int *check_n)
 	return (tmp);
 }
 
-int		get_next_line(const int fd, char **line)
+int		get_next_line(const int fd, char **line, int check)
 {
 	static char *tmp;
 	char		buf[1];
@@ -76,18 +76,21 @@ int		get_next_line(const int fd, char **line)
 
 	if (line == NULL || fd < 0 || read(fd, buf, 0) < 0)
 		return (-1);
-	if (!(*line = ft_strnew(BUFF_SIZE)))
-		*line = NULL;
-	check_n = 0;
-	check_end = 0;
-	if (!(tmp = ft_checktmp(tmp, line, &check_n)))
-		return (-1);
-	if (check_n == 1)
-		return (1);
-	if (!(tmp = ft_read(tmp, line, fd, &check_end)))
-		return (-1);
-	if (check_end == 0)
-		return (1);
+	if (check == 1)
+	{
+		if (!(*line = ft_strnew(BUFF_SIZE)))
+			*line = NULL;
+		check_n = 0;
+		check_end = 0;
+		if (!(tmp = ft_checktmp(tmp, line, &check_n)))
+			return (-1);
+		if (check_n == 1)
+			return (1);
+		if (!(tmp = ft_read(tmp, line, fd, &check_end)))
+			return (-1);
+		if (check_end == 0)
+			return (1);
+	}
 	ft_strdel(&tmp);
 	return (0);
 }
