@@ -79,3 +79,9 @@ v_4-v_5
   * ```Reset``` : resets the program
   * ```-```     : zoom out
   * ```Exit```  : exits the program
+  
+  
+  ## Author
+  
+  [Alblfbv](https://github.com/Alblfbv)
+  [Jfleury] (https://github.com/Jeremy-Fleury)
