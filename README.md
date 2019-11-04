@@ -1,7 +1,7 @@
 # Lem_in
 42 project Lem_in
 
-
+<img src="https://github.com/Alblfbv/Lem_in/blob/master/media/lem_in_visu.gif" width="80%">
 
 ## Description
 Lem_in is a program whose role is to move N ants through a graph from vStart to vEnd in the least amount of __steps__.
